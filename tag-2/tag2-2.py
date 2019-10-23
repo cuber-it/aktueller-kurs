@@ -15,11 +15,20 @@ for zeile in rohdaten:
       else:
         daten[-1] = daten[-1] + zeile
 
+d = {}
 for zeile in daten:
     m = re.search("^(\d{2}/\d{2}) +(\d{2}:\d{2}:\d{2}) +([A-Z]+) *:(.*)$", zeile)
-    print(m.groups())
+    status = m.groups()[2]
+    if not status in d:
+        d[status] = []
+    d[status].append(m.groups())
 
+print("Infos: {}".format(len(d["INFO"])))
+for m in d["INFO"]:
+    print("{} {}".format(m[1], m[3]))
 
+#print(d["INFO"][0])
+#print(d["INFO"][-1])
 #counter = 0
 #for zeile in daten:
 #  zerlegung = zeile.split(" ", 3)
