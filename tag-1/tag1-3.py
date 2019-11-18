@@ -10,8 +10,7 @@ log = [
 zeilen_nummer = 1
 fehler_nummer = 0
 for zeile in log:
-    if "OK" not in zeile:
-        # print(str(zeilen_nummer) + " " + zeile)
+    if "ERR" in zeile or "WARN" in zeile:
         print("{}\t{}".format(zeilen_nummer, zeile))
         fehler_nummer += 1
     zeilen_nummer += 1
