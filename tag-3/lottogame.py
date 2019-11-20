@@ -43,13 +43,7 @@ if __name__ == "__main__":
 
     # matches = { "0":0, "1":0, "2":0 .... }
 
-    matches = dict(
-        zip(
-            [str(n) for n in range(7)],
-            [0]*7
-        )
-    )
-
+    matches = dict(zip([str(n) for n in range(7)], [0]*7))
 
     for n in range(spiele):
         ziehung = lotto_zahlen()
