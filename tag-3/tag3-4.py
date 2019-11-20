@@ -23,3 +23,5 @@ def csv_write():
         writer.writeheader()
         for row in l:
             writer.writerow(row)
+
+csv_write()
