@@ -1,16 +1,17 @@
 import csv
-reader = csv.DictReader(open("report.csv"))
-rows = []
-for row in reader:
-    rows.append(row)
+import sqlite3
 
-print(" | ".join(rows[0].keys()))
-print("-" * 40)
-for row in rows:
-    print(" | ".join(row.values()))
+#reader = csv.DictReader(open("report.csv"))
+#rows = []
+#for row in reader:
+#    rows.append(dict(row))
 
-sql = "INSERT INTO Tabelle VALUES({})"
+rows = [dict(row) for row in csv.DictReader(open("report.csv"))]
+
+sql = "INSERT INTO T1 VALUES({})"
+conn = sqlite3.connect('example.db')
 for row in rows:
-    u, w, l = row.values()
-    l = "'{}'".format(l)
-    print(sql.format(",".join([u, w, l])))
+    field1, field2, field3 = row.values()
+    field1 = "'{}'".format(field1)
+    field3 = "'{}'".format(field3)
+    print(sql.format(",".join([field1, field2, field3])))

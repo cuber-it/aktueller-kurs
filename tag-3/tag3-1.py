@@ -5,14 +5,12 @@ def machwas(daten):
       daten[i] = n + 1
     return daten
 
-
-
 try:
-  ergebnis = machwas([1,2,3,4,5])
-  print(ergebnis)
+  #ergebnis = machwas([1,2,3,4,5])
+  #print(ergebnis)
   wert = 1 / 0
-#except Exception as e:
-#    print(e)
-#    print("Es geht weiter")
+except Exception as e:
+    print("Mein Fehler: ", e)
+    raise e
 finally:
   print("hier geht es immer durch")
