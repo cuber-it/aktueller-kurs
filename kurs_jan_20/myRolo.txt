@@ -1,7 +1,0 @@
-# Mein kleines Rolo
-Willi:1234
-Heinz:4567
-Karl:3333
-Klaus:3434
-HEiner:989898
-Ulrich:3453453
