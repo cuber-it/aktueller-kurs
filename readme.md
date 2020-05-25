@@ -15,30 +15,28 @@
 - Listenoperationen
 - Slicing
 
-## 4 Dateiverarbeitung
-- Lesen von Dateien
-- Schreiben von Dateien
-- Spezielle Dateiformate
-- Das Dateisystem
-
-## 5 Dictionaries
+## 4 Dictionaries
 - Einfache Dictionaries
 - Erzeugung
 - Operationen
 - Datenstrukturen
 
-## 6 Funktionen
+## 5 Funktionen
 - Funktionsaufbau
 - Parameterlisten
 - Rückgabewerte
 - Bibliotheken
 - Module
 
+## 6 Dateiverarbeitung
+- Lesen von Dateien
+- Schreiben von Dateien
+- Spezielle Dateiformate
+- Das Dateisystem
+
 ## 7 Klassen
 - Klassendefinition
 - Objekte und Methoden
 - Beispiele für Klassen
 
-## 8 Netzwerkfunktionen
-
-## 9 Einführung in Pandas
+## 8 Teilnehmerthemen
