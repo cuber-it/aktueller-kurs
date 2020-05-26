@@ -6,14 +6,20 @@ file = "SampleLog.log"
 with open(os.path.join(path, file)) as fd:
     raw_data = []
     for line in fd.readlines():
-        if "\n" in line:
+        if "/" in line:
             raw_data.append(line.strip("\n"))
 
-data = {}
+data = {
+    "PROTERR": [],
+    "TRACE": [],
+    "INFO": [],
+    "WARNING": [],
+    "EVENT": []
+}
 
 for line in raw_data:
-    event = line[15:22]
-    if event not in data:
+    event = line[15:22].strip()
+    if event in data.keys():
         data[event].append(line[22:])
 
 for k,v in data.items():
