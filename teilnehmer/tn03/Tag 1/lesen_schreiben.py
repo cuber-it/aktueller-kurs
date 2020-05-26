@@ -3,7 +3,7 @@ ziel = input("Wie lautet die Zieldatei?")
 try:
     with open(quelle) as fd:
         text = fd.read()
-    with open(ziel, "x") as fd:
+    with open(ziel, "w") as fd:
         fd.write(text)
 
     print("{} nach {} übertragen".format(quelle, ziel))
