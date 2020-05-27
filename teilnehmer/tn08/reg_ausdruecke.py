@@ -1,8 +1,6 @@
 import my_io_2
 import re
 
-# sample log einlesen ohne "müllzeichen"
-
 # Müll wird gekennzeichnet durch    ^ *(\d{2})? *$
 # korrkte Zeilen finden             ^\d{2}/\d{2}
 
