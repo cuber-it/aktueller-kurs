@@ -1,15 +1,15 @@
 def slurp(fname, style=None):
     """
-        Reads all content of a file
+        reads all content of a file
+        If nothing specified than all as one string
+        else if "LIST" as parameter given it will be converted to a list auf string
 
-        If nothing specified then all as on string
-        else if "LIST as parameter given it will be converted to a list of string
+        @PARAMS
+        fname: as path to a textfile
+        style: return as string or list, default = string
 
-        @PARAMS:
-        fname: a path to a textfile
-        style: return as stroing or list. default = String
         @RETURNS:
-        String or list of strings (aka. textlines)
+        string or list of strings (textlines)
     """
     with open(fname) as fd:
         if style == None:
@@ -23,12 +23,11 @@ def slurp(fname, style=None):
 
 def spit(fname, list_data):
     """
-        Writes a list of strings as a textfile
+        writes a list of strings as a textfile
 
-        The list of tring will be joined, so that every line
-        in the textfile ist delimited by LF
+        The list of strings will be joined, so that every line
+        in the textfile is delimeted by LF
 
-        ...
     """
     with open(fname, "w") as fd:
         fd.write("\n".join(list_data))
