@@ -1,20 +1,37 @@
 import random
 import os
-#def count_points(wessen):
- #   wessen.split(" ",0)[1]
+import re
+
+def count_points(input):
+    farben=["Karo","Herz","Pike","Kreuz"]
+    y=len(farben)-1
+    output = 0
+    while y >= 0:
+        y = y - 1
+        output = input.count(farben[y]+" Ass")*11+output+input.count(farben[y]+" Dame")*10+input.count(farben[y]+" Bube")*10+input.count(farben[y]+" 10")*10+input.count(farben[y]+" König")*10+input.count(farben[y]+" 9")*9++input.count(farben[y]+" 8")*8+input.count(farben[y]+" 7")*7+input.count(farben[y]+" 6")*6+input.count(farben[y]+" 5")*5+input.count(farben[y]+" 4")*4+input.count(farben[y]+" 3")*3+input.count(farben[y]+" 2")*2
+    if output > 21:
+        y=len(farben)-1
+        while y >= 0:
+            y = y - 1
+            output = output-input.count(farben[y]+" Ass")*11+input.count(farben[y]+" Ass")*1
+    print(output)
+    return output
+
 eingabe = True
+newcard = True
 counter = 50
 dealercards = []
-dealerpoints = []
+dealerpoints = 0
 usercards = []
-userpoints = []
+userpoints = 0
 deck=[]
-wert=[1,2,3,4,5,6,7,8,9,10,11]
+kartenwert=[] ##Test
+result=[]     ##Test
+wert=[11,10,10,10,10,9,8,7,6,5,4,3,2]
 karten=["Ass","König","Dame","Bube","10","9","8","7","6","5","4","3","2"]
 farben=["Karo","Herz","Pike","Kreuz"]
 x=len(karten)-1
 y=len(farben)-1
-print("test1")
 while x >= 0:
     y=len(farben)-1
     while y >= 0:
@@ -23,9 +40,18 @@ while x >= 0:
     x = x -1
 while eingabe:
     dealercards=random.choices(deck, k=2)
-    usercards.append(random.choices(deck, k=2))
-    print("Du hast {} was {} Punkte gibt. Der Dealer hat mit {} {} Punkte".format(usercards, userpoints, dealercards, dealerpoints))
-    break
+    usercards=random.choices(deck, k=2)
+    userpoints=count_points(usercards)
+    dealerpoints=count_points(dealercards)
+    print("Du hast {} was {} Punkte ergibt. Der Dealer hat mit {} {} Punkte""\n""Wollen Sie noch eine Karte? J/N".format(usercards, userpoints, dealercards, dealerpoints))
+    newcard="J" in input()
+    while newcard:
+        usercards.append(random.choice(deck))
+        userpoints=count_points(usercards)
+        print("Du hast {} was {} Punkte ergibt. Der Dealer hat mit {} {} Punkte".format(usercards, userpoints, dealercards, dealerpoints))
+        newcard="J" in input("Wollen Sie noch eine Karte? J/N ")
+    else:
+        print("Du hast {} was {} Punkte ergibt. Der Dealer hat mit {} {} Punkte".format(usercards, userpoints, dealercards, dealerpoints))
 #    if usernumber > randomnumber:
 #        counter = counter + 1
 #        print("You won 1 €! You now have: "+ str(counter)+" €")
