@@ -23,3 +23,9 @@ public class Person
         return Name;
     }
 }
+
+public lib {
+    public void machwas(self) {
+        return 42;
+    }
+}
