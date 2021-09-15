@@ -11,6 +11,11 @@ public class lib
     {
         return zahl * 42;
     }
+
+    public void NikosFunction() 
+    {
+    // hier könnte ihr Code stehen....
+    }
 }
 
 public class Person
@@ -37,8 +42,5 @@ public class Person
     }
 }
 
-public void NikosFunction() 
-{
-    // hier könnte ihr Code stehen....
-}
+
 
