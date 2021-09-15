@@ -1,6 +1,6 @@
 using System;
 
-public lib
+public class lib
 {
     public void machwas(self) 
     {
