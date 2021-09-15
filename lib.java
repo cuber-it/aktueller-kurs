@@ -1,0 +1,3 @@
+public void NikosFunction() {
+    // hier könnte ihr Code stehen....
+}
