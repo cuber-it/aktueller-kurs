@@ -7,6 +7,11 @@ public class lib
         return 42;
     }
 
+    public void machnochwas(self) 
+    {
+        return 47;
+    }
+
     public void krams(int zahl)    
     {
         return zahl * 42;
