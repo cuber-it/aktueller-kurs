@@ -1,0 +1,34 @@
+# Ignore all
+*
+
+# Unignore .gitignore itself
+!.gitignore
+
+# Unignore all with extensions
+# Python Courses
+!*.py
+
+# Shell Courses
+!*.sh
+
+# C/C++ Courses
+!*.c
+!*.cc
+!*.h
+!*.hpp
+!makefile
+!Makefile
+
+# Misc. Files
+!*.md
+!*.csv
+!*.yaml
+!*.json
+!*.txt
+!*.pdf
+!*.html
+!*.xls
+!*.xlsx
+
+# Unignore all dirs
+!*/
