@@ -7,6 +7,12 @@ class Main {
         System.out.printf("Number of args:%d%n", args.length);
     }
 
-    public void calc() {
+    public int calc(int a, int b) {
+        return a + b;
     }
+
+    public void status() {
+        System.out.println("I feel fine");
+    }
+    
 }
