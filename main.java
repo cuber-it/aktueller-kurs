@@ -3,7 +3,7 @@ class Main {
         System.out.println("Hello");
     }
 
-    public calc() {
-        
+    public void calc() {
+
     }
 }
