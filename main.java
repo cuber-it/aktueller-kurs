@@ -16,4 +16,13 @@ class Main {
 
         return l;
     }
+  
+    public int calc(int a, int b) {
+        return a + b;
+    }
+
+    public void status() {
+        System.out.println("I feel fine");
+    }
+    
 }
