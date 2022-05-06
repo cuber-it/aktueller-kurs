@@ -1,9 +1,10 @@
 class Main {
-    public static void main() {
-        System.out.println("Hello");
+    public static void main(String[] args) {
+        System.out.printf("%s%n", "Hello World");
+
+        System.out.printf("Number of args:%d%n", args.length);
     }
 
     public void calc() {
-
     }
 }
