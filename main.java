@@ -5,8 +5,17 @@ class Main {
         System.out.printf("%s%n", "Hello World");
 
         System.out.printf("Number of args:%d%n", args.length);
+
+        
     }
 
     public void calc() {
+    }
+
+    public void wetterVorhersage(boolean jaNein){
+
+        if(jaNein) {
+            System.printf("Morgen wir das Wetter gut");
+        }
     }
 }
