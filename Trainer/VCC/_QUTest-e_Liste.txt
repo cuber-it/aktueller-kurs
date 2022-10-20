@@ -1,0 +1,12 @@
+;
+
+n0111023 VCC-IVR-Interaction	EDST-Test
+;
+n0211023 VCC-Services	EDST-Test
+n0311023 VCC-Services	EDST-Test
+n0411023 VCC-Supplement	EDST-Test
+n0511023 VCC-Supplement	EDST-Test
+n0611023 VCC-Core-ERMS	EDST-Test
+n0711023 VCC-Core-ERMS	EDST-Test
+n0811023 VCC-Web	EDST-Test
+
