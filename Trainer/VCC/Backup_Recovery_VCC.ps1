@@ -13,16 +13,13 @@
 [CmdletBinding()]
 param(
     [String] $iniFile = (Join-Path $PSScriptRoot "Backup_Recovery_VCC.ini"),
-    [String] $logFile = (Join-Path $PSScriptRoot "Backup_Recovery_VCC.log"),
+    [String] $logFile = (Join-Path $PSScriptRoot "$(Get-Date –format 'yyyyMMdd_HHmmss')_Backup_Recovery_VCC.log"),
     [ValidateSet("backup", "recovery")][String] $aktion = "backup",
     [String] $umgebung = "",
     [String] $server = "",
     [String] $modulepath = (Join-Path $PSScriptRoot "Modules")
 )
 
-
-$appName = $MyInvocation.MyCommand
-$appFullName = $MyInvocation.InvocationName
 
 #-- IMPORT ----------------------------------------------------------------------
 Import-Module PsIni
