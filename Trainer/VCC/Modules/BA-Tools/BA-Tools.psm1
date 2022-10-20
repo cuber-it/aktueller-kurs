@@ -20,9 +20,9 @@ Foreach($import in @($Public + $Private))
     # Export Public functions ($Public.BaseName) for WIP modules
     # Set variables visible to the module and its functions only
 
-Set-Variable LF -Option Constant -Value "`n"
-Set-Variable CR -Option Constant -Value "`r"
-Set-Variable EOL -Option Constant -Value "`n"
+Set-Variable LF  -Value "`n" #-Option Constant
+Set-Variable CR  -Value "`r" #-Option Constant
+Set-Variable EOL -Value "`n" #-Option Constant
 
 # Vorbereitete Hilfsvariablen aka Konstanten
 Export-ModuleMember -Variable LF

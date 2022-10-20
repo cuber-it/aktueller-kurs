@@ -13,7 +13,7 @@
 [CmdletBinding()]
 param(
     [String] $iniFile = (Join-Path $PSScriptRoot "Backup_Recovery_VCC.ini"),
-    [String] $logFile = (Join-Path $PSScriptRoot "$(Get-Date –format 'yyyyMMdd_HHmmss')_Backup_Recovery_VCC.log"),
+    [String] $logFile = (Join-Path $PSScriptRoot "$(Get-Date -format 'yyyyyMMdd_HHmmss')_Backup_Recovery_VCC.log"),
     [ValidateSet("backup", "recovery")][String] $aktion = "backup",
     [String] $umgebung = "",
     [String] $server = "",
@@ -57,10 +57,15 @@ $msg =
     "# --------------------------------------------------------------------" + $EOL
 Write-Message -suppressTime -logFile $logFile $msg
 
+$serverInfos = Read-ServerListe $serverListePath
+
+#Write-Host $serverListen["TypeToNames"].Keys
+#Write-Host $serverListen["NameToTypes"].Keys
+
 if ($backup){
-	Backup-Server $serverListePath $iniDaten
-}else {
-    Restore-Server $server $iniDaten
+	Backup-Server $serverInfos $iniDaten
+} else {
+    Restore-Server $serverInfos["NameToTypes"] $backupVerz $server
 }
 
 exit(0)
