@@ -25,7 +25,7 @@ param(
 Import-Module PsIni
 
 Import-Module (Join-Path $modulepath "BA-Tools") -DisableNameChecking -Force
-Import-Module (Join-Path $modulepath "Execute-RoboCopy") -DisableNameChecking -Force
+Import-Module (Join-Path $modulepath "Get-RoboCopyCommand") -DisableNameChecking -Force
 Import-Module (Join-Path $modulepath "Restore-Server") -DisableNameChecking -Force
 Import-Module (Join-Path $modulepath "Backup-Server") -DisableNameChecking -Force
 
@@ -65,7 +65,9 @@ $serverInfos = Read-ServerListe $serverListePath
 if ($backup){
 	Backup-Server $serverInfos $iniDaten
 } else {
-    Restore-Server $serverInfos["NameToTypes"] $backupVerz $server
+    Restore-Server $serverInfos["NameToTypes"] $backupVerz $server $logFile
 }
+
+Write-Message -logFile $logFile "Verarbeitung beendet"
 
 exit(0)

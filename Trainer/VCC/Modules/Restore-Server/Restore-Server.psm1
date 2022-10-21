@@ -2,7 +2,8 @@ function Restore-Server {
     param(
         [Parameter(Mandatory)][hashtable] $serverInfos,
 		[Parameter(Mandatory)][String] $backupVerz,
-        [Parameter(Mandatory)][String] $server
+        [Parameter(Mandatory)][String] $server,
+        [Parameter(Mandatory)][String] $logFile
     )
     Write-Message -logFile $logFile "Es wird ein Recovery fuer den Server $server von $backupVerz eingespielt"
     Write-Message -logFile $logFile "Es wird der Servertyp von $server ermittelt"
@@ -12,14 +13,10 @@ function Restore-Server {
 	Write-Message -logFile $logFile "Als Servertyp wurde $typ erkannt"
 	Write-Message -logFile $logFile "Die Sicherungen werden nun zurueck gespielt"
 
-	$source = "$backupVerz\$typ\$server"
-    $destination = "\\$server\c$\"
-    $file = "*.*"
+    $robocopy, $options = Get-RoboCopyCommand "$backupVerz\$typ\$server" "\\$server\c$\" "*.*"
 
-    $cmd = Get-RoboCopyCommand $source $destination $file
-    Write-Message -logFile $logFile "Kommando: ROBOCOPY $cmd"
+    Write-Message -logFile $logFile "Kommando: $robocopy $options"
 
-    $status = Execute-RoboCopyCommand $cmd
-	Write-Message -logFile $logFile "Status: "
-    Write-Message -logFile $logFile $status -suppressTime
+    (&$robocopy $options 2>&1) | Write-Message -logFile $logFile -suppressTime
+
 }

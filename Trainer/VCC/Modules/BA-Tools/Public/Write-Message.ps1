@@ -1,16 +1,17 @@
 function Write-Message {
+    [CmdletBinding()]
     param(
-        [Parameter(Mandatory)][String[]] $msg,
+        [Parameter(ValueFromPipeline)][String] $msg,
         [Switch] $suppressTime,
         [String] $logFile = ""
     )
-    $msg | ForEach-Object {
+    process {
         if(!$suppressTime) {
-            $_ = "$(Get-Zeit) $_"
+            $msg = "$(Get-Zeit) $msg"
         }
         if($logFile -ne "") {
-            $_ | Out-File -FilePath $logFile -Append
+            $msg | Out-File -FilePath $logFile -Append
         }
-        $_ | Write-Host
+        $msg | Write-Host
     }
 }
