@@ -13,10 +13,6 @@ function Restore-Server {
 	Write-Message -logFile $logFile "Als Servertyp wurde $typ erkannt"
 	Write-Message -logFile $logFile "Die Sicherungen werden nun zurueck gespielt"
 
-    $robocopy, $options = Get-RoboCopyCommand "$backupVerz\$typ\$server" "\\$server\c$\" "*.*"
-
-    Write-Message -logFile $logFile "Kommando: $robocopy $options"
-
-    (&$robocopy $options 2>&1) | Write-Message -logFile $logFile -suppressTime
-
+    $status = Copy-FileRecursive "$backupVerz\$typ\$server" "\\$server\c$\" "*.*" -logFile $logFile
+    Write-Message -logFile $logFile "Ergebnis: $status"
 }

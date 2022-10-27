@@ -20,12 +20,13 @@ param(
     [String] $modulepath = (Join-Path $PSScriptRoot "Modules")
 )
 
+Set-StrictMode -Version 3.0
 
 #-- IMPORT ----------------------------------------------------------------------
 Import-Module PsIni
 
 Import-Module (Join-Path $modulepath "BA-Tools") -DisableNameChecking -Force
-Import-Module (Join-Path $modulepath "Get-RoboCopyCommand") -DisableNameChecking -Force
+Import-Module (Join-Path $modulepath "Copy-File") -DisableNameChecking -Force
 Import-Module (Join-Path $modulepath "Restore-Server") -DisableNameChecking -Force
 Import-Module (Join-Path $modulepath "Backup-Server") -DisableNameChecking -Force
 
@@ -57,17 +58,18 @@ $msg =
     "# --------------------------------------------------------------------" + $EOL
 Write-Message -suppressTime -logFile $logFile $msg
 
+Write-Message -logFile $logFile "Serverliste wird eingelesen"
 $serverInfos = Read-ServerListe $serverListePath
 
-#Write-Host $serverListen["TypeToNames"].Keys
-#Write-Host $serverListen["NameToTypes"].Keys
+Write-Verbose $serverInfos["TypeToNames"].Keys
+Write-Verbose $serverInfos["NameToTypes"].Keys
 
 if ($backup){
-	Backup-Server $serverInfos $iniDaten
+	Backup-Server $serverInfos["TypeToNames"] $iniDaten $logFile
 } else {
     Restore-Server $serverInfos["NameToTypes"] $backupVerz $server $logFile
 }
 
-Write-Message -logFile $logFile "Verarbeitung beendet"
+Write-Message -logFile $logFile "------------- Verarbeitung beendet ------------"
 
 exit(0)
