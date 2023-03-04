@@ -1,44 +1,80 @@
-# Aktueller Kurs - Inhalte und Themen
+# Python Fortgeschrittene Programmierung
 
-## 1 Kurzübersicht
-- Skript vs. Programm
-- Module importieren
-- Skalare Variablen
+
+## Inhalte
+
+### Wiederholung Python 
+
+- Programaufbau
 - Kontrollstrukturen
+- Variablen und Datentypen
+- Operatoren
 
-## 2 Stringverarbeitung
-- Strings
-- Reguläre Ausdrücke
+### Listentechniken
 
-## 3 Listen und Tupel
-- Einfache Listen
-- Erzeugung
-- Operationen
-- Techniken, z.B. Slicing
+- Listen und Tupel
+- Set
+- Comprehension
+- Iterator, Generator
 
-## 4 Dictionaries
-- Einfache Dictionaries
-- Erzeugung
-- Operationen
-- Techniken
+### Dictionarytechniken
 
-## 5 Funktionen
-- Funktionsaufbau
-- Parameterlisten
-- Rückgabewerte
-- Bibliotheken
-- Module
+- Dictionary
+- Comprehension
+- zip/pack
+- Komplexe Datenstrukturen
 
-## 6 Dateiverarbeitung
-- Lesen von Dateien
-- Schreiben von Dateien
-- Spezielle Dateiformate
-- Das Dateisystem
+### Reguläre Ausdrücke
 
-## 7 Klassen
+- Definition der Ausdrücke
+- Finden und Matchen
+- Auswertung der Funde
+- Praxiseinsatz
+
+### Funktionen und Module
+
+- Einfache Funktionen
+- Funktionen als Parameter
+- Lambda-Funktionen
+- Closures
+- Rekursion
+
+### Klassen und Objekte
+
 - Klassendefinition
-- Objekte und Methoden
-- Beispiele für Klassen
+- Klassenelemente
+- Objektanlage
 
-## 8 Teilnehmerthemen
+### Methoden und Attribute
+
+- Methoden
+- Attribute
+- Sichtbarkeit
+- Spezielle Methoden (double underline, "dunder")
+
+### Vererbung
+
+- Is a oder has a?
+- Funktionsweise
+- Definition
+- Besonderheiten
+
+### Dokumentation
+
+- Kommentare
+- Doc-Strings
+- Doc-Konventionen
+- pydoc
+- Tools
+
+### Testen
+
+- Testen in Sktipten
+- Einfache Teststrategie
+- assert-Anweisung
+- unittest
+- pytest
+
+### TN-Themen
+
 
