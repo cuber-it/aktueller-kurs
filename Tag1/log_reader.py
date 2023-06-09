@@ -1,4 +1,11 @@
-dateiname = r"E:/Workspaces/Kurse/aktueller-kurs/daten.txt"
+import sys
+import os
+
+if len(sys.argv) == 1:
+    print(f"usage: {os.path.basename(sys.argv[0])} filename")
+    sys.exit(1)
+    
+dateiname = sys.argv[1]
 
 file = open(dateiname, 'r', encoding='latin-1')
 text = file.read()
@@ -23,3 +30,4 @@ print("Fertig!")
 for zeilen_nummer, zeile in enumerate(zeilen):
     print(zeilen_nummer, zeile)
 print("Fertig!")
+sys.exit(0)
