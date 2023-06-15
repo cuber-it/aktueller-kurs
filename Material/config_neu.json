@@ -1,0 +1,49 @@
+{
+    "cloud": {
+        "database_service_type": "db2",
+        "description": "Controller + N Compute Topology - x86 KVM",
+        "features": {
+            "platform_resource_scheduler": "enabled",
+            "self_service_portal": "enabled"
+        },
+        "messaging_service_type": "rabbitmq",
+        "name": "MyCloudName",
+        "password": "MyCloudPassword",
+        "topology": {
+            "controller_node_name": "controller",
+            "database_node_name": "controller",
+            "kvm_compute_node_names": "kvm_compute",
+            "self_service_portal_node_name": "controller"
+        }
+    },
+    "environment": {
+        "base": "example-ibm-os-single-controller-n-compute",
+        "default_attributes": null,
+        "override_attributes": null
+    },
+    "nodes": [
+        {
+            "description": "Cloud controller node",
+            "fqdn": "controllername.company.com",
+            "identity_file": null,
+            "name": "controller",
+            "nics": {
+                "data_network": "eth1",
+                "management_network": "eth0"
+            },
+            "password": "passw0rd"
+        },
+        {
+            "attribute_file": null,
+            "description": "Cloud KVM compute node",
+            "fqdn": "kvmcomputename.company.com",
+            "identity_file": "/root/identity.pem",
+            "name": "kvm_compute",
+            "nics": {
+                "data_network": "eth1",
+                "management_network": "eth0"
+            },
+            "password": null
+        }
+    ]
+}
