@@ -1,7 +1,3 @@
-import sys
-import os
-sys.path.append(r"E:\Workspaces\Kurse\aktueller-kurs\Tag3\uebungen\lib")
-#-------------------------------------------------------------------
 import lottolib
 
 def play(anzahl=1):
