@@ -76,7 +76,7 @@ class Ziehung:
     def spielen(self):
         self.ziehungs_ergebnis = random.sample(range(1, 50), 6)
 
-    def __str__(self):
+    def __str__(self): # wird durch die Funktin str() aufgerufen
         return str(self.ziehungs_ergebnis)
 
 # 3.
