@@ -2,12 +2,12 @@ import os
 import sys
 import glob
 import hashlib
+import argparse
 
 class FileComparer:
-    def __init__(self, folder_a, folder_b, extensions):
-        self.folders = [folder_a, folder_b]
+    def __init__(self, folders, extensions):
+        self.folders = folders
         self.extensions = extensions
-        self.results = {}
 
     def _getfiles(self, folder):
         files = []
@@ -16,7 +16,6 @@ class FileComparer:
             if os.path.isfile(f):
                 files.append(f)
         return files
-
 
     def run(self):
         self.results = {}
@@ -31,26 +30,22 @@ class FileComparer:
                         self.results[md5] = []
                     self.results[md5].append(path)
 
-
     def report(self):
         for key, value in self.results.items():
             if len(value) > 1:
                 print(value)
 
+def main():
+    parser = argparse.ArgumentParser(description='Compare files in two folders.')
+    parser.add_argument('folders', metavar='F', type=str, nargs='+', help='list of folders to compare')
+    parser.add_argument('--extensions', type=str, nargs='+', default=['jpg', 'mp3', 'epub'], help='list of file extensions to compare')
+    args = parser.parse_args()
 
-folder_a = r"S:\20_hugendubel"
-folder_b = r"S:\00_all_epub"
+    comparer = FileComparer(args.folders, args.extensions)
+    comparer.run()
+    comparer.report()
 
-comparer = FileComparer(folder_a, folder_b, ['jpg', 'mp3', 'epub'])
-comparer.run()
-comparer.report()
+if __name__ == "__main__":
+    main()
 
-# Die Klasse Comparer sammelt alle Dateien in den beiden Foldern ein
-# die genannten Dateiendungen werden dabei berücksichtigt
-# dann werden die Dateien verglichen (Inhaltlich)
-# Hinweis: um die Dateien zu vergleiche müssen sie nicht deren Inhalte direkt vergleichen
-#          es reicht einen Kennwert zu ermitteln, der einmalig ist, z.B. MD5hash
-#          Dateien mit gleichem md5hash sind inhaltlich gleich!
-# der Bericht gibt alle Dateien aus, die in a und b doppelt sind
-# Fundestellen_in_A, Fundstellen_in_B
-# dateiname in folder_a, dateiname infolder_b
+# Aufruf auf der Kommandozeile: python script.py folder_a folder_b --extensions jpg mp3 epub
