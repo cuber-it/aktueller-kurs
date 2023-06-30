@@ -1,45 +1,6 @@
-class TableReader:
-    def read(self):
-        raise RuntimeError("Not yet implemented")
+from table_writer import TableWriter
+from table_reader import TableReader
 
-class DummyReader(TableReader):
-    def read(self):
-        return [
-            ["Ort", "PLZ"],
-            ["HH", "22559"],
-            ["HH", "22765"],
-            ["WND", "66606"]
-        ]
-
-class CsvReader(TableReader):
-    def __init__(self, fname, delim=","):
-        self._fname = fname
-        self._delim = delim
-
-    def read(self):
-        with open(self._fname) as fd:
-            return [row.split(self._delim) for row in fd.read().splitlines()]
-
-class TableWriter:
-    def write(self, daten):
-        raise RuntimeError("Not yet implemented")
-
-class ConsoleWriter(TableWriter):
-    def write(self, daten):
-        for row in daten:
-            print(row)
-
-class FileWriter(TableWriter):
-    def __init__(self,fname):
-        self._fname = fname
-
-    def write(self, daten):
-        with open(self._fname, "w") as fd:
-            for row in daten:
-                row = str(row)[1:-1]
-                print(row, file=fd)
-
-#------------------------------------------------------
 class Tabelle: # weiss nichts von Input und output, kennt sichnur mit Tabellen aus
     def __init__(self, has_header=False):
         self._header = []
@@ -101,18 +62,3 @@ class Tabelle: # weiss nichts von Input und output, kennt sichnur mit Tabellen a
         if not isinstance(writer_object, TableWriter):
             raise TypeError("writer_object not of type TableWriter")
         writer_object.write(self._prep_ausgabe())
-
-
- #-------------------------------------------
- # Anwendung
-t = Tabelle(has_header=True)
-t.load(CsvReader(r"E:\Workspaces\Kurse\aktueller-kurs\Tag4\uebungen\bsp.csv"))
-#t.load(DummyReader())
-print(t.header())
-print(t.row(0))
-print(t.cell(0, "Ort"))
-print(t.cell(0, 0))
-print(t.header_count())
-print(t.row_count())
-t.dump(FileWriter("table_dump.txt"))
-t.dump(ConsoleWriter())
