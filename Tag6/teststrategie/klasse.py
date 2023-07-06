@@ -10,3 +10,13 @@ class Calculator:
     def add(self):
         self._e = self._a + self._b
         return self
+
+# TODO:
+# sub, mul div modulo
+# reset
+# properties für a, b, e : wert_a, wert_b, ergebnis
+#
+# -> 8 methoden und properties
+# => mindestens!!! 8 tests <- good cases
+# Testfrage: verhalten bei div durch 0 z.B?
+# Testfrage: Verhalten bei Übergabe von nicht numbers?
