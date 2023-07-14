@@ -5,6 +5,10 @@ app = Flask(__name__)
 # Our data store
 data_store = {}
 
+@app.route('/', methods=['GET', 'POST', 'PUT', 'DELETE'])
+def home():
+    return jsonify("Ich lebe!"), 200
+
 @app.route('/resource/<int:id>', methods=['GET'])
 def get_resource(id):
     if id in data_store:
