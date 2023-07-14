@@ -2,28 +2,42 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-@app.route('/get', methods=['GET'])
-def get_method():
-    return jsonify(message="GET request successful"), 200
+# Our data store
+data_store = {}
 
-@app.route('/post', methods=['POST'])
-def post_method():
-    data = request.get_json()
-    return jsonify(message="POST request successful", data=data), 201
+@app.route('/resource/<int:id>', methods=['GET'])
+def get_resource(id):
+    if id in data_store:
+        return jsonify(data_store[id]), 200
+    else:
+        return jsonify(message="Resource not found"), 404
 
-@app.route('/put', methods=['PUT'])
-def put_method():
-    data = request.get_json()
-    return jsonify(message="PUT request successful", data=data), 200
+@app.route('/resource', methods=['POST'])
+def create_resource():
+    new_data = request.get_json()
+    if new_data:
+        id = len(data_store) + 1
+        data_store[id] = new_data
+        return jsonify(message="Resource created", id=id), 201
+    else:
+        return jsonify(message="Request body cannot be empty"), 400
 
-@app.route('/delete', methods=['DELETE'])
-def delete_method():
-    return jsonify(message="DELETE request successful"), 200
+@app.route('/resource/<int:id>', methods=['PUT'])
+def update_resource(id):
+    updated_data = request.get_json()
+    if id in data_store:
+        data_store[id] = updated_data
+        return jsonify(message="Resource updated"), 200
+    else:
+        return jsonify(message="Resource not found"), 404
 
-@app.route('/patch', methods=['PATCH'])
-def patch_method():
-    data = request.get_json()
-    return jsonify(message="PATCH request successful", data=data), 200
+@app.route('/resource/<int:id>', methods=['DELETE'])
+def delete_resource(id):
+    if id in data_store:
+        del data_store[id]
+        return jsonify(message="Resource deleted"), 200
+    else:
+        return jsonify(message="Resource not found"), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
