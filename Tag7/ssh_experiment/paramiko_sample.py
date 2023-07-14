@@ -8,7 +8,7 @@ ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh.connect(hostname='localhost', port=2222, username='paramiko', password='password')
 
 # Execute a command
-stdin, stdout, stderr = ssh.exec_command('ls -l')
+stdin, stdout, stderr = ssh.exec_command('ls -l /')
 
 # Print the output of the command
 for line in stdout:
