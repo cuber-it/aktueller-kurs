@@ -10,9 +10,20 @@ device = {
    'verbose': True,     # optional, default False
 }
 
-connection = ConnectHandler(**device)
+#connection = ConnectHandler(**device)
+#output = connection.send_command('ls -l /')
+#print(output)
+#connection.disconnect()
 
-output = connection.send_command('ls -l /')
-print(output)
+#with ConnectHandler(**device) as connection:
+#    output = connection.send_command('ls -l /')
+#    print(output)
 
-connection.disconnect()
+connection = None
+try:
+    connection = ConnectHandler(**device)
+    output = connection.send_command('ls -l /')
+    print(output)
+finally:
+    if connection:
+        connection.disconnect()
