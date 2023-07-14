@@ -1,10 +1,11 @@
 from netmiko import ConnectHandler
+import getpass
 
 device = {
    'device_type': 'linux',
    'ip':   '127.0.0.1',
    'username': 'paramiko',
-   'password': 'password',
+   'password': getpass.getpass('Password:'),
    'port' : 2222,          # optional, default 22
    #'secret': 'secret',  # optional, default ''
    'verbose': True,     # optional, default False
