@@ -2,7 +2,7 @@ import sqlite3
 
 # Establish a connection to the database.
 # This will create the database if it doesn't exist.
-conn = sqlite3.connect('example.db')
+conn = sqlite3.connect('example2.db')
 
 # Create a cursor object.
 c = conn.cursor()
@@ -17,7 +17,7 @@ c.execute('''
 c.execute("INSERT INTO stocks VALUES ('2006-01-05','BUY','RHAT',100,35.14)")
 
 # Save (commit) the changes.
-conn.commit()
+#conn.commit()
 
 # Execute an SQL statement to query some data.
 c.execute('SELECT * FROM stocks WHERE symbol=?', ('RHAT',))
