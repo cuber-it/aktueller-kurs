@@ -23,5 +23,36 @@
 # Frage wie können wir das machen?
 
 import sqlite3
-database = r"E:\Workspaces\Kurse\aktueller-kurs\Material\titanic.sqlite"
-daten = [] #Typ: [ von {} ] - jedes Dict = ein Datensatz
+import json
+
+
+def get_db_data(database, table_name):
+    connection = sqlite3.connect(database)
+    cursor = connection.cursor()
+    table = cursor.execute(f"SELECT * FROM {table_name}")
+
+    # List Comprehension: names = [description[0] for description in cursor.description]
+    names = []
+    for description in cursor.description:
+        names.append(description[0])
+
+    # List Comprehension: daten = [dict(zip(names, row)) for row in table.fetchall()]
+    daten = []
+    for row in table.fetchall():
+        daten.append(dict(zip(names, row,)))
+    return daten
+
+def dump_json(fname, daten, indent=4):
+    fname += ".json"
+    with open(fname, "w") as fp:
+        json.dump(daten, fp, indent=indent)
+
+if __name__ == "__main__":
+    import pprint
+
+    database = r"E:\Workspaces\Kurse\aktueller-kurs\Material\titanic.sqlite"
+    table = "passengers"
+
+    daten = get_db_data(database, table)
+    pprint.pprint(daten)
+    dump_json(table, daten)
