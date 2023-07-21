@@ -11,7 +11,7 @@ def read_excel_data(fname: str, sheet_name: str) -> List[Dict[str, Any]]:
 
     header = [cell.value for cell in sheet[1]]
     data = []
-    for row in sheet.iter_rows(values_only=True):
+    for row in sheet.iter_rows(min_row=2, values_only=True):
         values = [ cell for cell in row ]
         row_dict = dict(zip(header, values))
         data.append(row_dict)
@@ -66,7 +66,37 @@ def read_sqlite_data(database, table_name):
 
 
 def write_sqlite_data(database, table_name, data):
-    pass
+    def type_map(variable):
+        return {
+            "int": 'INTEGER',
+            "float": 'REAL',
+            "str": 'TEXT',
+            "bytes": 'BLOB',
+            "bool": 'INTEGER',  # SQLite uses integer for boolean values, 0 (false) and 1 (true)
+        }.get(type(variable).__name__, "TEXT")
+
+    connection = sqlite3.connect(database)
+    cursor = connection.cursor()
+
+    #
+    cmd = f"CREATE TABLE {table_name} ("
+    #
+    cmd += ", ".join([f"{key} {type_map(data[0][key])}" for key in data[0].keys()])
+    cmd += ")"
+    #print("DEBUG: ", cmd)
+    cursor.execute(cmd)
+
+    cmd = f"INSERT INTO {table_name} ("
+    cmd += ", ".join(list(data[0].keys()))
+    cmd += ") VALUES ("
+    #
+    cmd += ", ".join(["?"] * len(list(data[0].keys())))
+    cmd +=")"
+    #print("DEBUG: ", cmd)
+
+    for row in data:
+        cursor.execute(cmd, list(row.values()))
+    connection.commit()
 
 #-- JSON-Section
 def read_json_data(fname):
