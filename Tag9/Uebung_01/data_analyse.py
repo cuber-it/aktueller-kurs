@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
-
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 path = r"E:\Workspaces\Kurse\aktueller-kurs\Material\WA_Fn-UseC_-Telco-Customer-Churn.csv"
 
 
@@ -50,3 +51,21 @@ print(len(df_kosten_3))
 # 2. Monthly vs Total
 # 3. tenure vs. Monthly
 # a: mit matplotlib
+def show_plot(df, col_a, col_b, header=None, x_label=None, y_label=None):
+    if not x_label:
+        x_label = col_a
+    if not y_label:
+        y_label = col_b
+    if not header:
+        header = f"{col_a} vs {col_b}"
+
+    plt.figure(figsize=(14,7))
+    #ax = plt.gca()  # Get the current axes instance
+    #ax.yaxis.set_major_locator(ticker.MaxNLocator(integer=True))
+    plt.scatter(df[col_a], df[col_b])
+    plt.title(header)
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.show()
+
+show_plot(df_kosten_2, "tenure", "TotalCharges")
