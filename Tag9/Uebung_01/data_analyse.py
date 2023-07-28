@@ -20,6 +20,10 @@ def filter_missing_values(df): # .loc um copy-Warning zu vermeiden
     df["TotalCharges"] = pd.to_numeric(df["TotalCharges"])
     return df
 
+def set_0_for_missing(df):
+    df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce").fillna(0)
+    return df
+
 # Aufgabe:
 # tenuer = Laufzeit, Monthly, Total Charges extrahieren
 # Welche Datentypen liegen im df vor für die drei
@@ -35,6 +39,8 @@ print(df_kosten[df_kosten['TotalCharges'] == ' '].index)
 
 df_kosten_1 = filter_missing_values(df_kosten)
 df_kosten_2 = data_repair(df_kosten)
+df_kosten_3 = set_0_for_missing(df_kosten)
 
 print(len(df_kosten_1))
 print(len(df_kosten_2))
+print(len(df_kosten_3))
