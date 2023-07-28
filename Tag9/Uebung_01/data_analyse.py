@@ -44,3 +44,9 @@ df_kosten_3 = set_0_for_missing(df_kosten)
 print(len(df_kosten_1))
 print(len(df_kosten_2))
 print(len(df_kosten_3))
+
+# mit Grafik:
+# 1. tenure vs TotalCharge X-Achse vs Y-Achse - z.B. als Linie oder Scatterplot
+# 2. Monthly vs Total
+# 3. tenure vs. Monthly
+# a: mit matplotlib
