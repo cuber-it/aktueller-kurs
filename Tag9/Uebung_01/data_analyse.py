@@ -15,8 +15,8 @@ def data_repair(df):
             row["TotalCharges"] = int(row["tenure"]) * float(row["MonthlyCharges"])
     return pd.DataFrame(daten)
 
-def filter_missing_values(df):
-    df = df[df["TotalCharges"] != " "]
+def filter_missing_values(df): # .loc um copy-Warning zu vermeiden
+    df = df.loc[df["TotalCharges"] != " "].copy()
     df["TotalCharges"] = pd.to_numeric(df["TotalCharges"])
     return df
 
