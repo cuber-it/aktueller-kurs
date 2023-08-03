@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import subprocess
 
 # execute a shell command and get the output
@@ -19,6 +20,4 @@ p = subprocess.Popen(["ls", "-l"], stdout=subprocess.PIPE)
 output, _ = p.communicate()
 
 # print the output
-print(output)
-
-
+print(output.decode('utf-8'))
