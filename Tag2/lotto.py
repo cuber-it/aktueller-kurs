@@ -1,68 +1,39 @@
 import random
 
-# Eine Lottospiel-Simulation
+eingabe = input("6 Zahlen 1-49, durch Leerzeichen getrennt: ")
+rohdaten = eingabe.split(" ")
 
-#  4. Benutzer gibt 6 Ziffern ein: input ***
-# - genau 6 Stück
-# - zwischen 1 und 49
-# - keine doppelten Werte
-# - müssen danach als Liste von Integer vorliegen
-# => [ integer ]
+if len(rohdaten) != 6:
+    print("Anzahl stimmt nicht:", eingabe)
+    exit(1)
 
+zahlen = []
 
-# 1. Es werden 6 Zufallszhalen aus 1-49 gezogen *
-# schaeun Sie bei stackoverflow etc nach :-D
-# => [ integer ]
+for x in rohdaten:
+    try:
+        zahl = int(x)
 
-# 2. Vergleichen von Tipp und Ziehung * Idee: mit einem Dummy-Tipp entwerfen 1 2 3 4 5 6
-# => [ integer ]
+        if zahl < 1 or zahl > 49:
+            print("Ungültiger Wert:", x)
+            exit(3)
 
-# 3 .Ausgabe des Spielergebnisses print
-# - Tipp (sortiert)
-# - Ziehung (sortiert)
-# - Anzahl Treffer
-# - Trefferlist (sortiert)
+        if zahl in zahlen:
+            print("Doppelter Wert:", x)
+            exit(4)
 
-import random
+        zahlen.append(zahl)
+    except ValueError:
+        print("keine gültige Zahl:", x)
+        exit(2)
 
-def validate_input(user_numbers, number_count=6, min_value=1, max_value=49):
-    # Check if the length of the list is
-    if len(user_numbers) != number_count:
-        raise ValueError(f"You must enter exactly {number_count} numbers.")
-
-    # Check if all numbers are unique
-    if len(user_numbers) != len(set(user_numbers)):
-        raise ValueError("All numbers must be unique.")
-
-    # Check if all numbers are between  and
-    for num in user_numbers:
-        if num < min_value or num > max_value:
-            raise ValueError(f"All numbers must be between {min_value} and {max_value}.")
-
-    return True
-
-def lottery_simulation():
-    # Generate 6 random numbers
-    drawn_numbers = random.sample(range(1, 50), 6)
-    drawn_numbers.sort()
-
-    # Get user input
-    user_numbers = input("Enter 6 unique numbers between 1-49, separated by spaces: ").split()
-    user_numbers = [int(num) for num in user_numbers]
-
-    # Validate user input
-    validate_input(user_numbers)
-
-    user_numbers.sort()
-
-    # Compare the lists
-    matches = list(set(user_numbers) & set(drawn_numbers))
-    matches.sort()
+for n in range(0,100):
+    ziehung = random.sample(range(1, 50), 6)
+    treffer = list(set(zahlen) & set(ziehung))
 
     # Print the results
-    print("Your numbers: ", user_numbers)
-    print("Drawn numbers: ", drawn_numbers)
-    print("Number of matches: ", len(matches))
-    print("Matches: ", matches)
+    print(f"--- {n} ---")
+    print("Your numbers:      ", zahlen)
+    print("Drawn numbers:     ", ziehung)
+    print("Matches:           ", treffer)
+    print("Number of matches: ", len(treffer))
 
-lottery_simulation()

@@ -1,14 +1,24 @@
+#!/usr/bin/env python3
 import sys
 
 while True:
     eingabe = input("Zahl 1 oder exit: ")
-    if eingabe == "exit":
+    if eingabe.lower() == "exit":
         break
 
-    zahl1 = int(eingabe)
+    try:
+        zahl1 = int(eingabe)
+    except ValueError:
+        print("Falsche Eingabe:", zahl1)
+        break
 
     eingabe = input("Zahl 2: ")
-    zahl2 = int(eingabe)
+
+    try:
+        zahl2 = int(eingabe)
+    except ValueError:
+        print("Falsche Eingabe:", zahl2)
+        break
 
     eingabe = input("Operation  (+ - * /): ")
 
@@ -21,7 +31,11 @@ while True:
     elif eingabe == '*':
         ergebnis = zahl1 * zahl2
     elif eingabe == '/':
-        ergebnis = zahl1 / zahl2
+        try:
+            ergebnis = zahl1 / zahl2
+        except ZeroDivisionError:
+            print("Division druch Null!")
+            break
     else:
         print("Ungültige Operation:", eingabe)
     print("Ergebnis: ", ergebnis)

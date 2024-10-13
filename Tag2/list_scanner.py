@@ -1,4 +1,4 @@
-log_path = r"E:\Workspaces\Kurse\aktueller-kurs\Material\Sample.log"
+log_path = r"/home/ucuber/Workspace/kurse/aktueller-kurs/Material/Sample.log"
 
 with open(log_path) as fd:
     raw = fd.read().splitlines()
@@ -20,10 +20,7 @@ for nr, zeile in enumerate(daten):
 event_count = {}
 for zeile in daten:
     event = zeile[2]
-    #if event not in event_count:
-    #    event_count[event] = 0
-    #event_count[event] += 1
-
+ 
     event_count[event] = event_count.get(event, 0) + 1
 
 for key, value in event_count.items():

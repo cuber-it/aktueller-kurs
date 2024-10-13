@@ -1,18 +1,25 @@
-tipp = []
+path = r"/home/ucuber/Workspace/kurse/aktueller-kurs/Material/lorem_ipsum_1000.txt"
 
-while len(tipp) < 6:
-    eingabe = int(input("Zahl: "))
+with open(path) as fd:
+    raw = fd.read().splitlines()
 
-    if eingabe < 1 or eingabe > 49:
-        print("Ungültig")
-        exit(1)
+words = {}
+characters = {}
 
-    if eingabe in tipp:
-        print("Doppelt")
-        exit(2)
+for line in raw:
+    line_words = line.replace(".", "").replace(",", "").split(" ")
+    for word in line_words:
+        word = word.replace(" ", "")
+        words[word] = words.get(word, 0) + 1
+        for char in list(word):
+            characters[char] = characters.get(char, 0) + 1
 
-    tipp.append(eingabe)
+print("Report: Worthäufigkeiten")
+for k, v in sorted(words.items(), key=lambda item: item[1], reverse=True):
+    print(f"{k:<20s}: {'*' * v} ({v})")
 
-print(tipp)
+print("-" * 80, "\n")
 
-
+print("Report: Zeichenhäufigkeiten")
+for k, v in sorted(characters.items(), key=lambda item: item[1], reverse=True):
+    print(f"{k:<4s}: {'#' * v} ({v})")

@@ -1,4 +1,4 @@
-path =r"E:\Workspaces\Kurse\aktueller-kurs\Material\HistoricalQuotes.csv"
+path =r"/home/ucuber/Workspace/kurse/aktueller-kurs/Material/HistoricalQuotes.csv"
 
 def to_float(cell):
     return float(cell.strip()[1:])

@@ -1,22 +1,10 @@
-minnumber = 1
-maxnumber = 49
+import sys
 
-eingabe = "1,2,3,4,5,6"
-rohdaten = eingabe.split(",")
+dateiname = sys.argv[1]
+anzahl = int(sys.argv[2])
 
-tipp = []
+text = []
+with open(dateiname) as fd:
+    text = fd.readlines()
 
-for ziffer in rohdaten:
-    ziffer = int(ziffer)
-
-    if ziffer < minnumber or ziffer > maxnumber:
-        print("Fehler in der Eingabe: Zahlen ausserhalb der gueltigen Lottozahlen")
-        exit(2)
-
-    if ziffer in tipp:
-        print("Fehler in der Eingabe: Ziffer doppelt vorhanden.")
-        exit(3)
-
-    tipp.append(ziffer)
-
-print(tipp)
+print(text[-1 * anzahl])
