@@ -1,8 +1,0 @@
-# Kommentar
-id
-ls -l /
-ps -Alf
-cat /etc/passwd
-for n in 1 2 3 4; do echo $n; done
-n=1234
-echo $n
