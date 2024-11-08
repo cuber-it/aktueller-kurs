@@ -1,23 +1,30 @@
 import os
 import argparse
 
-def rename_files(directory, bookname, start, dryrun):
+def rename_files(directory, bookname, start, dryrun, extension='.jpg'):
     # List all files in the directory
     files = os.listdir(directory)
 
     # Filter out non-jpg files and sort the resulting list
-    jpg_files = sorted([file for file in files if file.endswith(".jpg")])
+    jpg_files = sorted([file for file in files if file.endswith(extension)])
+
+    # Oben ist list-comprehension Oder länger:
+    #jpg_files = []
+    #for file in files:
+    #    if file.endswith(".jpg"):
+    #        jpg_files.append(file)
 
     # Rename the files
     page_no = start
     for file in jpg_files:
-        new_name = f"{bookname}_{page_no:03}.jpg"
+        new_name = f"{bookname}_{page_no:03}{extension}"
         if dryrun:
             print(f"Would rename {file} to {new_name}")
         else:
             os.rename(os.path.join(directory, file), os.path.join(directory, new_name))
             print(f"Renamed {file} to {new_name}")
         page_no += 1
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Rename jpg files.')

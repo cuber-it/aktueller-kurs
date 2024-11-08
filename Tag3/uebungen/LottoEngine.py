@@ -56,11 +56,11 @@ def prepare_tippschein(tippschein: list) -> list:
         neuer_tippschein.append(tipp)
     return neuer_tippschein
 
-def ziehung():
-    return random.sample(range(1,50),6)
+def ziehung(start=1, end=49, probe=6):
+    return random.sample(range(start,end+1),probe)
 
 def vergleicher(tipp, ziehung):
-    return len(set(tipp).intersection(set(ziehung)))
+    return list(set(tipp).intersection(set(ziehung)))
 
 def spiel(lottoschein):
     result = []
@@ -73,10 +73,12 @@ def spiel(lottoschein):
     return aktuelle_zahlen, result
 
 def bericht(ziehung, lottoschein, treffer):
-    print("Lottoziehung: ", ziehung)
-    print("-"*40)
+    bericht = []
+    bericht.append(f"Lottoziehung: {ziehung}")
+    bericht.append("-"*40)
     for i in range(0, len(lottoschein)):
-        print("Tipp: ", lottoschein[i], " - Treffer: ", treffer[i])
+        bericht.append(f"Tipp: {lottoschein[i]} - Treffer: {treffer[i]}")
+    return bericht
 
 if __name__ == "__main__":
     import sys
@@ -94,4 +96,7 @@ if __name__ == "__main__":
     aktuelle_zahlen, ergebnisse = spiel(tippschein)
 
     # A usgabe
-    bericht(aktuelle_zahlen, tippschein, ergebnisse)
+    text = bericht(aktuelle_zahlen, tippschein, ergebnisse)
+    print('\n'.join(text))
+
+    exit(0)
