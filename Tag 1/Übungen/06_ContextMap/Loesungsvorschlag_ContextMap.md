@@ -113,7 +113,7 @@ Richtig wäre:
    └──────────────────┘
 ```
 
-**Die Wirkung eines Anticorruption Layer:** Der Partnerstatus wird an der Grenze in eigene Begriffe übersetzt. Die Anmietung kennt ihren eigenen Vorgangsstatus, nicht den des Vermittlers. Fakturierung, Flotte und Werkstatt sehen das Fremdformat nie.
+**Die Wirkung eines Anticorruption Layer:** Der Partnerstatus wird an der Grenze in eigene Begriffe übersetzt. Die Anmietung kennt ihren eigenen Vorgangsstatus, nicht den des Vermittlers. Fakturierung, Flotte und Werkstatt sehen die fremden Begriffe nie.
 
 **Bei der Formatumstellung** wäre eine Stelle betroffen gewesen statt 31.
 
@@ -145,7 +145,7 @@ Zielt darauf, ob die Auswertung überhaupt gebraucht wird. Bei einer Auswertung,
 
 **Was anders sein müsste:** Ein Anticorruption Layer zwischen Zahlungsdienstleister und Fakturierung. Dann ist der Wechsel tatsächlich der Austausch einer Übersetzung.
 
-**Prüfvorschlag:** Volltextsuche nach Begriffen des Anbieters — Feldnamen, Statuscodes, Fehlercodes. Tauchen sie außerhalb der Anbindung auf, ist das Format durchgesickert.
+**Prüfvorschlag:** Nachsehen, wo Begriffe des Anbieters vorkommen — seine Bezeichnungen, Statuscodes, Fehlerkennungen. Tauchen sie außerhalb der Anbindung auf, ist sein Modell durchgesickert.
 
 ---
 

@@ -41,7 +41,7 @@ Kein Übersetzungsproblem, sondern zwei verschiedene Sachen mit demselben Namen.
 
 Die Prüffrage aus dem Denkmodell: Was ergäbe eine Zusammenführung?
 
-Ein Feld `termin` müsste einmal einen Patientenwunsch und einmal eine physikalische Haltbarkeitsgrenze abbilden. Ein Terminvorschlag der Anmeldung wäre für das Labor bedeutungslos, eine Laborgrenze für die Anmeldung nicht verschiebbar.
+Ein gemeinsamer Terminbegriff müsste einmal einen Patientenwunsch und einmal eine physikalische Haltbarkeitsgrenze abbilden. Ein Terminvorschlag der Anmeldung wäre für das Labor bedeutungslos, eine Laborgrenze für die Anmeldung nicht verschiebbar.
 
 **Widerspruch.** Damit ist es eine Kontextgrenze.
 

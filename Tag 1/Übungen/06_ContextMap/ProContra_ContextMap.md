@@ -7,7 +7,7 @@ Bewertet wird der Vorschlag aus dem Lösungspapier: acht Kontexte, sieben benann
 ## Pro
 
 **Die Frage „wen trifft es" ist beantwortbar**
-Vor einer Änderung liest man die Map, statt eine Volltextsuche zu starten. Bei AV-2588 hätte das elf Wochen auf drei reduziert.
+Vor einer Änderung liest man die Map, statt tagelang zu suchen. Bei AV-2588 hätte das elf Wochen auf drei reduziert.
 
 **Die Abhängigkeitsrichtung steht fest**
 Für jede Beziehung ist notiert, wer nachziehen muss. Das ist die Information, die in Schnittstellenlisten fehlt und in Verhandlungen mit Anbietern gebraucht wird.

@@ -36,7 +36,7 @@ Sie kennen die vier internen Kontexte aus den vorigen Übungen. Jetzt kommen vie
 
 ### Zum Leasingportal — Frau Petrova, Flotte
 
-> „Mit dem Leasinggeber haben wir einen Rahmenvertrag über 2.400 Fahrzeuge. Wenn wir sagen, wir brauchen ein zusätzliches Feld im Rückgabeprotokoll, dann reden die mit uns. Hat schon zweimal geklappt.
+> „Mit dem Leasinggeber haben wir einen Rahmenvertrag über 2.400 Fahrzeuge. Wenn wir sagen, wir brauchen eine zusätzliche Angabe im Rückgabeprotokoll, dann reden die mit uns. Hat schon zweimal geklappt.
 >
 > Umgekehrt sagen die uns auch Bescheid, wenn sich was ändert — meistens ein halbes Jahr vorher."
 

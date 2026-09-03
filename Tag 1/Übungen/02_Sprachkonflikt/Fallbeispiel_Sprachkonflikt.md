@@ -20,15 +20,15 @@ Fünf Bereiche arbeiten mit derselben Datenbasis:
 
 ## Wie es gewachsen ist
 
-Die erste Fassung hatte eine Tabelle `Kunde` und eine Tabelle `Fahrzeug`. Das genügte, solange dreißig Stationen an einer Kasse abrechneten.
+Die erste Fassung kannte einen Kundenbegriff und einen Fahrzeugbegriff. Das genügte, solange dreißig Stationen an einer Kasse abrechneten.
 
-Mit dem Firmenkundengeschäft kam die Unterscheidung zwischen dem Unternehmen, das den Rahmenvertrag hält, und der Person, die tatsächlich fährt. Der Vertrieb ergänzte ein Feld `kundenart`.
+Mit dem Firmenkundengeschäft kam die Unterscheidung zwischen dem Unternehmen, das den Rahmenvertrag hält, und der Person, die tatsächlich fährt. Der Vertrieb ergänzte ein Merkmal für die Kundenart.
 
-Die Werkstatt brauchte Fahrzeuge, die es im Vertrieb nicht gibt — Werkstattersatzwagen, Überführungsfahrzeuge, ausgemusterte Einheiten mit Restwert. Sie ergänzte `fahrzeugstatus`.
+Die Werkstatt brauchte Fahrzeuge, die es im Vertrieb nicht gibt — Werkstattersatzwagen, Überführungsfahrzeuge, ausgemusterte Einheiten mit Restwert. Sie ergänzte ein Merkmal für den Fahrzeugstatus.
 
-Die Abrechnung brauchte Kunden, die keine sind: Versicherungen, die eine Schadensrechnung erhalten, Leasinggeber, die Rückläufer abwickeln. Sie ergänzte `abrechnungstyp`.
+Die Abrechnung brauchte Kunden, die keine sind: Versicherungen, die eine Schadensrechnung erhalten, Leasinggeber, die Rückläufer abwickeln. Sie ergänzte ein Merkmal für den Abrechnungstyp.
 
-Nach fünfzehn Jahren hat die Tabelle `Kunde` 47 Spalten, von denen die meisten für die meisten Sätze leer sind.
+Nach fünfzehn Jahren trägt der Kundenbegriff 47 Merkmale. Bei einem beliebigen Kunden sind die meisten davon leer.
 
 ## Der Vorfall
 
@@ -48,8 +48,8 @@ Die Auswertung wurde schließlich von Hand erstellt, in einer Tabellenkalkulatio
 ## Was dauerhaft stört
 
 - **Jede neue Anforderung an die Kundendaten** löst dieselbe Diskussion aus. Beim letzten Mal ging es um die Frage, ob ein Fahrer ohne Rahmenvertrag ein Kunde ist.
-- **Die Tabelle wächst weiter.** Zwei neue Spalten im letzten Jahr, beide für einen Bereich, beide für die übrigen leer.
-- **Neue Entwickler brauchen Monate**, bis sie wissen, welche Spalte für welchen Bereich gilt. Die Dokumentation besteht aus einer Kommentarspalte in der Datenbank.
+- **Der Kundenbegriff wächst weiter.** Zwei neue Merkmale im letzten Jahr, beide für einen einzelnen Bereich, beide für die übrigen bedeutungslos.
+- **Neue Mitarbeiter brauchen Monate**, bis sie wissen, welches Merkmal für welchen Bereich gilt. Aufgeschrieben ist es nirgends.
 - **Ein Fehler in der Kautionsabrechnung** blieb vier Monate unbemerkt, weil die Abrechnung mit einem Kundenbegriff arbeitete, den die Station anders befüllt hatte.
 
 ## Was bisher versucht wurde

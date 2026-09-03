@@ -18,16 +18,16 @@ Wie man von einer Begriffsverwirrung zu Kontextgrenzen kommt. Vier Stufen: **Sig
 | Ein Glossar hängt aus, ändert aber nichts | es beschreibt keine Praxis |
 | Jemand erklärt einen Begriff mit einem Nebensatz | „Kunde, also der, der zahlt" |
 
-### Was im System auffällt
+### Was in der täglichen Arbeit auffällt
 
 | Signal | Konkret |
 |---|---|
-| Eine Tabelle mit vielen meist leeren Spalten | jede Spalte gehört einem Bereich |
-| `art`, `typ`, `status`, `kategorie` nebeneinander | Bedeutungsunterschiede als Merkmal getarnt |
-| Ein Feld wird je nach Bereich anders befüllt | undokumentiert |
+| Ein Begriff mit vielen Merkmalen, meist leer | jedes Merkmal gehört einem Bereich |
+| „Art", „Typ", „Status", „Kategorie" nebeneinander | Bedeutungsunterschiede, als Einteilung getarnt |
+| Dieselbe Angabe wird je nach Bereich anders verwendet | nirgends festgehalten |
 | Auswertungen werden von Hand nachbearbeitet | die Software kann die Frage nicht beantworten |
-| Kommentare wie „für Werkstatt immer 0 setzen" | Dokumentation am falschen Ort |
-| Eine Klasse, die alles kann und von allen benutzt wird | `Customer` mit 47 Feldern |
+| Mündlich weitergegebene Sonderregeln | Wissen ohne Ort |
+| Ein Begriff, der allen dienen soll | „Kunde" mit 47 Merkmalen |
 
 ---
 
@@ -153,7 +153,7 @@ Ein Glossar über Kontextgrenzen hinweg beschreibt einen Kompromiss und wird nic
 
 | Verwechselt mit | Erkennungszeichen |
 |---|---|
-| Datenmodellfehler | die Daten sind richtig, nur die Frage ist mehrdeutig |
+| Fehler in den Daten | die Daten sind richtig, nur die Frage ist mehrdeutig |
 | Kommunikationsproblem | Reden hilft nicht, wenn beide Bedeutungen berechtigt sind |
 | Unterschiedliche Detailtiefe | kein Widerspruch, nur unterschiedlicher Bedarf |
 | Fehlende Dokumentation | ein Glossar löst es nicht, wenn Modellgrenzen fehlen |

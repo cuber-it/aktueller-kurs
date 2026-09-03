@@ -18,14 +18,14 @@ Vier Stufen: **Signale → Erkenntnisse → Optionen → Entscheidung.**
 | „Wenn die was ändern, kriegen wir eine Mail" | einseitige Abhängigkeit, wir sind unten |
 | „Damit haben wir nichts zu tun" | Separate Ways — prüfen, ob es stimmt |
 
-### Was im System auffällt
+### Was in der Zusammenarbeit auffällt
 
 | Signal | Konkret |
 |---|---|
-| Fremde Feldnamen im eigenen Modell | `travellerRef`, `partnerStatus` — das Fremdformat ist durchgesickert |
-| Ein Fremdcode wird in mehreren Kontexten ausgewertet | es fehlt eine Grenze |
-| Volltextsuche als einziges Mittel, Abhängigkeiten zu finden | es gibt keine Übersicht |
-| Zwei Kontexte ändern dieselben Klassen | Shared Kernel, ob gewollt oder nicht |
+| Fremde Begriffe im eigenen Modell | Bezeichnungen des Lieferanten tauchen auf, wo er nichts zu suchen hat |
+| Eine fremde Kennung wird in mehreren Kontexten ausgewertet | es fehlt eine Grenze |
+| Niemand kann sagen, wen eine Änderung trifft | es gibt keine Übersicht |
+| Zwei Kontexte ändern dasselbe Modell | Shared Kernel, ob gewollt oder nicht |
 | Eine Anbindung ohne Übersetzungsschicht | Conformist ohne Grenze — der teure Fall |
 
 ---
@@ -84,7 +84,7 @@ Sich einem Format zu fügen ist legitim. Es ungeschützt in die eigenen Kontexte
 - **Nein**, es wird übernommen → **Conformist**. Legitim bei stabilem Format und geringer Bedeutung.
 - **Ja**, an der Grenze wird in eigene Begriffe übersetzt → **Anticorruption Layer**.
 
-**Der Prüfstein:** Tauchen Begriffe des Fremdsystems außerhalb der Anbindung auf? Dann ist es Conformist — auch wenn niemand das entschieden hat.
+**Der Prüfstein:** Tauchen Begriffe des Lieferanten außerhalb der Anbindung auf? Dann ist es Conformist — auch wenn niemand das entschieden hat.
 
 ---
 
@@ -120,9 +120,9 @@ Wird an der Grenze uebersetzt?          nein → Conformist
 |---|---|
 | Tauchen fremde Begriffe im eigenen Modell auf? | Conformist ohne Grenze — der teure Fall |
 | Wird ein Fremdcode in mehreren Kontexten ausgewertet? | es fehlt ein Anticorruption Layer |
-| Ändern zwei Kontexte dieselben Klassen? | Shared Kernel, ob gewollt oder nicht |
+| Ändern zwei Kontexte dasselbe Modell? | Shared Kernel, ob gewollt oder nicht |
 | Ist das Format stabil und die Bedeutung gering? | Conformist ist ausreichend |
-| Braucht man Volltextsuche, um Abhängigkeiten zu finden? | die Map fehlt |
+| Kann niemand sagen, wen eine Änderung trifft? | die Map fehlt |
 
 ---
 
@@ -141,7 +141,7 @@ Er entsteht leicht und ist schwer wieder loszuwerden. Die Frage lautet: Brauchen
 Eine Darstellung über drei Seiten wird vor einer Änderung nicht gelesen. Lieber acht Kästen mit benannten Beziehungen als eine vollständige Systemlandschaft.
 
 **Die Map beantwortet eine Frage, die vor jeder Änderung gestellt wird:**
-Wen trifft es? Wenn die Antwort eine Volltextsuche erfordert, fehlt die Map — oder sie ist nicht aktuell.
+Wen trifft es? Wenn niemand das beantworten kann, fehlt die Map — oder sie ist nicht aktuell.
 
 **Aktualität kommt durch Anlass, nicht durch Turnus.**
 Eine Map, die jährlich überarbeitet wird, ist meist veraltet. Eine, die bei jeder neuen Anbindung ergänzt wird, bleibt brauchbar.
@@ -152,7 +152,7 @@ Eine Map, die jährlich überarbeitet wird, ist meist veraltet. Eine, die bei je
 
 | Verwechselt mit | Erkennungszeichen |
 |---|---|
-| Systemlandschaft | zeigt Systeme und Technik, nicht Modellbeziehungen |
+| Systemlandschaft | zeigt Systeme und Technik, nicht fachliche Abhängigkeiten |
 | Schnittstellenliste | zeigt, **dass** etwas fließt, nicht **wie** die Abhängigkeit beschaffen ist |
 | Architekturdiagramm | zeigt Bausteine, nicht wer bei Änderungen nachzieht |
 | Datenflussdiagramm | zeigt die Richtung der Daten — die Abhängigkeitsrichtung kann entgegengesetzt sein |

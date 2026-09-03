@@ -11,7 +11,7 @@
 
 **Als** Architekt
 **möchte ich** vor einer Änderung wissen, welche Bereiche davon betroffen sind und in welcher Beziehung sie zueinander stehen,
-**damit** eine Formatumstellung bei einem Fremdanbieter nicht zur Volltextsuche wird.
+**damit** eine Formatumstellung bei einem Fremdanbieter nicht zur wochenlangen Suche wird.
 
 ---
 
@@ -19,7 +19,7 @@
 
 Die Formatumstellung des Partnernetzwerks (AV-2588) dauerte **elf statt drei Wochen**. Es entstanden Vertragsstrafen. Vier Wochen später lieferte die Verfügbarkeitsplanung falsche Zahlen, weil ein zusammengelegter Statuscode in zwei Kontexten unterschiedlich verstanden wurde.
 
-**Ursache:** Das Modell des Fremdanbieters wurde bei der Anbindung unverändert in das eigene übernommen. Der Statuscode `partnerStatus` wird an **31 Stellen** ausgewertet:
+**Ursache:** Das Modell des Fremdanbieters wurde bei der Anbindung unverändert in das eigene übernommen. Sein Statuscode wird an **31 Stellen** ausgewertet:
 
 | Kontext | Stellen | Fachlich begründet |
 |---|---|---|
@@ -28,7 +28,7 @@ Die Formatumstellung des Partnernetzwerks (AV-2588) dauerte **elf statt drei Woc
 | Flotte und Instandhaltung | 6 | teilweise |
 | Werkstatt (innerhalb Flotte) | 4 | **nein — Herkunft ungeklärt** |
 
-Es existiert keine Übersicht, welche Kontexte von welchen Fremdsystemen abhängen. Die 31 Stellen wurden per Volltextsuche ermittelt.
+Es existiert keine Übersicht, welche Kontexte von welchen Fremdsystemen abhängen. Die 31 Stellen mussten einzeln gesucht werden.
 
 **Weitere Anbindungen nach demselben Muster:** Leasingportal, Schadensplattform. Beide haben Formatumstellungen angekündigt.
 

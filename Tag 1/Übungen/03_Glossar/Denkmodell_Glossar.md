@@ -146,7 +146,7 @@ Nach Ablauf, nach Zusammenhang, nach Aggregat — nur nicht alphabetisch. Ein Ve
 Zehn Einträge, die stimmen, schlagen 84, die veralten. Ein Eintrag entsteht, wenn ein Missverständnis auftrat — nicht, wenn jemand die Liste vervollständigen will.
 
 **Die beste Fassung ist die, die im Code steht.**
-Wenn Klassen und Methoden die Begriffe des Glossars tragen, pflegt sich das Verzeichnis mit. Das ist der Zustand, den DDD anstrebt — dann ist das Glossar eine Lesehilfe zum Modell, kein Parallelwerk.
+Wenn das System selbst die Begriffe des Glossars trägt, pflegt sich das Verzeichnis mit. Das ist der Zustand, den DDD anstrebt — dann ist das Glossar eine Lesehilfe zum Modell, kein Parallelwerk.
 
 ---
 

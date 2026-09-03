@@ -35,8 +35,8 @@ Bei der Aufarbeitung zeigte sich, dass die Abweichung kein Datenfehler ist. **Di
 ## Randbedingungen
 
 - Fünf Bereiche: Vertrieb, Stationen, Flotte, Werkstatt, Abrechnung
-- Die Tabelle `Kunde` hat 47 Spalten, die meisten für die meisten Sätze leer
-- Zwei neue Spalten im letzten Jahr, beide bereichsspezifisch
+- Der Kundenbegriff trägt 47 Merkmale, die meisten sind bei einem beliebigen Kunden leer
+- Zwei neue Merkmale im letzten Jahr, beide nur für einen Bereich
 - Die Bereiche haben eigene Zuständigkeiten und eigene Releasezyklen
 - Ein früherer Vereinheitlichungsversuch ist gescheitert
 
@@ -86,11 +86,11 @@ Dieses Ticket nennt kein Konzept. Bearbeiten Sie es entlang des Leitwegs:
 
 | Signal | Konkret |
 |---|---|
-| Eine Tabelle mit vielen Spalten, die meist leer sind | jede Spalte gehört einem Bereich |
-| Spalten wie `art`, `typ`, `status`, `kategorie` nebeneinander | Bedeutungsunterschiede, die als Merkmal getarnt sind |
-| Ein Feld wird je nach Bereich anders befüllt | ohne dass das dokumentiert wäre |
+| Ein Begriff mit vielen Merkmalen, die meist leer sind | jedes Merkmal gehört einem Bereich |
+| Merkmale wie „Art", „Typ", „Status", „Kategorie" nebeneinander | Bedeutungsunterschiede, als Einteilung getarnt |
+| Dieselbe Angabe wird je nach Bereich anders verwendet | ohne dass das irgendwo steht |
 | Auswertungen, die von Hand nachbearbeitet werden | die Software kann die Frage nicht beantworten |
-| Kommentare in der Datenbank statt Dokumentation | „für Werkstatt immer 0 setzen" |
+| Mündlich weitergegebene Sonderregeln | „bei der Werkstatt lässt man das leer" |
 
 ## Warum ein Wort mit zwei Bedeutungen schlimmer ist als zwei Wörter
 

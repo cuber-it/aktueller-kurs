@@ -262,4 +262,4 @@ Mögliche Antworten und was daraus folgt:
 
 ## Diskussionsanschluss
 
-Beide Modelle sind klein — sechs und fünf Begriffe. Ein System, das beide Zwecke bedient, hat vermutlich eine Tabelle mit vierzig Spalten. Wo ist der Unterschied entstanden?
+Beide Modelle sind klein — sechs und fünf Begriffe. Ein System, das beide Zwecke bedient, führt vermutlich vierzig Merkmale je Fahrzeug. Wo ist der Unterschied entstanden?

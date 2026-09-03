@@ -23,9 +23,9 @@ Dazu kommen drei weitere Fremdsysteme:
 
 Die Anbindung des Partnernetzwerks stand unter Zeitdruck — der Vertrag war unterschrieben, der Starttermin fest.
 
-Der Vermittler liefert Buchungen in seinem eigenen Format. Sein Modell kennt `Booking`, `Traveller`, `VehicleClass` und einen Statuscode mit vierzehn Ausprägungen.
+Der Vermittler liefert Buchungen in seinem eigenen Format. Er hat eigene Begriffe dafür — englische Bezeichnungen für Buchung, Reisender und Fahrzeugklasse — und einen Statuscode mit vierzehn Ausprägungen.
 
-Um Zeit zu sparen, wurde sein Format **direkt in die Anmietung übernommen**. Die Klasse `Buchung` bekam ein Feld `partnerStatus`, die Reservierung ein Feld `travellerRef`, und die Fahrzeugkategorie wurde um die Codes des Vermittlers erweitert.
+Um Zeit zu sparen, wurden seine Begriffe **unverändert in die Anmietung übernommen**. Der Partnerstatus wurde zu einem Merkmal jeder Buchung, der Verweis auf den Reisenden zu einem Merkmal jeder Reservierung, und die eigenen Fahrzeugkategorien wurden um die Codes des Vermittlers erweitert.
 
 Es funktionierte. In sechs Wochen war die Anbindung fertig.
 
@@ -35,7 +35,7 @@ Das Leasingportal kam ein Jahr später und wurde nach demselben Muster angebunde
 
 Der Vermittler kündigte eine **Formatumstellung** an: Der Statuscode wird von vierzehn auf sechs Ausprägungen reduziert, drei alte Codes entfallen ersatzlos, zwei werden zusammengelegt. Vorlauf: acht Wochen.
 
-Die Analyse ergab, dass `partnerStatus` an **31 Stellen** ausgewertet wird — davon:
+Die Analyse ergab, dass der Partnerstatus an **31 Stellen** ausgewertet wird — davon:
 
 | Bereich | Stellen | Zusammenhang |
 |---|---|---|
@@ -52,11 +52,11 @@ Die vier Stellen in der Werkstatt stammten aus einer Auswertung, die einmal jema
 
 ## Was bei der Aufarbeitung auffiel
 
-**Das Modell des Vermittlers war zum eigenen Modell geworden.** Begriffe wie `Traveller` standen in Klassen, die mit dem Partnernetzwerk nichts zu tun hatten. Ein Entwickler in der Werkstatt musste wissen, was ein `VehicleClass`-Code des Vermittlers bedeutet.
+**Das Modell des Vermittlers war zum eigenen Modell geworden.** Seine Begriffe tauchten an Stellen auf, die mit dem Partnernetzwerk nichts zu tun hatten. Wer in der Werkstatt arbeitete, musste wissen, was ein Fahrzeugklassen-Code des Vermittlers bedeutet.
 
 **Es gab keine Stelle, an der übersetzt wurde.** Zwischen Fremdformat und eigenem Modell lag nichts.
 
-**Die Abhängigkeit war unsichtbar.** Niemand hatte eine Übersicht, welche Bereiche von welchem Fremdsystem abhängen. Die 31 Stellen wurden per Volltextsuche gefunden.
+**Die Abhängigkeit war unsichtbar.** Niemand hatte eine Übersicht, welche Bereiche von welchem Fremdsystem abhängen. Die 31 Stellen mussten einzeln zusammengesucht werden.
 
 **Bei den anderen drei Anbindungen ist es dasselbe.** Das Leasingportal und die Schadensplattform sind nach demselben Muster gebaut. Beide haben Formatumstellungen angekündigt.
 
