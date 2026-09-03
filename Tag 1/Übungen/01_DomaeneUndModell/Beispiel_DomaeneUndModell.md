@@ -1,120 +1,135 @@
-# Beispiel · Zwei Modelle in klein
+# Beispiel · Ein Sachverhalt, zwei Zwecke — in klein
 
-Derselbe Sachverhalt, zwei Entwürfe. Kürzer als die Übung, zum Nachvollziehen des Vorgehens.
-
----
-
-## Der Sachverhalt
-
-Eine Bibliothek. Eine Ausleihe.
-
-**Wie die Bibliothekarin spricht:**
-
-> „Ausleihen darf, wer keine überzogenen Medien hat. Vier Wochen, einmal verlängerbar — außer das Buch ist vorgemerkt, dann geht keine Verlängerung."
+Dieselbe Aufgabe mit einem kleineren Gegenstand, vollständig durchgeführt.
 
 ---
 
-## Modell 1
+## Der Gegenstand
 
-```
-Klasse AusleiheDatensatz
-    id
-    benutzerId
-    exemplarId
-    ausleihDatum
-    faelligkeitsDatum
-    verlaengerungsZaehler
-    rueckgabeDatum          (leer, solange nicht zurück)
-```
+Eine Schule. Es geht um **Schüler**.
 
-Getter und Setter für alles. Die Regeln liegen in `AusleiheService`.
+Zwei Zwecke, zwei Gespräche.
 
----
+### Gespräch A · Sekretariat
 
-## Modell 2
+> „Ein Schüler ist bei mir jemand, der angemeldet ist. Ich brauche Name, Geburtsdatum, Adresse, Erziehungsberechtigte, Klasse.
+>
+> Wichtig ist die Anmeldung selbst — wann sie eingegangen ist, ob alle Unterlagen da sind, ob das Schulgeld läuft. Solange etwas fehlt, ist die Anmeldung nicht vollständig, und dann kann ich keinen Platz bestätigen.
+>
+> Wenn jemand die Schule wechselt, brauche ich das Abmeldedatum und wohin. Danach ist er für mich weg.
+>
+> Was mich nicht interessiert: Noten, Fehlzeiten, wer mit wem kann."
 
-```
-Klasse Ausleihe
-    exemplar
-    entleiher
-    frist
+### Gespräch B · Klassenlehrerin
 
-    verlaengern()           -> nur einmal, nicht bei Vormerkung
-    zurueckgeben()
-    istUeberzogen()
-
-Klasse Frist
-    faelligAm
-    wurdeVerlaengert
-
-    verlaengernUm(wochen)
-    istVerstrichen()
-```
+> „Für mich ist ein Schüler jemand, der vor mir sitzt. Ich brauche den Namen und wie er angesprochen werden will.
+>
+> Wichtig sind Fehlzeiten — entschuldigt oder nicht. Ab einer bestimmten Zahl unentschuldigter Stunden muss ich melden.
+>
+> Dann die Leistungen: mündlich, schriftlich, über das Halbjahr. Daraus wird die Zeugnisnote, und die muss ich begründen können.
+>
+> Und ich brauche zu wissen, ob es Fördermaßnahmen gibt oder einen Nachteilsausgleich, weil das die Bewertung ändert.
+>
+> Was ich nicht brauche: Adresse, Schulgeld, wann die Anmeldung eingegangen ist."
 
 ---
 
-## Schritt 1 · Welche Begriffe fehlen in Modell 1?
+## Schritt 1 · Modell „Anmeldung verwalten"
 
-| Begriff der Bibliothekarin | Modell 1 |
-|---|---|
-| überzogen | nur errechenbar aus `faelligkeitsDatum` und heute |
-| verlängern | als Zähler, nicht als Vorgang |
-| vorgemerkt | **fehlt vollständig** |
-| Frist | als Datumsfeld |
+### Schüler
+- Merkmale: Name, Geburtsdatum, Adresse, Klasse
+- Merkmale: Erziehungsberechtigte
 
-**Der auffälligste Befund:** „Vorgemerkt" kommt nicht vor, obwohl es eine Regel bestimmt. Die Regel kann Modell 1 gar nicht prüfen — die Information fehlt.
+### Anmeldung
+- Merkmale: Eingangsdatum, Stand der Unterlagen
+- **Regel:** Solange Unterlagen fehlen, ist sie unvollständig
+- **Regel:** Ohne vollständige Anmeldung kein Platz
 
-## Schritt 2 · Wo steht die Regel?
+### Schulgeld
+- Merkmale: Vereinbarung, Zahlungsstand
 
-**„Einmal verlängerbar, außer vorgemerkt"**
+### Abmeldung
+- Merkmale: Datum, Zielschule
+- **Regel:** Danach ist der Schüler für diesen Zweck nicht mehr geführt
 
-| | |
-|---|---|
-| Modell 1 | in `AusleiheService`, der `verlaengerungsZaehler` prüft und die Vormerkung woanders herholt |
-| Modell 2 | in `verlaengern()` |
+**Vier Begriffe.**
 
-**Der Unterschied im Betrieb:** In Modell 1 kann jeder `setVerlaengerungsZaehler(0)` aufrufen und die Regel umgehen. In Modell 2 gibt es keinen Setter.
+---
 
-## Schritt 3 · Welche ungültigen Zustände sind konstruierbar?
+## Schritt 2 · Modell „Unterrichten und bewerten"
 
-In Modell 1:
+### Schüler
+- Merkmale: Name, Ansprache
+- Merkmale: Fördermaßnahmen, Nachteilsausgleich
 
-| Zustand | Fachlich möglich? |
-|---|---|
-| `rueckgabeDatum` gesetzt, `verlaengerungsZaehler` wird erhöht | nein — zurückgegebene Medien verlängert man nicht |
-| `faelligkeitsDatum` vor `ausleihDatum` | nein |
-| `verlaengerungsZaehler = 5` | nein — nur eine Verlängerung |
+### Fehlzeit
+- Merkmale: Datum, Stunden, entschuldigt ja/nein
+- **Regel:** Ab einer Zahl unentschuldigter Stunden besteht Meldepflicht
 
-Alle drei sind in Modell 1 anlegbar. In Modell 2 gibt es keinen Weg dorthin.
+### Leistung
+- Merkmale: Art (mündlich/schriftlich), Zeitpunkt, Bewertung
 
-## Schritt 4 · Der Lesbarkeitstest
+### Zeugnisnote
+- Merkmale: Wert, Halbjahr
+- **Regel:** Muss aus den Leistungen begründbar sein
+- **Regel:** Ein Nachteilsausgleich verändert die Bewertungsgrundlage
 
-Die Bibliothekarin liest Modell 2:
+**Vier Begriffe.**
 
-> „Ausleihe, Exemplar, Entleiher, Frist, verlängern, zurückgeben, überzogen."
+---
 
-Sie kann sagen: „Stimmt — aber Vormerkung fehlt bei euch als eigene Sache."
+## Schritt 3 · Der Vergleich
 
-Bei Modell 1 müsste jemand übersetzen: „`verlaengerungsZaehler` ist die Zahl der Verlängerungen." Danach prüft sie die Übersetzung.
+| Begriff | Sekretariat | Klassenlehrerin |
+|---|---|---|
+| Schüler | ja | ja |
+| Name | ja | ja |
+| Adresse, Erziehungsberechtigte | ja | nein |
+| Anmeldung, Schulgeld, Abmeldung | ja | nein |
+| Fehlzeit, Leistung, Zeugnisnote | nein | ja |
+| Fördermaßnahmen | nein | ja |
+
+**Nur zwei Überschneidungen:** der Schüler selbst und sein Name.
+
+---
+
+## Schritt 4 · Ist „Schüler" dieselbe Sache?
+
+| | Sekretariat | Klassenlehrerin |
+|---|---|---|
+| Ist ein Schüler | jemand, der angemeldet ist | jemand, der vor mir sitzt |
+| Beginnt | mit vollständiger Anmeldung | am ersten Schultag |
+| Endet | mit der Abmeldung | am letzten Unterrichtstag |
+| Merkmale | fünf verwaltende | vier pädagogische |
+
+**Weitgehend dieselbe Person, verschiedene Sicht.** Anders als beim Fahrzeug in der großen Übung entsteht hier **kein Widerspruch** — nur andere Merkmale.
+
+Der Prüfstein: Ergäbe die Zusammenführung einen Widerspruch oder mehr Felder? Hier: mehr Felder. Zwei Sichten auf dieselbe Sache.
+
+**Bemerkenswert:** Beim Fahrzeug war es anders — 8.400 Einzelobjekte gegen 8 Kategorien ergibt einen Widerspruch. Der Unterschied zwischen den beiden Fällen ist genau der, um den es in 1-3 gehen wird.
+
+---
+
+## Schritt 5 · Der Preis eines gemeinsamen Modells
+
+Ein Schüler-Begriff mit neun Merkmalen. Für das Sekretariat wären vier bedeutungslos, für die Lehrerin fünf.
+
+**Machbar** — es entsteht kein Widerspruch. Aber:
+
+- Die Lehrerin sieht Zahlungsstände, die sie nichts angehen (und die datenschutzrechtlich heikel sind)
+- Das Sekretariat sieht Noten
+- Eine Änderung an der Bewertungslogik betrifft die Anmeldeverwaltung ohne Grund
+
+**Die Abwägung ist hier offener als beim Fahrzeug.** Bei zwei Sichten ohne Widerspruch kann ein gemeinsames Modell vertretbar sein — es ist eine Kosten-Nutzen-Frage, keine Notwendigkeit.
 
 ---
 
 ## Was dieses Beispiel zeigt
 
-**Ein fehlender Begriff macht eine Regel unprüfbar.** „Vorgemerkt" fehlt in Modell 1, also kann die Regel dort nicht stehen — sie muss aus einem anderen System geholt werden.
+**Der Zweck bestimmt das Modell.** Zweimal derselbe Schüler, zweimal vier Begriffe, kaum Überschneidung.
 
-**Ein Zähler ist selten die richtige Abbildung.** `verlaengerungsZaehler` speichert, wie oft etwas geschah, aber nicht, ob es noch zulässig ist. Das ist eine andere Frage.
+**Regeln gehören ins Modell.** „Ohne vollständige Anmeldung kein Platz" und „ab X Stunden Meldepflicht" sind keine Zusätze, sondern das, was das Modell ausmacht.
 
-**Setter sind Löcher.** Jedes setzbare Feld ist ein Weg, die Regeln zu umgehen. Wo Regeln gelten sollen, gehören sie geschlossen.
+**Nicht jede Verschiedenheit ist ein Widerspruch.** Beim Schüler sind es zwei Sichten, beim Fahrzeug zwei Sachen. Der Unterschied ist der Prüfstein für Modellgrenzen.
 
-**Beide Modelle speichern dieselben Daten.** Der Unterschied liegt darin, welche Fragen sie beantworten und welche Zustände sie zulassen.
-
----
-
-## Zum Vergleich: wann Modell 1 richtig wäre
-
-Angenommen, es geht um eine **Auswertung** der Ausleihen der letzten zehn Jahre — Häufigkeiten, Fristüberschreitungen, Nutzungsmuster.
-
-Dann sind die Regeln gegenstandslos. Die Daten sind historisch, es wird nichts entschieden, nur gelesen. `AusleiheDatensatz` mit offenen Feldern ist genau richtig.
-
-**Der Unterschied liegt nicht in der Sache, sondern im Zweck.** Ein Modell zum Entscheiden und eines zum Auswerten dürfen verschieden sein — und sind es meistens.
+**Was weggelassen wird, ist eine Entscheidung.** „Was mich nicht interessiert" ist in beiden Gesprächen der aufschlussreichste Satz — er zieht die Grenze des Modells.

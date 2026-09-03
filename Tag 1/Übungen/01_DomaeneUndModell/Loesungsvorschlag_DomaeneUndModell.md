@@ -1,175 +1,265 @@
-# Lösungsvorschlag · Zwei Modelle für denselben Sachverhalt
+# Lösungsvorschlag · Ein Sachverhalt, zwei Zwecke
+
+**Vorbemerkung:** Ein Vorschlag. Modellentscheidungen sind Ermessenssache; bewertet wird, ob jeder Begriff **für den genannten Zweck** gebraucht wird.
 
 ---
 
-## 1 · Begriffe aus Material A, die in Modell 1 fehlen
+## 1 · Modell „Werkstattarbeit disponieren"
 
-| Begriff des Fachbereichs | In Modell 1 |
+### Fahrzeug
+
+| | |
 |---|---|
-| **Vorgang** | nicht vorhanden — es gibt `MietvertragKopf` |
-| **Verlängerung** | als `positionsTyp = 2` codiert |
-| **offen** (Vorgang bleibt offen) | teilweise über `statusCode`, aber nicht als Begriff |
-| **ausgeben** | nicht vorhanden — nur `statusCode = 2` |
-| **abschließen** | nicht vorhanden — nur `statusCode = 4` |
-| **gültige Fahrerlaubnis** | als Wahrheitswert `fahrerlaubnisGeprueft` |
-| **Schaden, Tankfüllung, Kaution als offene Punkte** | drei getrennte Mechanismen |
+| Merkmale | Alter, Laufleistung, Reparaturhistorie, letzter Wartungstermin |
+| Zustand | verfügbar · in der Werkstatt · zur Verwertung gemeldet |
+| Regel | Solange es in der Werkstatt ist, kann die Station es nicht vermieten |
 
-Sieben Begriffe, die im Gespräch selbstverständlich sind und im Modell nicht vorkommen.
+### Werkstattaufenthalt
 
-**Bemerkenswert:** Die Stationsleiterin sagt kein einziges Mal „Kopf", „Position" oder „Statuscode". Diese Wörter stammen aus der Datenhaltung.
-
----
-
-## 2 · Wo sie in Modell 2 auftauchen
-
-| Begriff | In Modell 2 |
+| | |
 |---|---|
-| Vorgang | die Klasse `Mietvorgang` |
-| Verlängerung | `verlaengernBis(datum)` und `Zeitraum.verlaengertUm` |
-| offen | `offenePunkte`, Liste von `OffenerPunkt` |
-| ausgeben | `ausgeben(fahrerlaubnis)` |
-| abschließen | `abschliessen()` |
-| gültige Fahrerlaubnis | Parameter von `ausgeben` |
-| offene Punkte | eigene Klasse mit drei Arten |
+| Merkmale | Anlass (Wartung oder Schaden), Beginn, durchgeführte Arbeiten |
+| Regel | Endet erst, wenn die Arbeit fertig **und** der Prüfbericht unterschrieben ist |
+| Regel | Erst danach wird das Fahrzeug wieder freigegeben |
 
-**Alle sieben sind wiederzufinden** — als Klasse, Methode oder Feld. Das ist der Unterschied zwischen einem Modell, das die Fachlichkeit trägt, und einem, das Daten trägt.
+### Wartungsfälligkeit
 
----
-
-## 3 · „Verlängern geht nur einmal"
-
-### In Modell 1
-
-**Nirgends im Modell.** Die Regel müsste in `MietvertragService` stehen, etwa:
-
-> Zähle Positionen mit `positionsTyp = 2` für diesen Kopf. Wenn ≥ 1, ablehnen.
-
-**Die Folgen:**
-
-- Wer eine Position direkt anlegt, umgeht die Regel.
-- Die Regel steht an so vielen Stellen, wie es Wege zur Verlängerung gibt — im Vorfall AV-2088 waren es drei.
-- Nichts im Modell verrät, dass es die Regel gibt.
-
-### In Modell 2
-
-In `verlaengernBis(datum)`. Der `Zeitraum` weiß, ob er bereits verlängert wurde.
-
-**Die Folgen:**
-
-- Es gibt genau einen Weg zu verlängern.
-- Die Regel ist dort, wo sie gilt.
-- Wer die Klasse liest, sieht die Regel.
-
----
-
-## 4 · „Ausgeben nur bei Fahrerlaubnis und Kaution"
-
-### In Modell 1
-
-In einem Dienst, der `fahrerlaubnisGeprueft` und `kautionStatusCode` prüft, bevor er `statusCode` auf 2 setzt.
-
-**Das Problem:** `statusCode` ist ein setzbares Feld. Jeder Code, der `setStatusCode(2)` aufruft, umgeht die Prüfung. Das Modell schützt sich nicht.
-
-### In Modell 2
-
-Zweistufig:
-
-- `kannAusgegebenWerden()` beantwortet die Frage mit Begründung — für die Oberfläche, die eine Schaltfläche ausgraut.
-- `ausgeben(fahrerlaubnis)` führt die Prüfung erneut durch und verweigert, wenn sie nicht erfüllt ist.
-
-**Es gibt keinen Setter für den Zustand.** Der Übergang von `Reserviert` zu `Laufend` ist nur über `ausgeben()` erreichbar.
-
----
-
-## 5 · Der widersprüchliche Zustand
-
-**Fachlich möglich?** Nein. Material A sagt: „Wenn was offen ist — Schaden, Tankfüllung, Kaution — bleibt der Vorgang offen."
-
-Ein abgeschlossener Vorgang mit unerledigtem Schaden ist ein Widerspruch.
-
-**Was das über Modell 1 sagt:**
-
-Das Modell **erlaubt ungültige Zustände**. Es verhindert sie nicht, sondern verlässt sich darauf, dass der aufrufende Code sie vermeidet.
-
-Damit ist jede Stelle, die auf das Modell zugreift, mitverantwortlich für die fachliche Richtigkeit. Bei drei Verlängerungswegen bedeutet das drei Stellen, die es richtig machen müssen — und eine, die es nicht tat.
-
-**In Modell 2:** `abschliessen()` prüft die offenen Punkte und verweigert. Der Zustand ist nicht konstruierbar.
-
-**Die allgemeine Regel:** Ein Modell sollte ungültige Zustände **unmöglich** machen, nicht nur unerwünscht. Der Unterschied ist der zwischen einer Zusicherung und einer Absprache.
-
----
-
-## 6 · Der Wahrheitswert `fahrerlaubnisGeprueft`
-
-**Was fehlt, gemessen an Material A:**
-
-Die Stationsleiterin sagt „**gültige** Fahrerlaubnis". Ein Wahrheitswert `geprueft` beantwortet eine andere Frage:
-
-| Frage | `fahrerlaubnisGeprueft` |
+| | |
 |---|---|
-| Wurde geprüft? | ja |
-| War das Ergebnis positiv? | **nicht ablesbar** |
-| Wann wurde geprüft? | nicht ablesbar |
-| Ist die Prüfung noch gültig? | nicht ablesbar |
-| Welche Fahrerlaubnisklasse? | nicht ablesbar |
+| Merkmale | berechneter Termin aus Kilometerstand und letztem Termin |
+| Regel | Wird vom System berechnet und von der Disposition geprüft |
+| Offen | Die Erfahrung „manche werden härter rangenommen" ist nicht abgebildet — siehe Aufgabe 9 |
 
-Ein `true` kann bedeuten: geprüft und gültig — oder geprüft und ungültig, mit einer Ablehnung an anderer Stelle.
+### Schadensbefund
 
-**In Modell 2** ist die Fahrerlaubnis ein Parameter von `ausgeben()`. Damit ist sie zum Zeitpunkt der Ausgabe vorzulegen, und ihre Beschaffenheit kann geprüft werden.
+| | |
+|---|---|
+| Merkmale | Fotos von der Rückgabe, Rückgabeprotokoll, Bewertung |
+| Bewertung | **Unfall** oder **Verschleiß** |
+| Regel | Bei Verschleiß zahlt keine Versicherung |
 
-**Das Muster dahinter:** Ein Wahrheitswert komprimiert eine fachliche Aussage auf ein Bit und verliert dabei, worum es ging. Solche Felder sind ein verlässliches Zeichen dafür, dass ein Begriff fehlt.
+### Prüfbericht
+
+| | |
+|---|---|
+| Merkmale | unterschrieben ja/nein |
+| Regel | Voraussetzung für die Freigabe |
+
+### Verwertungsmeldung
+
+| | |
+|---|---|
+| Anlass | Reparatur lohnt nicht mehr |
+| Empfänger | Flotte |
+
+**Sechs Begriffe.**
+
+**Nicht im Modell**, weil für diesen Zweck nicht gebraucht: Mieter, Mietpreis, Kaution, Rahmenvertrag, Station als Vermieterin.
 
 ---
 
-## 7 · Welches Modell dem Fachvertreter vorlegen?
+## 2 · Modell „Anmietung abrechnen"
 
-**Modell 2.**
+### Rechnungsposition
 
-Er liest `Mietvorgang`, `ausgeben`, `verlaengernBis`, `abschliessen`, `offenePunkte` — alles Begriffe, die er selbst verwendet. Er kann sagen: „Verlängern geht nur einmal, das stimmt" oder „Nein, bei Firmenkunden auch zweimal."
+| | |
+|---|---|
+| Merkmale | Fahrzeugkategorie, Zeitraum, Tagessatz |
+| Regel | Ergibt sich aus einer abgeschlossenen Anmietung |
 
-**Bei Modell 1** müsste ein Entwickler übersetzen: „`positionsTyp = 2` bedeutet Verlängerung." Nach der Übersetzung prüft der Fachvertreter die Übersetzung, nicht das Modell.
+### Fahrzeugkategorie
 
-**Das ist der praktische Kern:** Ein Modell, das der Fachbereich nicht lesen kann, kann er auch nicht prüfen. Fehler bleiben, bis sie im Betrieb auffallen — im Ticketfall vier Monate lang.
+| | |
+|---|---|
+| Merkmale | Bezeichnung (Kompakt, Kombi, Transporter) |
+| Bemerkung | **kein konkretes Fahrzeug** |
+
+### Kilometerabrechnung
+
+| | |
+|---|---|
+| Merkmale | Freikilometer laut Vertrag, gefahrene Kilometer |
+| Regel | Nur bei Überschreitung entsteht eine Position |
+
+### Schadensbewertung
+
+| | |
+|---|---|
+| Merkmale | Schaden aufgenommen ja/nein, Bewertung Unfall oder Verschleiß, bei Unfall die Versicherung |
+| Regel | Die Bewertung entscheidet, wer die Rechnung erhält |
+
+### Empfänger
+
+| | |
+|---|---|
+| Merkmale | Firmenkunde oder Privat, Rahmenvertrag, Zahlungsvereinbarung |
+| Regel | Bei Unfallschaden kann die Versicherung Empfänger sein |
+
+**Fünf Begriffe.**
+
+**Nicht im Modell:** konkretes Fahrzeug, Alter, Reparaturhistorie, Werkstattaufenthalt, Prüfbericht.
 
 ---
 
-## 8 · Welches ist einfacher?
+## 3 · Der Vergleich
 
-**Kommt darauf an, was gemessen wird.**
-
-| Maß | Modell 1 | Modell 2 |
+| Begriff | Werkstatt | Abrechnung |
 |---|---|---|
-| Zahl der Felder | mehr | weniger |
-| Zahl der Methoden | fast keine | mehrere je Klasse |
-| Aufwand, ein Feld zu lesen | gering | gering |
-| Aufwand, eine fachliche Frage zu beantworten | **hoch** — mehrere Klassen, Regel woanders | gering — eine Methode |
-| Aufwand, etwas Falsches zu tun | **gering** | hoch — das Modell wehrt sich |
-| Zahl der Stellen, die eine Regel kennen müssen | viele | eine |
+| Fahrzeug | ja, konkret | nur als Kategorie |
+| Kilometerstand | ja, für Wartungsfälligkeit | ja, nur bei Freikilometer-Überschreitung |
+| Schaden | ja, Befund und Bewertung | ja, nur die Bewertung |
+| Werkstattaufenthalt | ja | nein |
+| Prüfbericht | ja | nein |
+| Reparaturhistorie | ja | nein |
+| Empfänger, Rahmenvertrag | nein | ja |
+| Tagessatz, Zeitraum | nein | ja |
 
-**Modell 1 ist einfacher zu bauen. Modell 2 ist einfacher zu benutzen.**
-
-Der Unterschied zeigt sich nicht bei der Erstellung, sondern bei der zwanzigsten Änderung. Im Ticketfall nach fünfzehn Jahren: elf Tage Analyse für eine Korrektur.
-
-**Einfachheit ist keine Eigenschaft des Codes, sondern der Fragen, die man damit beantworten muss.**
+**Zwei Begriffe überschneiden sich vollständig** (Schadensbewertung), **zwei teilweise** (Fahrzeug, Kilometerstand), **acht gar nicht**.
 
 ---
 
-## 9 · Was Modell 1 kann und Modell 2 nicht
+## 4 · Der Begriff „Fahrzeug"
 
-Mindestens vier Punkte:
+| | Werkstatt | Abrechnung |
+|---|---|---|
+| Was gemeint ist | ein konkretes Auto mit Historie | eine Kategorie |
+| Merkmale | Alter, Laufleistung, was schon dran war | Bezeichnung |
+| Lebensdauer im Blick | Jahre | die Dauer einer Anmietung |
+| Anzahl | 8.400 Einzelobjekte | acht Kategorien |
 
-**Beliebige Auswertungen.** Modell 1 legt alle Daten offen. Eine Auswertung „alle Verlängerungen im März nach Station" ist eine Abfrage. In Modell 2 müsste dafür eine Methode existieren oder ein Lesemodell danebengestellt werden.
+**Ist das dieselbe Sache?**
 
-**Nachträgliche Korrekturen.** Wenn ein Datensatz falsch ist, lässt er sich in Modell 1 direkt richtigstellen. Modell 2 verweigert Zustände, die es für ungültig hält — auch bei einer berechtigten Korrektur. Dafür braucht es einen eigenen Weg.
+Nein. Die Werkstatt meint ein **Einzelobjekt**, die Abrechnung eine **Klasse von Objekten**. Herr Krause sagt ausdrücklich, welches konkrete Auto es war, interessiere ihn nicht.
 
-**Historie.** `FahrzeugStatusHistorie` und `PreisHistorie` halten den Verlauf fest. Modell 2 kennt nur den aktuellen Zustand; die Historie müsste ergänzt werden.
+Das ist kein Detailunterschied, sondern eine andere Sache mit demselben Namen. Die Zusammenführung ergäbe einen Widerspruch: 8.400 gegen 8.
 
-**Datenmigration und Import.** Beim Einspielen von Altdaten passen nicht alle Sätze zu den heutigen Regeln. Modell 1 nimmt sie, Modell 2 lehnt sie ab.
+**Dieser Befund führt direkt zu 1-3 und 1-5.** Er ist der erste Hinweis darauf, dass ein Modell für alles nicht trägt.
 
-**Die Abwägung:** Modell 2 kauft Schutz mit Flexibilität. Wo Auswertung, Korrektur und Migration wichtiger sind als Regelsicherheit, ist Modell 1 nicht falsch — es ist dann aber eine bewusste Entscheidung und keine Folge der Datenbankstruktur.
+---
+
+## 5 · „Wenn es hier ist, gehört es mir"
+
+**Das ist eine Regel**, und zwar eine der wichtigsten im Werkstattmodell.
+
+Sie sagt: Der Werkstattaufenthalt **entzieht** das Fahrzeug der Station. Solange er läuft, ist das Fahrzeug nicht vermietbar — unabhängig davon, wem es „auf dem Papier" gehört.
+
+**Wo sie steht:** Als Regel am Begriff *Fahrzeug* oder am *Werkstattaufenthalt*. Beide Zuordnungen sind vertretbar; wichtig ist, dass sie **im Modell** steht und nicht als Randbemerkung.
+
+**Warum das mehr ist als ein Merkmal:**
+
+| | |
+|---|---|
+| Merkmal wäre | „Zustand: in der Werkstatt" |
+| Regel ist | „In diesem Zustand ist Vermieten ausgeschlossen" |
+
+Ein Merkmal beschreibt, eine Regel schließt aus. Wer nur das Merkmal führt, muss die Ausschlusslogik an jeder Stelle wiederholen, an der vermietet wird.
+
+---
+
+## 6 · Der Schaden in beiden Modellen
+
+| | Werkstatt braucht | Abrechnung braucht |
+|---|---|---|
+| Fotos | ja | nein |
+| Rückgabeprotokoll | ja | nein |
+| Bewertung Unfall/Verschleiß | **erzeugt sie** | **nutzt sie** |
+| Versicherung | nein | ja, bei Unfall |
+
+**Wo die Information entsteht:** Die Bewertung entsteht in der **Werkstatt**. Frau Petrova sagt: „Manchmal sehe ich schon daran, dass es kein Unfall war, sondern Verschleiß."
+
+**Wer sie braucht:** Die Abrechnung. Herr Krause sagt: „Danach entscheidet sich, wer die Rechnung bekommt."
+
+**Was daraus folgt:** Zwischen den beiden Modellen fließt Information — die Bewertung. Alles andere am Schaden bleibt jeweils dort, wo es gebraucht wird.
+
+Das ist der erste Fall einer **Übersetzung an einer Grenze**, ohne dass der Begriff schon eingeführt wäre.
+
+---
+
+## 7 · Ein gemeinsames Modell
+
+Es müsste enthalten:
+
+| Aus der Werkstatt | Aus der Abrechnung |
+|---|---|
+| Fahrzeug als Einzelobjekt | Fahrzeug als Kategorie |
+| Alter, Laufleistung, Reparaturhistorie | Tagessatz, Zeitraum |
+| Werkstattaufenthalt, Prüfbericht | Empfänger, Rahmenvertrag |
+| Fotos, Rückgabeprotokoll | Zahlungsvereinbarung |
+| Verwertungsmeldung | Freikilometer |
+
+**Was auffällt — drei Dinge:**
+
+**Erstens:** „Fahrzeug" müsste beides zugleich sein — Einzelobjekt und Kategorie. Das geht nur, wenn man zwei Begriffe daraus macht. Damit ist der Begriff, um den es geht, nicht mehr eindeutig.
+
+**Zweitens:** Von rund vierzehn Merkmalen wären für jeden Zweck etwa fünf leer oder bedeutungslos. Herr Krause sähe Reparaturhistorien, Frau Petrova Zahlungsvereinbarungen.
+
+**Drittens:** Die Regeln widersprechen sich nicht, aber sie gelten jeweils nur für einen Teil. „Bei Verschleiß zahlt keine Versicherung" ist für die Werkstatt eine Beobachtung, für die Abrechnung eine Entscheidungsregel.
+
+---
+
+## 8 · Der Preis eines gemeinsamen Modells
+
+**Für die Werkstatt:**
+
+- Sie sieht Merkmale, die sie nicht braucht und nicht beurteilen kann.
+- Ihre Frage „was war schon dran" wird schwerer zu beantworten, weil sie zwischen Abrechnungsdaten liegt.
+- Bei jeder Änderung an der Abrechnung muss geprüft werden, ob die Werkstatt betroffen ist.
+
+**Für die Abrechnung:**
+
+- Sie muss mit Einzelfahrzeugen umgehen, obwohl sie Kategorien abrechnet.
+- Eine Auswertung „Umsatz je Kategorie" wird zur Aggregation über Einzelobjekte.
+- Änderungen am Werkstattmodell betreffen sie ohne fachlichen Grund.
+
+**Für beide:**
+
+- Keiner kann sein Modell allein ändern.
+- Die Frage „was bedeutet Fahrzeug" hat keine eindeutige Antwort mehr.
+
+**Der Nutzen wäre:** eine Stelle statt zwei, keine Übersetzung nötig. Bei zwei Merkmalen, die tatsächlich gemeinsam gebraucht werden (Bewertung, Kilometerstand), ist das ein schlechtes Geschäft.
+
+---
+
+## 9 · Die Erfahrung „manche werden härter rangenommen"
+
+**Gehört sie ins Modell?**
+
+Zwei vertretbare Antworten:
+
+| Antwort | Begründung |
+|---|---|
+| **Ja** | Sie beeinflusst eine fachliche Entscheidung — wann ein Fahrzeug zur Wartung muss. Was eine Entscheidung bestimmt, gehört ins Modell. |
+| **Noch nicht** | Sie ist nicht ausformuliert. Solange niemand sagen kann, **woran** man es erkennt, lässt sie sich nicht abbilden. |
+
+**Der gemeinsame Kern beider Antworten:** Die Erfahrung steckt in einem Kopf. Solange sie dort bleibt, ist die Wartungsplanung von einer Person abhängig.
+
+**Der Modellierungsschritt** wäre, aus der Erfahrung ein Merkmal zu machen — etwa eine Einsatzart oder ein Belastungsprofil je Fahrzeug. Das ist keine technische Frage, sondern eine an Frau Petrova.
+
+**Was nicht ins Modell gehört:** die Erfahrung als solche. Ein Modell kann kein „Bauchgefühl" abbilden. Es kann abbilden, **woran** sich das Bauchgefühl festmacht — sobald das benannt ist.
+
+---
+
+## 10 · Die Frage an Frau Petrova
+
+Mehrere funktionieren. Die beste zielt auf das **Merkmal**, nicht auf die Erfahrung:
+
+> **„Woran sehen Sie, dass ein Fahrzeug härter rangenommen wurde?"**
+
+Mögliche Antworten und was daraus folgt:
+
+| Antwort | Modellierung |
+|---|---|
+| „An der Station — die Bergstandorte sind härter" | Merkmal *Standortprofil* |
+| „An der Kundenart — Handwerker fahren anders" | Merkmal *Einsatzart* am Mietvorgang |
+| „Am Fahrzeugtyp — die Transporter" | schon vorhanden, nur nicht genutzt |
+| „Das kann ich nicht sagen, das sehe ich einfach" | nicht modellierbar; dann bleibt die Prüfung menschlich, und das ist ein Befund |
+
+**Was nicht funktioniert:** „Können Sie Ihre Erfahrung formalisieren?" — die Antwort ist nein, weil die Frage zu abstrakt ist.
+
+**Die zweite gute Frage:** „Bei welchen Fahrzeugen lagen Sie zuletzt daneben?" — Fehler sind oft aufschlussreicher als Regeln.
 
 ---
 
 ## Diskussionsanschluss
 
-Modell 2 erschwert Auswertungen, weil es Daten hinter Methoden verbirgt. Wie beantworten Sie „alle Verlängerungen im März nach Station", ohne das Modell aufzuweichen?
+Beide Modelle sind klein — sechs und fünf Begriffe. Ein System, das beide Zwecke bedient, hat vermutlich eine Tabelle mit vierzig Spalten. Wo ist der Unterschied entstanden?

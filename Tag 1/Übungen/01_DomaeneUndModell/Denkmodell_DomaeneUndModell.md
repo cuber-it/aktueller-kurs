@@ -1,4 +1,4 @@
-# Denkmodell · Ein Modell an der Fachlichkeit ausrichten
+# Denkmodell · Ein Modell für einen Zweck bauen
 
 Vier Stufen: **Signale → Erkenntnisse → Optionen → Entscheidung.**
 
@@ -6,43 +6,42 @@ Vier Stufen: **Signale → Erkenntnisse → Optionen → Entscheidung.**
 
 ## Stufe 1 · Signale
 
-### Im Code
-
-| Signal | Konkret |
-|---|---|
-| Klassen entsprechen 1:1 den Tabellen | die Speicherung bestimmt die Struktur |
-| Technische Begriffe in Klassennamen | `Kopf`, `Position`, `Historie`, `Zuordnung`, `Mapping` |
-| Nur Getter und Setter | das Modell trägt Daten, kein Verhalten |
-| Statuscodes als Zahlen | `statusCode = 2` statt `Laufend` |
-| Wahrheitswerte für fachliche Sachverhalte | `fahrerlaubnisGeprueft` — geprüft, aber mit welchem Ergebnis? |
-| Klassen namens `…Service`, `…Manager`, `…Helper` | die Regeln liegen außerhalb des Modells |
-| Ungültige Zustände sind konstruierbar | nichts hindert daran |
-| Eine Regel steht an mehreren Stellen | es gibt keinen Ort dafür |
-
-### Im Gespräch
+### Im Gespräch mit dem Fachbereich
 
 | Signal | Beispiel |
 |---|---|
-| Der Fachbereich erkennt die Begriffe nicht | „Was ist eine Mietvertragsposition?" |
-| Entwickler übersetzen bei jedem Gespräch | „Sie meinen die Verlängerung — bei uns ein Positionssatz" |
-| „Wo findet X statt?" hat keine kurze Antwort | |
-| Einarbeitung beginnt beim Datenmodell | die Fachlichkeit kommt danach |
-| Ein Fehler braucht Tage zur Lokalisierung | obwohl die Berechnung stimmt |
+| Eine tägliche Entscheidung ist im System nicht abbildbar | „Das mache ich aus dem Kopf" |
+| Begriffe, die im System fehlen | „grenzwertig", „lohnt nicht mehr", „härter rangenommen" |
+| Eine Auswertung wird geliefert und nicht benutzt | sie beantwortet eine andere Frage |
+| „Alle Daten sind doch da" | Daten sind nicht dasselbe wie ein Modell |
+| Der Satz „Was mich nicht interessiert …" | der aufschlussreichste Satz jedes Fachgesprächs |
+| Zwei Bereiche beschreiben dasselbe Wort verschieden | erster Hinweis auf eine Modellgrenze |
+
+### Im System
+
+| Signal | Konkret |
+|---|---|
+| Viele Merkmale, wenige gefüllt | 61 gespeichert, 19 belegt |
+| Merkmale ohne heutigen Zweck | „Innenraumfarbe" |
+| Vorgänge ohne Bezug zueinander | drei Reparaturen am selben Bauteil sind drei Einträge |
+| Zustände, die nur Abläufe abbilden | verfügbar, vermietet — aber nicht „grenzwertig" |
+| Nachträglich angelegte Bewertungsfelder | werden nicht gepflegt, weil ihre Herleitung fehlt |
+| Der Auftrag lautete „X verwalten" | eine Zuständigkeit, kein Zweck |
 
 ---
 
 ## Stufe 2 · Erkenntnisse
 
-**1. Ein Modell ist eine Auswahl, kein Abbild.**
-Es entscheidet, was für einen Zweck wichtig ist. Was weggelassen wird, gehört zum Modell.
+**1. Ohne benannten Zweck lässt sich nichts entscheiden.**
+„Vollständig" ist kein Zweck. Was ins Modell gehört, ergibt sich erst aus der Frage, wozu es dient.
 
-**2. Ein normalisiertes Schema ist kein fachliches Modell.**
-Normalisierung vermeidet Redundanz — eine Eigenschaft der Speicherung. Beides kann gleichzeitig gelten: sauberes Schema, unbrauchbares Modell.
+**2. Ein Modell besteht aus Begriffen und Regeln, nicht aus Feldern.**
+Was fachlich gilt, ist Teil des Modells — kein Zusatz, der später angebaut wird.
 
-**3. Wo die Regel nicht im Modell steht, steht sie überall.**
-Jeder Weg zum Modell muss sie kennen. Im Ticketfall waren es drei, und einer kannte sie anders.
+**3. Was weggelassen wird, gehört zur Entscheidung.**
+Ein Modell ist eine Auswahl. Die Auslassung ist so bedeutsam wie die Aufnahme.
 
-**Was gesucht wird:** ein Modell, das die Fragen des Betriebs beantwortet und die Sprache des Fachbereichs trägt.
+**Was gesucht wird:** die Begriffe und Regeln, die für **diesen** Zweck gebraucht werden — nicht alle, die vorkommen.
 
 ---
 
@@ -50,72 +49,78 @@ Jeder Weg zum Modell muss sie kennen. Im Ticketfall waren es drei, und einer kan
 
 | Option | Käme in Frage, wenn |
 |---|---|
-| **Fachliches Modell mit Verhalten** | Regeln gelten und geschützt werden sollen |
-| **Datenmodell mit Diensten** | vor allem gelesen und ausgewertet wird |
-| **Umbenennung** | die Struktur stimmt, nur die Namen nicht |
-| **Getrenntes Lese- und Schreibmodell** | beides gebraucht wird und sich widerspricht |
-| **Nichts ändern** | das System stabil ist und selten geändert wird |
+| **Ein Modell für diesen Zweck** | die Aufgabe klar umrissen ist |
+| **Ein gemeinsames Modell für mehrere Zwecke** | die Zwecke ähnliche Begriffe brauchen, ohne Widerspruch |
+| **Getrennte Modelle mit Übersetzung** | dieselben Wörter Verschiedenes bedeuten |
+| **Datenbestand ohne Modellanspruch** | nur gespeichert und ausgewertet wird, nichts entschieden |
 
 ---
 
 ## Stufe 4 · Entscheidung
 
-### Frage 1 — Erkennt der Fachbereich seine Begriffe wieder?
+### Frage 1 — Ist der Zweck benannt?
 
-- **Ja** → das Modell trägt die Sprache. Weiter mit Frage 2.
-- **Nein** → die Begriffe fehlen. Eine Umbenennung allein genügt nicht, wenn auch die Struktur nicht passt.
+- **Ja**, in einem Satz mit einem fachlichen Ergebnis → weiter.
+- **Nein**, es heißt „X verwalten" → zuerst den Zweck klären. Ohne ihn ist jede weitere Frage unbeantwortbar.
 
-Der Prüfstein: Kann ein Fachvertreter das Modell lesen und sagen, ob es stimmt? Wenn ein Entwickler übersetzen muss, prüft der Fachvertreter die Übersetzung, nicht das Modell.
+Der Prüfstein: Kann der Zweck etwas **ausschließen**? „Fahrzeuge verwalten" schließt nichts aus.
 
-### Frage 2 — Gibt es einen Ort für jeden fachlichen Vorgang?
+### Frage 2 — Welche Entscheidungen fallen zu diesem Zweck?
 
-- **Ja** → eine Änderung ist lokalisierbar.
-- **Nein**, ein Vorgang ist über mehrere Strukturen verteilt → der Begriff fehlt im Modell.
+Nicht fragen: „Welche Daten haben Sie?"
 
-Die praktische Form: *Wo findet eine Verlängerung statt?* Wenn die Antwort fünf Klassen nennt, gibt es keinen Ort.
+Sondern:
 
-### Frage 3 — Sind ungültige Zustände konstruierbar?
+1. Welche Entscheidungen treffen Sie?
+2. Woran machen Sie sie fest?
+3. Was passiert, wenn Sie falsch entscheiden?
 
-- **Nein**, das Modell verweigert sie → gut.
-- **Ja**, es verlässt sich auf den aufrufenden Code → jede Zugriffsstelle ist mitverantwortlich.
+Die dritte Frage deckt Regeln auf, die niemand für erwähnenswert hält.
 
-Der Unterschied zwischen einer **Zusicherung** und einer **Absprache**. Absprachen halten, bis jemand sie nicht kennt.
+### Frage 3 — Wird jeder Begriff für diesen Zweck gebraucht?
 
-### Frage 4 — Wird mehr gelesen oder mehr entschieden?
+Für jeden Kandidaten: **Trägt er eine Entscheidung?**
 
-- **Entschieden** — Regeln, Zustandsübergänge, Zulässigkeit → fachliches Modell mit Verhalten.
-- **Gelesen** — Auswertungen, Berichte, Suchen → ein Datenmodell ist angemessen.
-- **Beides, im Widerspruch** → getrennte Modelle für Lesen und Schreiben.
+- **Ja** → gehört ins Modell.
+- **Nein**, wird nur mitgeführt → weglassen. Was gespeichert werden muss, ist eine andere Frage als was modelliert wird.
 
-Diese Frage entscheidet, ob der Aufwand gerechtfertigt ist. Ein Auswertungssystem braucht kein Verhalten.
+### Frage 4 — Bedienen mehrere Zwecke dasselbe Modell?
+
+- **Nein**, ein Zweck → das Modell kann klein und eindeutig sein.
+- **Ja**, und die Begriffe passen zusammen → prüfen, ob ein gemeinsames Modell trägt.
+- **Ja, aber ein Wort bedeutet Verschiedenes** → getrennte Modelle. Das führt zur Frage nach Modellgrenzen.
 
 ---
 
 ## Der Denkweg auf einen Blick
 
 ```
-Fachliche Fragen sind im Code nicht beantwortbar
+Eine fachliche Frage ist nicht beantwortbar, obwohl Daten da sind
         ↓
-Das Modell folgt der Speicherung statt der Fachlichkeit
+Wozu ist dieses Modell da?
         ↓
-Optionen: fachliches Modell · Datenmodell · Umbenennung · Trennung
-        ↓
-Erkennt der Fachbereich die Begriffe?      nein → Begriffe fehlen
+Ist der Zweck benannt?                   nein → zuerst klaeren
         ↓ ja
-Gibt es einen Ort je Vorgang?              nein → Begriff fehlt im Modell
+Welche Entscheidungen fallen dazu?
+        ↓
+Traegt jeder Begriff eine Entscheidung?  nein → weglassen
         ↓ ja
-Sind unguelt. Zustaende konstruierbar?     ja → Regeln gehoeren ins Modell
+Mehrere Zwecke im selben Modell?         nein → fertig
+        ↓ ja
+Bedeutet ein Wort Verschiedenes?         ja → getrennte Modelle
         ↓ nein
-Mehr gelesen oder mehr entschieden?        gelesen → Datenmodell genuegt
-        ↓ entschieden
-                    FACHLICHES MODELL MIT VERHALTEN
+                 GEMEINSAMES MODELL PRUEFEN
 ```
 
 ---
 
 ## Die eine Prüffrage
 
-> **Kann ein Fachvertreter dieses Modell lesen und sagen, ob es stimmt?**
+> **Beantwortet dieses Modell die Fragen, die zu seinem Zweck gehören?**
+
+Und die Gegenfrage für jeden Begriff:
+
+> **Trägt er eine Entscheidung — oder wird er nur mitgeführt?**
 
 ---
 
@@ -123,33 +128,33 @@ Mehr gelesen oder mehr entschieden?        gelesen → Datenmodell genuegt
 
 | Prüfung | Wenn ja, dann |
 |---|---|
-| Wird das System vor allem ausgewertet? | ein Datenmodell ist angemessen |
-| Ist das System stabil und wird selten geändert? | der Umbau lohnt nicht |
-| Stimmt die Struktur, nur die Namen nicht? | eine Umbenennung genügt |
-| Braucht man beides — Regeln und freie Auswertung? | getrennte Modelle prüfen |
-| Sind die Regeln trivial? | Verhalten im Modell wäre Überbau |
+| Lautet der Zweck „X verwalten"? | kein Zweck, sondern eine Zuständigkeit |
+| Wurde das Modell aus vorhandenen Daten gebaut? | es beantwortet Datenfragen, keine fachlichen |
+| Wird nur gelesen und ausgewertet, nichts entschieden? | ein Datenbestand genügt, kein Modell nötig |
+| Fehlen Begriffe, die der Fachbereich täglich verwendet? | das Modell trägt die Sprache nicht |
+| Wirkt das Modell vollständig? | Vollständigkeit ist kein Gütezeichen |
 
 ---
 
 ## Wenn die Entscheidung steht
 
-**Der Schutz kostet Flexibilität.**
-Ein Modell, das ungültige Zustände verweigert, verweigert sie auch bei einer berechtigten Korrektur, bei einer Datenmigration und beim Import von Altdaten. Für diese Fälle braucht es eigene Wege — bewusst gebaut, nicht durch Umgehung.
+**Regeln gehören ins Modell, nicht daneben.**
+„Solange es in der Werkstatt ist, kann die Station es nicht vermieten" ist keine Randbemerkung, sondern der Kern des Werkstattmodells. Wer sie als Zusatz behandelt, muss sie an jeder Stelle wiederholen.
 
-**Auswertungen werden schwieriger.**
-Wo Daten hinter Methoden liegen, ist „alle Verlängerungen im März nach Station" keine Abfrage mehr. Die übliche Antwort ist ein eigenes Lesemodell, das aus denselben Daten gespeist wird.
+**Merkmale ohne Zweck gehören benannt, nicht sofort entfernt.**
+Bei 61 Merkmalen sind einige historisch. Sie zu streichen ist eine eigene Entscheidung mit eigenem Risiko — sie als zwecklos auszuweisen ist der erste Schritt.
 
-**Ein Wahrheitswert für einen fachlichen Sachverhalt ist ein Warnzeichen.**
-`fahrerlaubnisGeprueft` komprimiert eine Aussage auf ein Bit und verliert, worum es ging. Solche Felder zeigen zuverlässig an, dass ein Begriff fehlt.
+**Ein nachträglich angelegtes Bewertungsfeld hilft nicht.**
+„Ausmusterungsempfehlung" wird nicht gepflegt, weil niemand weiß, woran sie sich festmacht. Erst die fachliche Herleitung, dann das Feld.
 
-**Zustandscodes als Zahlen ebenfalls.**
-`statusCode = 2` bedeutet etwas, das nirgends steht. Ein benannter Zustand trägt die Bedeutung mit sich.
+**Erfahrung ist modellierbar, sobald sie benannt ist.**
+„Manche werden härter rangenommen" ist kein Merkmal. „Einsatzart" oder „Standortprofil" ist eines. Der Schritt dazwischen ist eine Frage an den Fachbereich, keine technische Aufgabe.
 
-**Das Modell muss nicht alles abbilden.**
-Es ist eine Auswahl für einen Zweck. Was ein anderer Kontext braucht, gehört nicht hinein — auch wenn es dieselben Daten sind.
+**Ein Modell ist verhandelbar.**
+Es ist eine Entscheidung, kein Fund. Wenn es die Fragen nicht mehr beantwortet, wird es geändert — nicht ergänzt.
 
-**Die Umbenennung ist der billigste erste Schritt und der schwächste.**
-Sie verbessert die Lesbarkeit, ohne die Struktur zu ändern. Wer sie für erledigt hält, hat den Aufwand ohne den Nutzen.
+**Wenn mehrere Zwecke dasselbe Modell teilen, wird es für jeden schlechter.**
+Das ist der Übergang zum nächsten Thema: Wo die Bedeutung eines Wortes wechselt, verläuft eine Grenze.
 
 ---
 
@@ -157,8 +162,8 @@ Sie verbessert die Lesbarkeit, ohne die Struktur zu ändern. Wer sie für erledi
 
 | Verwechselt mit | Erkennungszeichen |
 |---|---|
-| Datenmodell | beschreibt Speicherung, nicht Fachlichkeit — beide können gleichzeitig richtig sein |
-| Klassendiagramm | eine Darstellung, kein Modell |
-| Normalisierung | eine Eigenschaft der Speicherung |
-| Objektorientierung | Klassen mit Gettern und Settern sind noch kein fachliches Modell |
+| Datenmodell | beschreibt Speicherung; ein Modell beschreibt Entscheidungen |
+| Bestandserhebung | listet auf, was da ist, statt zu fragen, was gebraucht wird |
+| Klassendiagramm | eine Darstellungsform, kein Modell |
 | Anforderungsdokument | beschreibt, was gebaut wird, nicht wie die Fachlichkeit strukturiert ist |
+| Vollständigkeit | kein Gütezeichen — ein Modell ist eine Auswahl |

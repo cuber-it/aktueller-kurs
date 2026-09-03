@@ -1,136 +1,81 @@
-# Übung · Zwei Modelle für denselben Sachverhalt
+# Übung · Ein Sachverhalt, zwei Zwecke
 
-Sie sehen zwei Entwürfe für denselben Ausschnitt der Autovermietung. Beide sind lauffähig, beide bilden dieselben Daten ab.
+Sie modellieren zweimal denselben Ausschnitt der Autovermietung — für zwei verschiedene Aufgaben.
 
----
-
-## Material A · Wie der Fachbereich spricht
-
-Aus einem Gespräch mit einer Stationsleiterin:
-
-> „Ein Vorgang beginnt mit der Reservierung. Wenn der Kunde kommt, geben wir aus — dann läuft der Vorgang.
->
-> Verlängern kann er einmal, telefonisch oder vor Ort. Zweimal geht nicht, das muss dann eine neue Anmietung sein.
->
-> Bei der Rückgabe nehmen wir das Fahrzeug an, prüfen auf Schäden und schließen ab. Wenn was offen ist — Schaden, Tankfüllung, Kaution — bleibt der Vorgang offen, auch wenn das Auto schon da steht.
->
-> Ausgeben dürfen wir nur, wenn eine gültige Fahrerlaubnis vorliegt und die Kaution durchgeht. Ohne das geht gar nichts."
+**Es wird kein Code geschrieben.** Ein Modell ist hier eine Liste von Begriffen mit ihren Merkmalen und den Regeln, die dazwischen gelten.
 
 ---
 
-## Material B · Modell 1
+## Material A · Das Fachgespräch
 
-```
-Klasse MietvertragKopf
-    id
-    kundeId
-    fahrzeugId
-    stationId
-    beginnDatum
-    endeDatum
-    statusCode          (1=reserviert, 2=aktiv, 3=zurueck, 4=abgeschlossen)
-    kautionBetrag
-    kautionStatusCode   (0=keine, 1=gesperrt, 2=freigegeben, 3=verrechnet)
-    fahrerlaubnisGeprueft
-    anlageZeitpunkt
-    aenderungsZeitpunkt
+Auszug aus einem Gespräch mit Frau Petrova, Leiterin der zentralen Werkstattdisposition:
 
-Klasse MietvertragPosition
-    id
-    kopfId
-    positionsTyp        (1=grundmiete, 2=verlaengerung, 3=zusatzleistung)
-    vonDatum
-    bisDatum
-    tagessatz
-    menge
-
-Klasse FahrzeugStatusHistorie
-    id
-    fahrzeugId
-    statusCode
-    gueltigVon
-    gueltigBis
-    vorgangId
-
-Klasse SchadenErfassung
-    id
-    kopfId
-    beschreibung
-    erfassungsZeitpunkt
-    erledigt
-```
-
-Alle Klassen haben Getter und Setter für jedes Feld. Die Regeln liegen in Klassen namens `MietvertragService`, `KautionsService` und `StatusManager`.
+> „Ein Fahrzeug kommt zu uns, wenn etwas kaputt ist oder wenn die Wartung fällig ist. Bei der Wartung sehe ich am Kilometerstand und am letzten Termin, wann es dran ist — das rechnet das System aus, aber ich prüfe drüber, weil manche Fahrzeuge härter rangenommen werden.
+>
+> Wenn es hier ist, gehört es mir. Die Station kann es nicht mehr vermieten, auch wenn es auf dem Papier zu ihr gehört. Ich gebe es erst wieder frei, wenn die Arbeit fertig ist und der Prüfbericht unterschrieben ist.
+>
+> Bei einem Schaden brauche ich die Fotos von der Rückgabe und das Protokoll. Manchmal sehe ich schon daran, dass es kein Unfall war, sondern Verschleiß. Das ist wichtig, weil dann keine Versicherung zahlt.
+>
+> Was ich nicht brauche: wer gefahren ist, was die Miete gekostet hat, ob eine Kaution offen ist. Das interessiert mich nicht, das macht die Abrechnung.
+>
+> Was mich interessiert: Wie alt ist das Fahrzeug, wie viel hat es gelaufen, was war schon dran. Bei manchen sehe ich nach dem dritten Getriebeschaden, dass sich Reparieren nicht mehr lohnt. Dann melde ich es der Flotte zur Verwertung."
 
 ---
 
-## Material C · Modell 2
+## Material B · Ein zweites Fachgespräch
 
-```
-Klasse Mietvorgang
-    nummer
-    mieter
-    fahrzeug
-    station
-    zeitraum
-    kaution
-    zustand             (Reserviert | Laufend | Zurueckgenommen | Abgeschlossen)
-    offenePunkte        (Liste)
+Auszug aus einem Gespräch mit Herrn Krause, Leiter Abrechnung:
 
-    kannAusgegebenWerden()      -> ja/nein mit Begründung
-    ausgeben(fahrerlaubnis)
-    verlaengernBis(datum)       -> nur einmal zulässig
-    zurücknehmen(zustandsbefund)
-    abschliessen()              -> nur wenn keine offenen Punkte
-    istAbgeschlossen()
-
-Klasse Zeitraum
-    von
-    bis
-    verlaengertUm               (leer, wenn nicht verlängert)
-    tage()
-
-Klasse Kaution
-    betrag
-    zustand                     (Gesperrt | Freigegeben | Verrechnet)
-    sperren()
-    freigeben()
-    verrechnenMit(schaden)
-
-Klasse OffenerPunkt
-    art                         (Schaden | Tankfuellung | Kaution)
-    beschreibung
-    istErledigt()
-```
-
-Die Regeln liegen in den Klassen selbst. Es gibt keinen `MietvertragService`.
+> „Für mich ist ein Fahrzeug eine Position auf der Rechnung. Kategorie, Zeitraum, Tagessatz — mehr brauche ich nicht.
+>
+> Interessant wird es bei Schäden. Da brauche ich: Ist ein Schaden aufgenommen worden, wurde er als Verschleiß oder als Unfall bewertet, und wenn Unfall, welche Versicherung. Danach entscheidet sich, wer die Rechnung bekommt.
+>
+> Der Kilometerstand interessiert mich nur, wenn Freikilometer überschritten wurden. Dann rechne ich die Differenz ab.
+>
+> Was mich nicht interessiert: welches konkrete Auto es war, wie alt es ist, was daran schon repariert wurde. Ich sehe eine Kategorie und einen Zeitraum.
+>
+> Was ich brauche und die Werkstatt nicht hat: Zu wem gehört diese Anmietung — Firmenkunde oder Privat, welcher Rahmenvertrag, welche Zahlungsvereinbarung."
 
 ---
 
 ## Aufgabe
 
-**1.** Nennen Sie fünf Begriffe aus Material A, die im Modell 1 **nicht** vorkommen.
+### Teil 1 · Zwei Modelle
 
-**2.** Nennen Sie für jeden dieser Begriffe die Stelle, an der er in Modell 2 auftaucht.
+**1.** Bauen Sie ein Modell für den Zweck **„Werkstattarbeit disponieren"** aus Material A.
 
-**3.** Die Regel „verlängern geht nur einmal" steht in Material A. Wo würde sie in Modell 1 stehen? Wo steht sie in Modell 2?
+Für jeden Begriff:
+- Name (so, wie Frau Petrova ihn verwendet)
+- welche Merkmale gebraucht werden
+- welche Regeln gelten
 
-**4.** Die Regel „ausgeben nur bei gültiger Fahrerlaubnis und durchgegangener Kaution" — dasselbe. Wo jeweils?
+**2.** Bauen Sie ein Modell für den Zweck **„Anmietung abrechnen"** aus Material B, nach demselben Schema.
 
-**5.** In Modell 1 kann man einen `MietvertragKopf` mit `statusCode = 4` (abgeschlossen) und einer nicht erledigten `SchadenErfassung` anlegen. Ist das fachlich möglich? Was sagt das über das Modell?
+### Teil 2 · Vergleich
 
-**6.** Modell 1 hat ein Feld `fahrerlaubnisGeprueft` als Wahrheitswert. Was fehlt daran, gemessen an Material A?
+**3.** Legen Sie eine Tabelle an: Welche Begriffe kommen in **beiden** Modellen vor, welche nur in einem?
 
-**7.** Ein Fachvertreter soll prüfen, ob das Modell stimmt. Welches der beiden Modelle können Sie ihm vorlegen? Begründen Sie.
+**4.** Der Begriff **Fahrzeug** kommt in beiden vor. Vergleichen Sie, was jeweils damit gemeint ist und welche Merkmale gebraucht werden. Ist das dieselbe Sache?
 
-**8.** Modell 1 hat 4 Klassen und 28 Felder, Modell 2 hat 4 Klassen und weniger Felder, dafür Methoden. Welches ist einfacher — und was heißt „einfach" hier?
+**5.** Frau Petrova sagt: „Wenn es hier ist, gehört es mir." Was für eine Aussage ist das — ein Merkmal, eine Regel, oder etwas anderes? Wo steht sie in Ihrem Modell?
 
-**9.** Was **kann** Modell 1, was Modell 2 nicht kann? Nennen Sie mindestens einen Punkt.
+**6.** Beide sprechen von **Schaden**, aber jeweils an anderer Stelle. Was braucht die Werkstatt davon, was die Abrechnung? Wo entsteht die Information, die beide brauchen?
+
+### Teil 3 · Die Modellentscheidung
+
+**7.** Nehmen Sie an, es soll **ein** Modell für beide Zwecke geben. Listen Sie auf, was ein solches gemeinsames Modell enthalten müsste. Was fällt Ihnen dabei auf?
+
+**8.** Was wäre der Preis eines gemeinsamen Modells — für die Werkstatt, für die Abrechnung?
+
+**9.** Frau Petrova sagt, sie prüfe die Wartungsberechnung des Systems nach, „weil manche Fahrzeuge härter rangenommen werden". Gehört diese Erfahrung ins Modell? Begründen Sie.
+
+**10.** Welche Frage würden Sie Frau Petrova stellen, um Aufgabe 9 zu klären?
 
 ---
 
 ## Hinweise zur Bearbeitung
 
-- Beide Modelle sind lauffähig. Es geht nicht um richtig oder falsch, sondern darum, **was sie abbilden**.
-- Achten Sie bei Aufgabe 9 darauf, dass jede Entscheidung einen Preis hat. Modell 2 ist nicht in jeder Hinsicht überlegen.
-- Die Frage bei Aufgabe 8 ist nicht die Zahl der Zeilen.
+- **Kein Code.** Ein Modell ist hier eine Aufstellung von Begriffen, Merkmalen und Regeln.
+- Verwenden Sie nur Begriffe, die in den Gesprächen **tatsächlich vorkommen**. Nichts hinzuerfinden.
+- Wenn Sie unsicher sind, ob etwas ins Modell gehört, fragen Sie: **Wird es für diesen Zweck gebraucht?**
+- Vollständigkeit ist nicht das Ziel. Rechnen Sie mit fünf bis acht Begriffen je Modell.

@@ -1,79 +1,79 @@
-# Pro und Contra · Das fachliche Modell (Modell 2)
+# Pro und Contra · Zwei Modelle statt einem
 
-Bewertet wird Modell 2 aus der Übung: `Mietvorgang` mit Verhalten, benannten Zuständen und Regeln im Modell.
+Bewertet wird der Vorschlag aus dem Lösungspapier: getrennte Modelle für „Werkstattarbeit disponieren" und „Anmietung abrechnen", sechs und fünf Begriffe, mit einer Übersetzung für die Schadensbewertung.
 
 ---
 
 ## Pro
 
-**Die fachlichen Vorgänge haben einen Ort**
-`ausgeben()`, `verlaengernBis()`, `abschliessen()` — jeder Vorgang ist eine Methode. Die Frage „wo findet eine Verlängerung statt" ist in Sekunden beantwortet statt in elf Tagen.
+**Jedes Modell beantwortet seine Fragen**
+Das Werkstattmodell kennt Reparaturhistorie und Prüfbericht, das Abrechnungsmodell Empfänger und Zahlungsvereinbarung. Beide beantworten, was in ihrem Bereich entschieden wird.
 
-**Die Regeln stehen dort, wo sie gelten**
-„Verlängern nur einmal" steht in `verlaengernBis()`. Es gibt keinen zweiten Ort, an dem sie anders lauten könnte — genau das war die Ursache der drei abweichenden Verlängerungswege.
+**Die Modelle sind klein**
+Sechs und fünf Begriffe. Man kann sie in fünf Minuten erfassen — im Gegensatz zu einem Fahrzeugbegriff mit 61 Merkmalen, von denen im Mittel 19 gefüllt sind.
 
-**Ungültige Zustände sind nicht konstruierbar**
-Ein abgeschlossener Vorgang mit unerledigtem Schaden existiert nicht, weil `abschliessen()` ihn verweigert. Das ist eine Zusicherung, keine Absprache.
+**Die Sprache stimmt je Bereich**
+Frau Petrova erkennt „Werkstattaufenthalt" und „Prüfbericht" wieder, Herr Krause „Position" und „Empfänger". Keiner muss die Begriffe des anderen lernen.
 
-**Der Fachbereich kann das Modell prüfen**
-Alle Begriffe stammen aus dem Gespräch mit der Stationsleiterin. Sie kann sagen „stimmt" oder „bei Firmenkunden geht das zweimal" — ohne Übersetzung.
+**Regeln haben einen Ort**
+„Solange es hier ist, kann die Station es nicht vermieten" steht im Werkstattmodell. In einem gemeinsamen Modell wäre unklar, wo eine Regel hingehört, die nur für einen Bereich gilt.
 
-**Benannte Zustände statt Zahlencodes**
-`Laufend` trägt seine Bedeutung mit sich, `statusCode = 2` nicht. Beim Lesen entfällt der Blick in die Dokumentation.
+**Die Übersetzung ist minimal**
+Genau ein Wert überquert die Grenze: die Bewertung Unfall oder Verschleiß. Alles andere bleibt, wo es gebraucht wird.
 
-**Es gibt keine Setter für den Zustand**
-Der Übergang von `Reserviert` zu `Laufend` ist nur über `ausgeben()` erreichbar. Jeder Weg ins Modell führt durch die Prüfung.
+**Der Widerspruch beim Fahrzeug wird sichtbar**
+8.400 Einzelobjekte gegen acht Kategorien — das ist keine Detailfrage, sondern zwei verschiedene Sachen mit demselben Namen. Ein gemeinsames Modell müsste beides zugleich sein.
 
-**Die Zahl der mitverantwortlichen Stellen sinkt auf eine**
-In Modell 1 muss jeder Aufrufer die Regeln kennen. Hier kennt sie das Modell.
+**Änderungen bleiben lokal**
+Eine neue Bewertungsregel in der Abrechnung berührt die Werkstatt nicht.
 
 ---
 
 ## Contra
 
-**Auswertungen werden schwierig**
-„Alle Verlängerungen im März nach Station" ist in Modell 1 eine Abfrage. Hier liegen die Daten hinter Methoden. Man braucht ein eigenes Lesemodell — zusätzlicher Aufwand und eine zweite Struktur, die konsistent bleiben muss.
+**Zwei Modelle für dieselben Fahrzeuge**
+Es gibt 8.400 Autos, aber zwei Begriffe dafür. Wer nicht in der Materie steckt, hält das für Redundanz — und muss überzeugt werden.
 
-**Berechtigte Korrekturen werden verweigert**
-Wenn ein Vorgang fälschlich abgeschlossen wurde, lässt er sich in Modell 1 richtigstellen. Modell 2 verweigert den Zustand — auch wenn die Korrektur richtig ist. Es braucht einen eigenen Weg dafür, der leicht zur Hintertür wird.
+**Die Übersetzung ist neue Arbeit**
+Die Bewertung muss von der Werkstatt zur Abrechnung gelangen. Vorher stand sie in einem Feld, auf das beide zugriffen. Jetzt braucht es einen Weg, der gebaut, getestet und gepflegt wird.
 
-**Datenmigration und Import passen nicht**
-Altdaten erfüllen die heutigen Regeln oft nicht. Ein Modell, das sich wehrt, lehnt sie ab. Für den Import braucht es eine Umgehung — und damit eine Stelle, an der die Regeln nicht gelten.
+**Der Kilometerstand wird zweimal gebraucht**
+Die Werkstatt für die Wartungsfälligkeit, die Abrechnung für Freikilometer. Zwei Modelle, ein Wert — entweder wird er übertragen oder doppelt geführt. Beides hat Nachteile.
 
-**Die Historie fehlt**
-Modell 1 hat `FahrzeugStatusHistorie` und `PreisHistorie`. Modell 2 kennt nur den aktuellen Zustand. Wer den Verlauf braucht, muss ihn ergänzen.
+**Bereichsübergreifende Auswertungen werden schwieriger**
+„Welche Fahrzeugkategorien verursachen die höchsten Reparaturkosten?" braucht beide Modelle. Bei einem gemeinsamen wäre es eine Abfrage.
 
-**Der Umbau ist erheblich**
-61 Klassen, fünfzehn Jahre Datenbestand. Der Weg vom einen zum anderen Modell ist kein Refactoring, sondern ein Projekt. Der Nutzen zeigt sich erst danach.
+**Die Aufteilung ist nicht vollständig**
+Zwei Zwecke wurden betrachtet, das Unternehmen hat mindestens fünf Bereiche. Ob sich weitere Modelle ergeben oder manche zusammenfallen, ist offen.
 
-**Es ist mehr Code**
-Methoden statt Getter, Prüfungen statt Vertrauen. Für ein System, das selten geändert wird, ist das Aufwand ohne Gegenwert.
+**Kleine Modelle können zu klein sein**
+Sechs Begriffe für die Werkstattdisposition wirken knapp. Ob sie für alles reichen, was dort entschieden wird, ist an zwei Gesprächsauszügen nicht feststellbar.
 
-**Nicht jede Klasse braucht Verhalten**
-Wo keine Regeln gelten, ist eine Datenklasse angemessen. Wer das Prinzip überall durchzieht, baut Methoden für nichts.
+**Der Aufwand fällt jetzt an, der Nutzen später**
+Zwei Modelle zu bauen ist mehr Arbeit als eines zu erweitern. Der Gewinn zeigt sich, wenn die nächste fachliche Frage beantwortbar ist — das lässt sich schlecht vorab beziffern.
 
 ---
 
 ## Bewertung
 
-Der Fall trägt das fachliche Modell, weil **Regeln gelten, die verletzt wurden** — drei Verlängerungswege mit drei Auslegungen, ein Fehler, der vier Monate unbemerkt blieb. Der Schaden ist eingetreten, und die Ursache liegt darin, dass die Regeln keinen Ort hatten.
+Der Fall trägt die Trennung, weil **derselbe Begriff Verschiedenes bedeutet**: ein Einzelobjekt gegen eine Kategorie. Die Zusammenführung ergäbe keinen erweiterten Begriff, sondern einen widersprüchlichen.
 
-Gegenprobe — *bei Modell 1 bleiben, bleiben Nachteile?* Ja: Jede neue Zugriffsstelle ist eine neue Gelegenheit, eine Regel anders auszulegen.
+Gegenprobe — *ein gemeinsames Modell, bleiben Nachteile?* Ja: Von rund vierzehn Merkmalen wären für jeden Zweck etwa fünf bedeutungslos, und die Frage „was ist ein Fahrzeug" hätte keine eindeutige Antwort mehr.
 
 **Die Grenzen:**
 
-1. **Das Lesemodell gehört mitgeplant.** Ein fachliches Modell ohne Antwort auf die Auswertungsfrage ist eine halbe Lösung. Die übliche Antwort ist eine getrennte Lesestruktur — das gehört entschieden, bevor umgebaut wird.
+1. **Der Kilometerstand ist ungelöst.** Er wird in beiden Modellen gebraucht, für Verschiedenes. Übertragen oder doppelt führen — die Entscheidung steht aus und ist nicht trivial.
 
-2. **Korrektur und Migration brauchen einen benannten Weg.** Wenn es keinen gibt, entsteht eine Umgehung — und die hebelt das Modell aus. Besser ein ausdrücklicher, geprüfter Korrekturweg als eine Hintertür.
+2. **Zwei Zwecke sind eine Stichprobe.** Das Ergebnis stützt die Trennung, beweist sie aber nicht für das ganze Unternehmen. Drei weitere Bereiche sind unbetrachtet.
 
-3. **Der Umbau ist nicht Gegenstand des Vorschlags.** 61 Klassen umzustellen ist ein Projekt. Realistisch ist ein schrittweiser Weg, bei dem beide Modelle eine Zeit lang nebeneinander bestehen — mit allem, was das an Doppelpflege bedeutet.
+3. **Die Modelle beruhen auf je einem Gespräch.** Frau Petrova und Herr Krause sind je eine Quelle. Was ihre Vertretungen anders sehen, ist offen.
 
 ---
 
 ## Diskussionsfragen
 
-1. Wie beantworten Sie Auswertungsfragen, ohne das Modell aufzuweichen?
-2. Wie sieht ein Korrekturweg aus, der kein Schlupfloch ist?
-3. Welche Klassen brauchen kein Verhalten — und woran erkennen Sie das?
-4. Wie migrieren Sie 61 Klassen, ohne den Betrieb anzuhalten?
-5. Wann ist Modell 1 die richtige Wahl?
+1. Der Kilometerstand wird in beiden Modellen gebraucht. Übertragen, doppelt führen — oder gibt es einen dritten Weg?
+2. Wie beantworten Sie eine Frage, die beide Modelle braucht?
+3. Ab wann ist ein Modell zu klein?
+4. Zwei Gespräche, zwei Modelle. Wen würden Sie zusätzlich befragen?
+5. Wann wäre ein gemeinsames Modell die bessere Wahl gewesen?

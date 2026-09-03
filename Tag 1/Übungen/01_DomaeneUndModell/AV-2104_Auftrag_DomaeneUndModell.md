@@ -1,72 +1,66 @@
-# AV-2104 · Fachliche Vorgänge im Modell auffindbar machen
+# AV-2104 · Modelle an ihrem Zweck ausrichten
 
 **Typ:** Story
-**Komponente:** Datenmodell / Fachliche Architektur
+**Komponente:** Fachliche Architektur
 **Priorität:** Hoch
-**Verweist auf:** AV-2088 (Falscher Tagessatz bei Verlängerung, 11 Tage Analyse, eine von drei Stellen übersehen)
+**Verweist auf:** AV-2091 (Auswertung „Ausmusterungskandidaten", nach 11 Wochen geliefert, wird nicht genutzt)
 
 ---
 
 ## Story
 
-**Als** Entwicklerin
-**möchte ich** im Modell die Stelle finden, an der ein fachlicher Vorgang stattfindet,
-**damit** eine Korrektur nicht elf Tage Analyse braucht und trotzdem eine Stelle übersieht.
+**Als** Leiterin der Werkstattdisposition
+**möchte ich**, dass das System die Fragen beantworten kann, die ich täglich entscheide,
+**damit** ich nicht aus dem Kopf arbeiten muss, während 61 Merkmale je Fahrzeug gespeichert werden.
 
 ---
 
 ## Description
 
-Das Modell umfasst **61 Klassen**, die den 61 Tabellen der Datenbank entsprechen. Klassennamen benennen, wo Daten liegen: `MietvertragPosition`, `FahrzeugStatusHistorie`, `KundeKontaktZuordnung`.
+Der Fahrzeugbegriff im System umfasst **61 Merkmale**. Bei einem beliebigen Fahrzeug sind im Mittel **19** gefüllt.
 
-**Vorfall AV-2088:** Bei Verlängerungen wurde in bestimmten Fällen ein falscher Tagessatz berechnet. Die Analyse dauerte **elf Tage** — nicht wegen der Berechnung, sondern weil nicht feststellbar war, wo eine Verlängerung im Code stattfindet.
+**Vorfall AV-2091:** Die Werkstattdisposition beantragte eine Auswertung „Welche Fahrzeuge sollten wir ausmustern statt weiter zu reparieren?". Die Lieferung dauerte elf Wochen und wird nicht genutzt.
 
-Eine Verlängerung besteht aus Änderungen an fünf Klassen:
+**Die Analyse ergab, dass das Modell die Frage nicht beantworten kann**, obwohl alle Daten vorhanden sind:
 
-| Klasse | Was geschieht |
+| Was fehlt | Warum es fehlt |
 |---|---|
-| MietvertragPosition | neuer Satz |
-| MietvertragKopf | Änderung |
-| PreisHistorie | Eintrag |
-| FahrzeugStatusHistorie | Statusänderung |
-| AbrechnungVorschau | Neuberechnung |
+| Bezug zwischen Reparaturen | sie sind Einzelvorgänge mit Datum und Betrag; dass drei dasselbe Bauteil betrafen, steht nirgends |
+| Ein Zustand „grenzwertig" | es gibt nur verfügbar, vermietet, in Werkstatt |
+| Der Begriff „lohnt nicht mehr" | eine Bewertung — Bewertungen kommen im Modell nicht vor |
 
-**Der Begriff „Verlängerung" kommt im Code nicht vor.** Er existiert im Fachbereich, in der Oberfläche und in den Anforderungen.
+**Die Fachvertreterin entscheidet dies täglich.** Sie sagt: „Bei manchen sehe ich nach dem dritten Getriebeschaden, dass sich Reparieren nicht mehr lohnt."
 
-Bei der Analyse wurden **drei Stellen** gefunden, an denen verlängert wird — Oberfläche, Partnerschnittstelle, Nachtlauf. Sie taten fachlich Verschiedenes. Die Korrektur erfasste zwei; die dritte fiel vier Monate später auf.
+**Befund zur Entstehung:** Das Modell wurde 2009 aus einer Bestandserhebung gebaut — erhoben wurde, welche Daten geführt werden, nicht welche Entscheidungen zu treffen sind. Ein Zweck wurde nie benannt; der Auftrag lautete „Fahrzeuge und Vermietungen verwalten".
 
-**Weitere Befunde:**
-
-- Die Frage „Ist dieser Vorgang abgeschlossen?" ergibt sich aus vier Feldern in drei Tabellen. Die Regel steht an sechs Stellen in vier Varianten.
-- Die Klassen enthalten Getter und Setter. Fachliche Regeln liegen außerhalb.
-
-**Nicht Gegenstand:** Ein Umbau des Datenbankschemas. Es geht um das Modell in der Anwendung.
+**Nicht Gegenstand:** Ein Umbau des Gesamtsystems. Es geht um Erhebung und einen Vorschlag für den Bereich Werkstattdisposition.
 
 ## Randbedingungen
 
-- 61 Klassen, 1:1 zu Tabellen
-- Das Datenbankschema ist normalisiert und fachlich korrekt
-- Ein Datenmodell-Diagramm existiert und ist aktuell
-- Eine Umbenennungsaktion (`MVP` → `MietvertragPosition`) hat die Lesbarkeit verbessert, aber keine fachliche Frage beantwortbar gemacht
+- 8.400 Fahrzeuge, 61 Merkmale je Fahrzeug
+- Ein Feld „Ausmusterungsempfehlung" wurde nachträglich angelegt; bei 40 Fahrzeugen gefüllt
+- Eine Auswertungsdatenbank spiegelt alle Daten; die Frage bleibt unbeantwortbar
+- Die Fachvertreterin ist verfügbar und auskunftsbereit
+- Vier weitere Bereiche nutzen denselben Fahrzeugbegriff
 
 ## Akzeptanzkriterien
 
-- **AK1** – Für die fachlichen Vorgänge des Mietgeschäfts existiert im Modell jeweils **eine** Stelle, an der sie stattfinden.
-- **AK2** – Die Namen im Modell entsprechen den Begriffen des Fachbereichs. Ein Fachvertreter erkennt sie wieder.
-- **AK3** – Fachliche Regeln liegen im Modell, nicht in aufrufendem Code.
-- **AK4** – Die Frage „Ist dieser Vorgang abgeschlossen?" wird an genau einer Stelle beantwortet.
-- **AK5** – Für jeden Vorgang ist erkennbar, welche Bedingungen gelten müssen, damit er zulässig ist.
-- **AK6** – Das Modell ist unabhängig davon beschreibbar, wie die Daten gespeichert werden.
-- **AK7** – Ein Entwickler kann anhand einer Anforderung sagen, welche Klasse zu ändern ist.
-- **AK8** – Für die drei Verlängerungswege ist festgestellt, worin sie sich fachlich unterschieden und ob das gewollt war.
+- **AK1** – Für den Bereich Werkstattdisposition ist ein Zweck in **einem Satz** formuliert, der ein fachliches Ergebnis nennt.
+- **AK2** – Es ist erhoben, welche Entscheidungen in diesem Bereich getroffen werden und welche Angaben sie erfordern.
+- **AK3** – Für jede erhobene Entscheidung ist festgestellt, ob das heutige Modell sie stützt.
+- **AK4** – Begriffe, die die Fachvertreterin verwendet und die im Modell fehlen, sind benannt.
+- **AK5** – Fachliche Regeln sind als Teil des Modells erfasst, nicht als Zusatz.
+- **AK6** – Für jedes Merkmal des heutigen Fahrzeugbegriffs ist angegeben, für welchen Zweck es gebraucht wird. Merkmale ohne Zweck sind ausgewiesen.
+- **AK7** – Es ist begründet, ob ein eigenes Modell für die Werkstattdisposition sinnvoll ist oder das gemeinsame ausreicht.
+- **AK8** – Für die Aussage „manche Fahrzeuge werden härter rangenommen" ist geklärt, ob sie modellierbar ist und woran sie sich festmacht.
 
 ## Hinweise
 
-Eine Umbenennung erfüllt AK2 nicht allein. `MietvertragPosition` ist lesbarer als `MVP` und trotzdem kein fachlicher Begriff — der Fachbereich spricht von Verlängerungen, nicht von Positionen.
+Weitere Merkmale zu ergänzen erfüllt AK3 nicht. Das Feld „Ausmusterungsempfehlung" ist der Beleg: Ein Feld ohne fachliche Herleitung wird nicht gepflegt.
 
-AK6 ist der Kern: Solange das Modell die Tabellenstruktur wiederholt, folgt es der Speicherung statt der Fachlichkeit.
+Eine Auswertungsdatenbank erfüllt AK3 ebenfalls nicht. Wenn die Information nicht im Modell steckt, ist sie auch nicht abfragbar — nur schneller nicht abfragbar.
 
-AK1 und AK7 sind der praktische Prüfstein. Wenn beide erfüllt sind, hätte AV-2088 einen Tag gedauert.
+AK6 wird unbequem: Bei 61 Merkmalen ist damit zu rechnen, dass einige keinen Zweck mehr haben.
 
 ---
 
@@ -74,52 +68,61 @@ AK1 und AK7 sind der praktische Prüfstein. Wenn beide erfüllt sind, hätte AV-
 
 Dieses Ticket nennt kein Konzept. Arbeiten Sie entlang der Frage:
 
-**Was bildet dieses Modell ab — und was sollte es abbilden?**
+**Wozu ist dieses Modell da — und beantwortet es die Fragen, die dazu gehören?**
 
 ---
 ---
 
-# Addendum · Woran erkennt man ein Modell, das die Fachlichkeit nicht trifft
+# Addendum · Woran erkennt man ein Modell ohne Zweck
 
-## Im Code
-
-| Signal | Konkret |
-|---|---|
-| Klassen entsprechen 1:1 den Tabellen | die Speicherung bestimmt die Struktur |
-| Klassennamen enthalten technische Begriffe | `Kopf`, `Position`, `Historie`, `Zuordnung`, `Mapping` |
-| Klassen haben nur Getter und Setter | das Modell trägt Daten, kein Verhalten |
-| Fachliche Begriffe fehlen im Code | „Verlängerung" existiert überall, nur nicht im Modell |
-| Eine Regel steht an mehreren Stellen | weil es keinen Ort dafür gibt |
-| Ein Vorgang berührt viele Klassen | ohne dass eine davon der Vorgang ist |
-| Ungültige Zustände sind konstruierbar | nichts hindert daran |
-
-## Im Gespräch
+## Im Gespräch mit dem Fachbereich
 
 | Signal | Beispiel |
 |---|---|
-| Der Fachbereich erkennt die Begriffe nicht wieder | „Was ist eine Mietvertragsposition?" |
-| Entwickler übersetzen bei jedem Gespräch | „Sie meinen die Verlängerung — das ist bei uns ein Positionssatz" |
-| Die Frage „wo findet X statt" hat keine kurze Antwort | |
-| Einarbeitung besteht darin, das Datenmodell zu lernen | die Fachlichkeit kommt danach, wenn überhaupt |
+| Eine tägliche Entscheidung ist im System nicht abbildbar | „Das mache ich aus dem Kopf" |
+| Der Fachbereich verwendet Begriffe, die im System fehlen | „grenzwertig", „lohnt nicht mehr" |
+| Eine Auswertung wird geliefert und nicht benutzt | sie beantwortet eine andere Frage |
+| „Alle Daten sind doch da" | Daten sind nicht dasselbe wie Modell |
+| Der Auftrag lautete „X verwalten" | eine Zuständigkeit, kein Zweck |
 
-## Was ein Modell ausmacht
+## Im System
 
-**Ein Modell ist eine Auswahl, kein Abbild.**
-
-Es bildet die Wirklichkeit nicht ab, sondern trifft eine Entscheidung darüber, was für einen bestimmten Zweck wichtig ist. Was weggelassen wird, ist Teil des Modells.
-
-| Ein gutes Modell | Ein schlechtes Modell |
+| Signal | Konkret |
 |---|---|
-| beantwortet die Fragen, die im Betrieb gestellt werden | beantwortet, wo Daten liegen |
-| trägt die Sprache des Fachbereichs | trägt die Sprache der Datenhaltung |
-| macht ungültige Zustände unmöglich | erlaubt alles, prüft anderswo |
-| hat einen Ort für jeden fachlichen Vorgang | verteilt Vorgänge über Strukturen |
-| lässt sich mit dem Fachbereich besprechen | braucht Übersetzung |
+| Viele Merkmale, wenige gefüllt | 61 gespeichert, 19 belegt |
+| Merkmale, die niemand mehr braucht | „Innenraumfarbe" |
+| Vorgänge ohne Bezug zueinander | drei Reparaturen am selben Bauteil sind drei unabhängige Einträge |
+| Zustände, die nur technische Abläufe abbilden | verfügbar, vermietet, in Werkstatt — aber nicht „grenzwertig" |
+| Nachträglich angelegte Bewertungsfelder | werden nicht gepflegt, weil ihre Herleitung fehlt |
+| Eine Auswertungsdatenbank als Antwort auf fachliche Lücken | verlagert das Problem |
 
-**Der Prüfstein:** Kann ein Fachvertreter das Modell lesen und sagen, ob es stimmt?
+## Die drei Fragen, mit denen ein Modell entsteht
 
-## Warum Normalisierung nicht hilft
+Nicht: „Welche Daten haben Sie?"
 
-Ein normalisiertes Schema vermeidet Redundanz. Das ist eine Eigenschaft der **Speicherung**, keine der Fachlichkeit.
+Sondern:
 
-Beides kann gleichzeitig richtig sein: Das Schema ist sauber normalisiert, und das Modell trifft die Fachlichkeit nicht. Im Ticketfall ist genau das der Befund — der Berater hat gute Arbeit geleistet, für eine andere Frage.
+1. **Welche Entscheidungen treffen Sie?**
+2. **Woran machen Sie sie fest?**
+3. **Was passiert, wenn Sie falsch entscheiden?**
+
+Die dritte Frage deckt Regeln auf, die niemand für erwähnenswert hält, weil sie selbstverständlich sind.
+
+## Warum „vollständig" kein Ziel ist
+
+Ein Modell mit 61 Merkmalen wirkt gründlich. Es ist aber nicht mehr wert als eines mit acht, wenn die acht die Fragen beantworten und die 61 nicht.
+
+**Was weggelassen wird, ist eine Entscheidung.** In beiden Gesprächen der Übung ist der aufschlussreichste Satz der, der mit „Was mich nicht interessiert …" beginnt.
+
+## Wann ein Modell falsch ist
+
+Ein Modell ist nicht wahr oder unwahr, sondern **brauchbar oder unbrauchbar für seinen Zweck**.
+
+Es ist falsch, wenn:
+
+- es die Fragen seines Zwecks nicht beantwortet
+- es Begriffe führt, die im Fachbereich nicht vorkommen
+- es Begriffe des Fachbereichs nicht kennt, die Entscheidungen tragen
+- es mehrere Zwecke bedienen soll und für jeden schlechter geworden ist
+
+Der letzte Punkt führt zur Frage nach Modellgrenzen.
