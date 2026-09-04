@@ -28,13 +28,13 @@ Sie kennen die vier internen Kontexte aus den vorigen Übungen. Jetzt kommen vie
 
 ## Material B · Aussagen aus der Erhebung
 
-### Zum Partnernetzwerk — Herr Doblinger, IT-Leitung
+### Zum Partnernetzwerk — Frau Lindqvist, IT-Leitung
 
 > „Auf deren Format haben wir null Einfluss. Wenn die was ändern, kriegen wir eine Mail mit acht Wochen Vorlauf und können zusehen.
 >
 > Wir sind für die einer von zweihundert Anbietern. Da ruft niemand zurück."
 
-### Zum Leasingportal — Frau Petrova, Flotte
+### Zum Leasingportal — Herr Doblinger, Flottenmanagement
 
 > „Mit dem Leasinggeber haben wir einen Rahmenvertrag über 2.400 Fahrzeuge. Wenn wir sagen, wir brauchen eine zusätzliche Angabe im Rückgabeprotokoll, dann reden die mit uns. Hat schon zweimal geklappt.
 >
@@ -46,7 +46,7 @@ Sie kennen die vier internen Kontexte aus den vorigen Übungen. Jetzt kommen vie
 >
 > Wir könnten Änderungswünsche einbringen, machen wir aber nicht. Wir nehmen, was da ist."
 
-### Zum Zahlungsdienstleister — Herr Doblinger
+### Zum Zahlungsdienstleister — Frau Lindqvist
 
 > „Standardschnittstelle, die alle Banken so anbieten. Wir wollen den Anbieter wechseln, weil er zu teuer ist. Technisch soll das kein großer Aufwand sein — angeblich."
 
@@ -78,8 +78,9 @@ Der Statuscode des Partnernetzwerks wird an 31 Stellen ausgewertet:
 |---|---|
 | Anmietung | 12 |
 | Fakturierung | 9 |
-| Flotte und Instandhaltung | 6 |
-| davon Werkstatt | 4 (Herkunft ungeklärt) |
+| Flotte und Instandhaltung | 10 |
+
+Von den 10 Stellen in der Flotte liegen **4 im Bereich Werkstatt** — Herkunft ungeklärt.
 
 ---
 
@@ -95,7 +96,7 @@ Der Statuscode des Partnernetzwerks wird an 31 Stellen ausgewertet:
 
 **4.** Die Aussage von Herrn Yilmaz zur Flotte ist auffällig. Welches Muster beschreibt er, und was ist der Preis dieses Musters?
 
-**5.** Der Befund aus Material C zeigt, dass der Partnerstatus in vier Kontexten ausgewertet wird. Was sagt das über die Anbindung? Zeichnen Sie ein, wo eine Grenze fehlt.
+**5.** Der Befund aus Material C zeigt, dass der Partnerstatus in drei Kontexten ausgewertet wird. Was sagt das über die Anbindung? Zeichnen Sie ein, wo eine Grenze fehlt.
 
 **6.** Die vier Stellen in der Werkstatt sind ungeklärt. Formulieren Sie zwei Fragen, mit denen Sie herausfinden, was dort tatsächlich gebraucht wird.
 

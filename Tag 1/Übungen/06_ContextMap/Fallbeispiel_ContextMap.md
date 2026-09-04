@@ -37,12 +37,13 @@ Der Vermittler kündigte eine **Formatumstellung** an: Der Statuscode wird von v
 
 Die Analyse ergab, dass der Partnerstatus an **31 Stellen** ausgewertet wird — davon:
 
-| Bereich | Stellen | Zusammenhang |
+| Kontext | Stellen | Zusammenhang |
 |---|---|---|
 | Anmietung | 12 | nachvollziehbar |
 | Fakturierung | 9 | Rechnungsstellung hängt am Partnerstatus |
-| Flotte | 6 | Verfügbarkeitsplanung |
-| **Werkstatt** | **4** | **niemand konnte erklären, warum** |
+| Flotte und Instandhaltung | 10 | 6 in der Verfügbarkeitsplanung, **4 in der Werkstatt** |
+
+Die vier Stellen in der Werkstatt konnte niemand erklären.
 
 Die vier Stellen in der Werkstatt stammten aus einer Auswertung, die einmal jemand gebaut hatte, weil der Statuscode zufällig eine Information enthielt, die sonst nirgends stand.
 

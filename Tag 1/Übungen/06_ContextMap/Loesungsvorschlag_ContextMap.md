@@ -92,7 +92,7 @@ Die letzte Zeile ist die kritische — dazu Aufgabe 4.
 
 ## 5 · Wo die Grenze fehlt
 
-Der Partnerstatus wird in **vier** Kontexten ausgewertet. Das bedeutet: Das Modell des Vermittlers ist in vier Kontexte eingedrungen.
+Der Partnerstatus wird in **drei** Kontexten ausgewertet. Das bedeutet: Das Modell des Vermittlers ist in vier Kontexte eingedrungen.
 
 **In der Map fehlt eine Grenze zwischen Partnernetzwerk und Anmietung.**
 
@@ -109,11 +109,11 @@ Richtig wäre:
    ╚════════┬═════════╝
             ▼
    ┌──────────────────┐
-   │    Anmietung     │   ← nur hier, nicht in vier Kontexten
+   │    Anmietung     │   ← nur hier, nicht in drei Kontexten
    └──────────────────┘
 ```
 
-**Die Wirkung eines Anticorruption Layer:** Der Partnerstatus wird an der Grenze in eigene Begriffe übersetzt. Die Anmietung kennt ihren eigenen Vorgangsstatus, nicht den des Vermittlers. Fakturierung, Flotte und Werkstatt sehen die fremden Begriffe nie.
+**Die Wirkung eines Anticorruption Layer:** Der Partnerstatus wird an der Grenze in eigene Begriffe übersetzt. Die Anmietung kennt ihren eigenen Vorgangsstatus, nicht den des Vermittlers. Fakturierung und Flotte sehen die fremden Begriffe nie — auch nicht der Bereich Werkstatt.
 
 **Bei der Formatumstellung** wäre eine Stelle betroffen gewesen statt 31.
 

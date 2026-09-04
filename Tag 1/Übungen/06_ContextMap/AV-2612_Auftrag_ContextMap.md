@@ -25,8 +25,9 @@ Die Formatumstellung des Partnernetzwerks (AV-2588) dauerte **elf statt drei Woc
 |---|---|---|
 | Anmietung | 12 | ja |
 | Fakturierung | 9 | ja |
-| Flotte und Instandhaltung | 6 | teilweise |
-| Werkstatt (innerhalb Flotte) | 4 | **nein — Herkunft ungeklärt** |
+| Flotte und Instandhaltung | 10 | 6 ja, **4 nein — Herkunft ungeklärt** |
+
+Die vier ungeklärten Stellen liegen im Bereich Werkstatt innerhalb dieses Kontextes.
 
 Es existiert keine Übersicht, welche Kontexte von welchen Fremdsystemen abhängen. Die 31 Stellen mussten einzeln gesucht werden.
 

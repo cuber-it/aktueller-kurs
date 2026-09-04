@@ -43,7 +43,7 @@ Klingt nach Meldung — ist aber unvollständig.
 
 **Die bessere Formulierung:** „Fahrerlaubnis wurde als gültig bestätigt" oder „Fahrerlaubnis wurde abgelehnt". Zwei Meldungen statt einer.
 
-**Der Merkpunkt:** Eine Meldung, die nur sagt, dass etwas geprüft wurde, zwingt jeden Empfänger, das Ergebnis nachzuschlagen. Dasselbe Problem wie beim Wahrheitswert `fahrerlaubnisGeprueft` aus Tag 1.
+**Der Merkpunkt:** Eine Meldung, die nur sagt, dass etwas geprüft wurde, zwingt jeden Empfänger, das Ergebnis nachzuschlagen. Dasselbe Problem wie bei einem Merkmal, das nur „geprüft ja/nein“ festhält.
 
 ### Satz 6 · „Reservierung ist eingegangen"
 
