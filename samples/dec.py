@@ -1,4 +1,3 @@
-```python
 import re
 from functools import total_ordering
 from math import gcd
@@ -191,4 +190,3 @@ if __name__ == "__main__":
     print(round(Dec("2.675"), 2))   # 2.68
     print(sorted([Dec("1.5"), 1, Dec("-0.25")]))
     print({Dec("2"): "x"}[2])       # x
-```
