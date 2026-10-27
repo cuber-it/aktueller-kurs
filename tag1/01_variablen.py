@@ -40,4 +40,3 @@ print(PI, type(PI))
 
 PI = "Willi" # !!!! AUTSCH! KONVENTION beachten
 print(PI)
-
