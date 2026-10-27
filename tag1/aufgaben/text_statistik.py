@@ -1,0 +1,80 @@
+# Zeichen-Statistik
+#
+#  Satz einlesen,
+#  Länge, Anzahl Leerzeichen
+#  und Anzahl e ausgeben
+
+# E
+text = input("Text: ")
+
+# V
+laenge = len(text)
+e_count = text.count("e")
+e_anteil = e_count / laenge
+
+# A
+print(f"Länge: {laenge}")
+print(f"Häufigkeit e: {e_count} = {e_anteil:.2%}")
+
+# Fun Facts - hier wird """ benutzt um langen mehrzeiigen Kommentar zu kapseln
+"""
+Für Häufigkeitsanalyse einer einfachen (Caesar/Substitutions-)Chiffre reichen
+  meist die Top-6-Buchstaben plus ein paar Marker. Die Reihenfolge trennt die
+  Sprachen:
+
+  ┌─────────────┬─────────────┬─────────────────────────────────────┐
+  │   Sprache   │    Top 6    │           Charakteristik            │
+  ├─────────────┼─────────────┼─────────────────────────────────────┤
+  │ Deutsch     │ e n i s r a │ sehr hohes e (~17 %), n auf Platz 2 │
+  ├─────────────┼─────────────┼─────────────────────────────────────┤
+  │ Englisch    │ e t a o i n │ t auf Platz 2 (statt n)             │
+  ├─────────────┼─────────────┼─────────────────────────────────────┤
+  │ Französisch │ e a i s n r │ viele s am Wortende, e ~14–17 %     │
+  ├─────────────┼─────────────┼─────────────────────────────────────┤
+  │ Spanisch    │ e a o s n r │ a fast auf e-Niveau                 │
+  ├─────────────┼─────────────┼─────────────────────────────────────┤
+  │ Italienisch │ e a i o n l │ viele Vokale am Wortende            │
+  └─────────────┴─────────────┴─────────────────────────────────────┘
+
+  Faustregel: der häufigste Buchstabe ist fast immer e. Der zweithäufigste ist der
+   eigentliche Sprach-Verräter: n → Deutsch, t → Englisch.
+
+  Eindeutige Marker (wenn nicht entfernt)
+
+  ┌─────────────────┬─────────────┐
+  │ Zeichen / Folge │   Sprache   │
+  ├─────────────────┼─────────────┤
+  │ ß, ä ö ü        │ Deutsch     │
+  ├─────────────────┼─────────────┤
+  │ ñ               │ Spanisch    │
+  ├─────────────────┼─────────────┤
+  │ ç, é è à        │ Französisch │
+  └─────────────────┴─────────────┘
+
+  Bei Substitutionschiffren werden Sonderzeichen oft mit verschlüsselt — dann
+  sieht man stattdessen einen ungewöhnlich häufig auftretenden „seltenen"
+  Buchstaben, was selbst ein Hinweis ist.
+
+  Bigramme / Trigramme
+
+  Noch aussagekräftiger als einzelne Buchstaben:
+
+  ┌─────────────┬──────────────────┬────────────────────┐
+  │   Sprache   │ Häufige Bigramme │ Häufige Trigramme  │
+  ├─────────────┼──────────────────┼────────────────────┤
+  │ Deutsch     │ en, er, ch       │ der, und, ein, sch │
+  ├─────────────┼──────────────────┼────────────────────┤
+  │ Englisch    │ th, he, in       │ the, and, ing      │
+  ├─────────────┼──────────────────┼────────────────────┤
+  │ Französisch │ es, le, de       │ les, ent, que      │
+  └─────────────┴──────────────────┴────────────────────┘
+
+  ch/sch ist ein deutscher Verräter par excellence, th der englische.
+
+  Pragmatischer Workflow
+
+  1. Buchstabenhäufigkeit zählen.
+  2. Top-1 = wahrscheinlich e → fertig für Caesar.
+  3. Top-2: n oder t?
+  4. Bei Zweifel: Bigramm-Häufigkeit prüfen (ch vs. th).
+"""
