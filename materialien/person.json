@@ -1,0 +1,11 @@
+{
+  "name": "Ulrich",
+  "beruf": "IT-Consultant",
+  "aktiv": true,
+  "kenntnisse": ["Python", "JavaScript", "Perl"],
+  "adresse": {
+    "stadt": "Berlin",
+    "plz": "10115"
+  },
+  "telefon": null
+}
