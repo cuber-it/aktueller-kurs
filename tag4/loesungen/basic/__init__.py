@@ -1,0 +1,1 @@
+"""Grundaufgaben zu Funktionen."""

@@ -28,7 +28,7 @@ Falls einzelne Tage zusätzliche Pakete benötigen, liegt im jeweiligen Tagesord
 
 ## Arbeitsweise
 
-Pro Kurstag gibt es einen eigenen Ordner mit Beispielen und Übungen. Eigene Lösungen am besten in einem Unterordner `loesungen/` ablegen, damit der Originalstand erhalten bleibt.
+Pro Kurstag gibt es einen eigenen Ordner mit Beispielen und Übungen. Eigene Lösungen in einem eigenen Arbeitsordner ablegen. Die Ordner `loesungen/` enthalten bereitgestellte Referenzlösungen.
 
 ## Lizenz
 

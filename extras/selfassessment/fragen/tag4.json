@@ -1,0 +1,452 @@
+[
+  {
+    "id": "4-01",
+    "topic": "Funktionen",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "def doppelt(x):\n    return x * 2\nprint(doppelt(4))",
+    "options": [],
+    "answers": [
+      "8"
+    ],
+    "explanation": "return liefert den berechneten Wert an den Aufrufer."
+  },
+  {
+    "id": "4-02",
+    "topic": "Funktionen",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "def zeige(x):\n    print(x)\nprint(zeige(5))",
+    "options": [],
+    "answers": [
+      "5\nNone"
+    ],
+    "explanation": "Die innere Ausgabe liefert keinen Rückgabewert der Funktion; diese liefert None."
+  },
+  {
+    "id": "4-03",
+    "topic": "Funktionen",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Ergänze das Schlüsselwort für die Rückgabe.",
+    "code": "def quadrat(x):\n    ___ x * x",
+    "options": [],
+    "answers": [
+      "return"
+    ],
+    "explanation": "return beendet den Aufruf und liefert das Ergebnis."
+  },
+  {
+    "id": "4-04",
+    "topic": "Funktionen",
+    "level": "Grundlagen",
+    "kind": "single",
+    "prompt": "Was ist ein Docstring?",
+    "code": "",
+    "options": [
+      "Ein Kommentar nach jeder Zeile",
+      "Der erste String im Funktionskörper",
+      "Der Funktionsname",
+      "Ein Pflichtparameter"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Ein Stringliteral als erste Anweisung dokumentiert die Funktion."
+  },
+  {
+    "id": "4-05",
+    "topic": "Parameter",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "def gruss(name, anrede='Hallo'):\n    return f'{anrede} {name}'\nprint(gruss('Anna'))",
+    "options": [],
+    "answers": [
+      "Hallo Anna"
+    ],
+    "explanation": "Das fehlende optionale Argument erhält den Standardwert."
+  },
+  {
+    "id": "4-06",
+    "topic": "Parameter",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "def f(a, b=2):\n    return a - b\nprint(f(b=4, a=7))",
+    "options": [],
+    "answers": [
+      "3"
+    ],
+    "explanation": "Schlüsselwortargumente werden nach Namen zugeordnet."
+  },
+  {
+    "id": "4-07",
+    "topic": "Parameter",
+    "level": "Vertiefung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "def f(x, a=[]):\n    a.append(x)\n    return a\nprint(f(1))\nprint(f(2))",
+    "options": [],
+    "answers": [
+      "[1]\n[1, 2]"
+    ],
+    "explanation": "Die Standardliste wird bei der Definition einmal erzeugt und wiederverwendet."
+  },
+  {
+    "id": "4-08",
+    "topic": "Parameter",
+    "level": "Anwendung",
+    "kind": "fill",
+    "prompt": "Ergänze den üblichen unveränderlichen Standardwert für eine optionale Liste.",
+    "code": "def f(liste=___):\n    if liste is None:\n        liste = []\n    return liste",
+    "options": [],
+    "answers": [
+      "None"
+    ],
+    "explanation": "Eine neue Liste wird erst beim Aufruf angelegt."
+  },
+  {
+    "id": "4-09",
+    "topic": "Parameter",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "def f(a):\n    a.append(2)\nx = [1]\nf(x)\nprint(x)",
+    "options": [],
+    "answers": [
+      "[1, 2]"
+    ],
+    "explanation": "Beim Aufruf wird keine Kopie der Liste angelegt."
+  },
+  {
+    "id": "4-10",
+    "topic": "Flexible Argumente",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "def f(*args):\n    print(type(args).__name__)\nf(1, 2)",
+    "options": [],
+    "answers": [
+      "tuple"
+    ],
+    "explanation": "* sammelt Positionsargumente in einem Tupel."
+  },
+  {
+    "id": "4-11",
+    "topic": "Flexible Argumente",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "def f(**kwargs):\n    print(kwargs)\nf(a=1, b=2)",
+    "options": [],
+    "answers": [
+      "{'a': 1, 'b': 2}"
+    ],
+    "explanation": "** sammelt Schlüsselwortargumente in einem Dictionary."
+  },
+  {
+    "id": "4-12",
+    "topic": "Flexible Argumente",
+    "level": "Anwendung",
+    "kind": "fill",
+    "prompt": "Entpacke die Liste in einzelne Positionsargumente.",
+    "code": "werte = [1, 2, 3]\nprint(___werte)",
+    "options": [],
+    "answers": [
+      "*"
+    ],
+    "explanation": "* entpackt ein Iterable beim Aufruf."
+  },
+  {
+    "id": "4-13",
+    "topic": "Flexible Argumente",
+    "level": "Anwendung",
+    "kind": "fill",
+    "prompt": "Entpacke das Dictionary in Schlüsselwortargumente.",
+    "code": "def f(a, b):\n    return a + b\nprint(f(___{'a': 1, 'b': 2}))",
+    "options": [],
+    "answers": [
+      "**"
+    ],
+    "explanation": "** ordnet die Werte den Parametern anhand ihrer Namen zu."
+  },
+  {
+    "id": "4-14",
+    "topic": "Rückgabe und Scope",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "def f():\n    return 2, 3\nprint(f())",
+    "options": [],
+    "answers": [
+      "(2, 3)"
+    ],
+    "explanation": "Die Funktion liefert ein Tupel mit zwei Elementen."
+  },
+  {
+    "id": "4-15",
+    "topic": "Rückgabe und Scope",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "x = 10\ndef f(x):\n    x += 1\n    return x\nprint(f(x), x)",
+    "options": [],
+    "answers": [
+      "11 10"
+    ],
+    "explanation": "Die lokale Neuzuweisung verändert den äußeren Namen nicht."
+  },
+  {
+    "id": "4-16",
+    "topic": "Rückgabe und Scope",
+    "level": "Vertiefung",
+    "kind": "single",
+    "prompt": "Welche Ausnahme entsteht beim Aufruf?",
+    "code": "x = 10\ndef f():\n    x += 1\nf()",
+    "options": [
+      "NameError ausschließlich",
+      "UnboundLocalError",
+      "TypeError",
+      "Keine"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Die Zuweisung macht x lokal; beim Lesen ist es noch nicht belegt. UnboundLocalError ist eine Unterklasse von NameError."
+  },
+  {
+    "id": "4-17",
+    "topic": "Rückgabe und Scope",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "def f(x):\n    if x < 0:\n        return 'negativ'\n    return 'ok'\nprint(f(-1))",
+    "options": [],
+    "answers": [
+      "negativ"
+    ],
+    "explanation": "Das erste ausgeführte return beendet den Funktionsaufruf."
+  },
+  {
+    "id": "4-18",
+    "topic": "Rückgabe und Scope",
+    "level": "Vertiefung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "daten = [{'n': 3}, {'n': 1}]\nprint(sorted(daten, key=lambda d: d['n']))",
+    "options": [],
+    "answers": [
+      "[{'n': 1}, {'n': 3}]"
+    ],
+    "explanation": "lambda erzeugt eine Funktion, die den Sortierschlüssel je Eintrag liefert."
+  },
+  {
+    "id": "4-19",
+    "topic": "Module",
+    "level": "Grundlagen",
+    "kind": "single",
+    "prompt": "Wie importiert man die benachbarte Datei geometrie.py?",
+    "code": "",
+    "options": [
+      "import geometrie.py",
+      "import geometrie",
+      "include geometrie",
+      "from .py import geometrie"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Der Importname enthält keine Dateiendung."
+  },
+  {
+    "id": "4-20",
+    "topic": "Module",
+    "level": "Anwendung",
+    "kind": "multiple",
+    "prompt": "Welche Aussagen zum normalen Import stimmen?",
+    "code": "",
+    "options": [
+      "Anweisungen auf Modulebene laufen beim ersten Import",
+      "Jeder Import führt den Modulcode erneut aus",
+      "Funktionskörper laufen erst beim Aufruf",
+      "Ein Modul besitzt einen eigenen Namensraum"
+    ],
+    "answers": [
+      0,
+      2,
+      3
+    ],
+    "explanation": "Normale Folgeimports nutzen den Modulcache."
+  },
+  {
+    "id": "4-21",
+    "topic": "Importvarianten",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Ergänze den Namen für die Prüfung auf direkten Programmstart.",
+    "code": "if ___ == '__main__':\n    main()",
+    "options": [],
+    "answers": [
+      "__name__"
+    ],
+    "explanation": "Python setzt __name__ beim Start als Hauptprogramm auf __main__."
+  },
+  {
+    "id": "4-22",
+    "topic": "Importvarianten",
+    "level": "Anwendung",
+    "kind": "single",
+    "prompt": "Wozu dient PYTHONPATH?",
+    "code": "",
+    "options": [
+      "Installiert Pakete",
+      "Ergänzt den Modulsuchpfad",
+      "Ändert die Python-Syntax",
+      "Speichert Testergebnisse"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "PYTHONPATH fügt beim üblichen Interpreterstart Suchverzeichnisse hinzu."
+  },
+  {
+    "id": "4-23",
+    "topic": "Importvarianten",
+    "level": "Vertiefung",
+    "kind": "single",
+    "prompt": "Warum kann eine eigene random.py Probleme verursachen?",
+    "code": "",
+    "options": [
+      "Python verbietet diesen Dateinamen",
+      "Sie kann das gleichnamige Bibliotheksmodul verdecken",
+      "Sie wird immer ignoriert",
+      "Sie löscht das Standardmodul"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Der Skriptordner steht beim üblichen Dateistart vor der Standardbibliothek im Suchpfad."
+  },
+  {
+    "id": "4-24",
+    "topic": "Standardbibliothek",
+    "level": "Grundlagen",
+    "kind": "multiple",
+    "prompt": "Welche Module gehören zur Standardbibliothek?",
+    "code": "",
+    "options": [
+      "json",
+      "pathlib",
+      "requests",
+      "collections"
+    ],
+    "answers": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "requests ist ein zusätzliches Paket; die anderen gehören zu Python."
+  },
+  {
+    "id": "4-25",
+    "topic": "Standardbibliothek",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "from collections import Counter\nprint(sum(Counter('abba').values()))",
+    "options": [],
+    "answers": [
+      "4"
+    ],
+    "explanation": "Die Summe der Häufigkeiten entspricht der Anzahl der gezählten Zeichen."
+  },
+  {
+    "id": "4-26",
+    "topic": "Pakete",
+    "level": "Grundlagen",
+    "kind": "single",
+    "prompt": "Welcher Befehl erstellt eine virtuelle Umgebung unter Linux?",
+    "code": "",
+    "options": [
+      "python3 -m venv .venv",
+      "pip venv .venv",
+      "import venv .venv",
+      "python3 -m pip freeze"
+    ],
+    "answers": [
+      0
+    ],
+    "explanation": "Das Standardbibliotheksmodul venv erstellt die Umgebung."
+  },
+  {
+    "id": "4-27",
+    "topic": "Pakete",
+    "level": "Anwendung",
+    "kind": "single",
+    "prompt": "Warum ist python -m pip hilfreich?",
+    "code": "",
+    "options": [
+      "Es installiert immer global",
+      "Es verwendet pip des gewählten Interpreters",
+      "Es deaktiviert die venv",
+      "Es prüft automatisch alle Paketversionen"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Interpreter und pip werden eindeutig miteinander verknüpft."
+  },
+  {
+    "id": "4-28",
+    "topic": "Unittests",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Ergänze die Prüfmethode für exakte Gleichheit.",
+    "code": "self.___(addiere(2, 3), 5)",
+    "options": [],
+    "answers": [
+      "assertEqual"
+    ],
+    "explanation": "assertEqual vergleicht tatsächlichen und erwarteten Wert."
+  },
+  {
+    "id": "4-29",
+    "topic": "Unittests",
+    "level": "Anwendung",
+    "kind": "single",
+    "prompt": "Welche Prüfmethode ist für 0.1 + 0.2 gegenüber 0.3 geeignet?",
+    "code": "",
+    "options": [
+      "assertEqual ohne Toleranz",
+      "assertAlmostEqual",
+      "assertRaises",
+      "assertFalse"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Fließkommawerte können geringe Darstellungsabweichungen aufweisen."
+  },
+  {
+    "id": "4-30",
+    "topic": "Unittests",
+    "level": "Vertiefung",
+    "kind": "multiple",
+    "prompt": "Welche Aussagen über gute Unittests stimmen?",
+    "code": "",
+    "options": [
+      "Erwartungen unabhängig von der Implementierung festlegen",
+      "Tests müssen in fester Reihenfolge laufen",
+      "Fehlerfälle ausdrücklich prüfen",
+      "Bestandene Tests beweisen Fehlerfreiheit für alle Eingaben"
+    ],
+    "answers": [
+      0,
+      2
+    ],
+    "explanation": "Tests sollten unabhängig sein und belegen nur das Verhalten der geprüften Fälle."
+  }
+]

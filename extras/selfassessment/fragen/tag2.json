@@ -1,0 +1,444 @@
+[
+  {
+    "id": "2-01",
+    "topic": "Bedingungen",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "x = 7\nif x > 5:\n    print('A')\nelif x > 2:\n    print('B')",
+    "options": [],
+    "answers": [
+      "A"
+    ],
+    "explanation": "In einer if/elif-Kette läuft nur der erste passende Zweig."
+  },
+  {
+    "id": "2-02",
+    "topic": "Bedingungen",
+    "level": "Anwendung",
+    "kind": "fill",
+    "prompt": "Ergänze die Bedingung für eine gerade Zahl.",
+    "code": "if zahl % 2 ___ 0:\n    print('gerade')",
+    "options": [],
+    "answers": [
+      "=="
+    ],
+    "explanation": "Gerade Zahlen haben bei Division durch 2 den Rest null."
+  },
+  {
+    "id": "2-03",
+    "topic": "Bedingungen",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "x = 0\nprint('ja' if x else 'nein')",
+    "options": [],
+    "answers": [
+      "nein"
+    ],
+    "explanation": "0 ist falsy; der bedingte Ausdruck wählt den zweiten Wert."
+  },
+  {
+    "id": "2-04",
+    "topic": "while",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "x = 0\nwhile x < 3:\n    x += 1\nprint(x)",
+    "options": [],
+    "answers": [
+      "3"
+    ],
+    "explanation": "Die Schleife endet, sobald x den Wert 3 erreicht."
+  },
+  {
+    "id": "2-05",
+    "topic": "while",
+    "level": "Anwendung",
+    "kind": "single",
+    "prompt": "Warum endet diese Schleife nicht?",
+    "code": "x = 1\nwhile x < 4:\n    print(x)",
+    "options": [
+      "print blockiert",
+      "x wird nicht verändert",
+      "while prüft nur einmal",
+      "x ist ein String"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Die Bedingung bleibt dauerhaft wahr."
+  },
+  {
+    "id": "2-06",
+    "topic": "while",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Ergänze die Anweisung zum sofortigen Verlassen der Schleife.",
+    "code": "while True:\n    ___",
+    "options": [],
+    "answers": [
+      "break"
+    ],
+    "explanation": "break beendet die unmittelbar umgebende Schleife."
+  },
+  {
+    "id": "2-07",
+    "topic": "for",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print(list(range(2, 7, 2)))",
+    "options": [],
+    "answers": [
+      "[2, 4, 6]"
+    ],
+    "explanation": "range beginnt bei 2, erhöht um 2 und schließt 7 aus."
+  },
+  {
+    "id": "2-08",
+    "topic": "for",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "for x in range(4):\n    if x == 2:\n        continue\n    print(x)",
+    "options": [],
+    "answers": [
+      "0\n1\n3"
+    ],
+    "explanation": "continue überspringt den Rest des aktuellen Durchlaufs."
+  },
+  {
+    "id": "2-09",
+    "topic": "for",
+    "level": "Vertiefung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "for x in range(2):\n    if x == 3:\n        break\nelse:\n    print('fertig')",
+    "options": [],
+    "answers": [
+      "fertig"
+    ],
+    "explanation": "Das Schleifen-else läuft bei regulärem Ende ohne break."
+  },
+  {
+    "id": "2-10",
+    "topic": "Kontrollstrukturen",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "x = 2\nmatch x:\n    case 1 | 2:\n        print('A')\n    case _:\n        print('B')",
+    "options": [],
+    "answers": [
+      "A"
+    ],
+    "explanation": "Das Alternativmuster passt auf 1 oder 2."
+  },
+  {
+    "id": "2-11",
+    "topic": "Kontrollstrukturen",
+    "level": "Grundlagen",
+    "kind": "single",
+    "prompt": "Welche Bedeutung hat case _ im match?",
+    "code": "",
+    "options": [
+      "Nur der String '_'",
+      "Wildcard für beliebige Werte",
+      "Ein Vergleich mit None",
+      "Schleifenabbruch"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Das Wildcard-Muster passt auf jeden Wert."
+  },
+  {
+    "id": "2-12",
+    "topic": "Import",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Ergänze den Alias-Operator.",
+    "code": "import math ___ m",
+    "options": [],
+    "answers": [
+      "as"
+    ],
+    "explanation": "as bindet das Modul unter dem angegebenen Alias."
+  },
+  {
+    "id": "2-13",
+    "topic": "Import",
+    "level": "Anwendung",
+    "kind": "single",
+    "prompt": "Welcher Aufruf passt zum Import?",
+    "code": "from math import sqrt",
+    "options": [
+      "math.sqrt(9)",
+      "sqrt(9)",
+      "math(9)",
+      "import.sqrt(9)"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "from bindet sqrt direkt im aktuellen Namensraum."
+  },
+  {
+    "id": "2-14",
+    "topic": "Regex",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "import re\nprint(re.findall(r'\\d+', 'A12 B3'))",
+    "options": [],
+    "answers": [
+      "['12', '3']"
+    ],
+    "explanation": "\\d+ erfasst zusammenhängende Ziffernfolgen."
+  },
+  {
+    "id": "2-15",
+    "topic": "Regex",
+    "level": "Anwendung",
+    "kind": "single",
+    "prompt": "Was liefert re.search ohne Treffer?",
+    "code": "import re\nre.search(r'\\d+', 'abc')",
+    "options": [
+      "False",
+      "-1",
+      "None",
+      "Eine leere Liste"
+    ],
+    "answers": [
+      2
+    ],
+    "explanation": "search liefert ein Match-Objekt oder None."
+  },
+  {
+    "id": "2-16",
+    "topic": "Regex",
+    "level": "Anwendung",
+    "kind": "fill",
+    "prompt": "Ergänze den Quantifizierer für mindestens eine Ziffer.",
+    "code": "muster = r'\\d___'",
+    "options": [],
+    "answers": [
+      "+"
+    ],
+    "explanation": " + bedeutet ein oder mehr Vorkommen."
+  },
+  {
+    "id": "2-17",
+    "topic": "Regex",
+    "level": "Vertiefung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "import re\nprint(re.sub(r'\\D', '', 'Tel: 12-34'))",
+    "options": [],
+    "answers": [
+      "1234"
+    ],
+    "explanation": "\\D passt auf Nichtziffern, die hier entfernt werden."
+  },
+  {
+    "id": "2-18",
+    "topic": "Dateien",
+    "level": "Grundlagen",
+    "kind": "single",
+    "prompt": "Welcher Modus hängt Text an eine Datei an?",
+    "code": "",
+    "options": [
+      "r",
+      "w",
+      "a",
+      "x"
+    ],
+    "answers": [
+      2
+    ],
+    "explanation": "a schreibt am Dateiende; w würde den bisherigen Inhalt abschneiden."
+  },
+  {
+    "id": "2-19",
+    "topic": "Dateien",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Ergänze das Schlüsselwort für automatisches Schließen.",
+    "code": "___ open('daten.txt', encoding='utf-8') as f:\n    text = f.read()",
+    "options": [],
+    "answers": [
+      "with"
+    ],
+    "explanation": "Der Kontextmanager schließt die Datei beim Verlassen des Blocks."
+  },
+  {
+    "id": "2-20",
+    "topic": "Dateien",
+    "level": "Anwendung",
+    "kind": "multiple",
+    "prompt": "Welche Aussagen stimmen?",
+    "code": "",
+    "options": [
+      "read() lädt den gesamten restlichen Inhalt",
+      "for zeile in f kann zeilenweise lesen",
+      "w erhält immer den alten Inhalt",
+      "encoding legt die Textkodierung fest"
+    ],
+    "answers": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "w kürzt eine vorhandene Datei beim Öffnen; die übrigen Aussagen sind korrekt."
+  },
+  {
+    "id": "2-21",
+    "topic": "Fehlerbehandlung",
+    "level": "Grundlagen",
+    "kind": "single",
+    "prompt": "Welche Ausnahme entsteht?",
+    "code": "int('abc')",
+    "options": [
+      "ValueError",
+      "TypeError",
+      "ZeroDivisionError",
+      "KeyError"
+    ],
+    "answers": [
+      0
+    ],
+    "explanation": "Der String hat einen ungeeigneten Wert für die Konvertierung."
+  },
+  {
+    "id": "2-22",
+    "topic": "Fehlerbehandlung",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print('Fehler')\nfinally:\n    print('Ende')",
+    "options": [],
+    "answers": [
+      "Fehler\nEnde"
+    ],
+    "explanation": "Die passende Ausnahme wird behandelt; finally läuft anschließend."
+  },
+  {
+    "id": "2-23",
+    "topic": "Fehlerbehandlung",
+    "level": "Anwendung",
+    "kind": "fill",
+    "prompt": "Ergänze das Schlüsselwort zum Auslösen einer Ausnahme.",
+    "code": "if alter < 0:\n    ___ ValueError('Negatives Alter')",
+    "options": [],
+    "answers": [
+      "raise"
+    ],
+    "explanation": "raise signalisiert den Fehler dem aufrufenden Code."
+  },
+  {
+    "id": "2-24",
+    "topic": "Fehlerbehandlung",
+    "level": "Vertiefung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "try:\n    x = int('12')\nexcept ValueError:\n    print('A')\nelse:\n    print('B')\nfinally:\n    print('C')",
+    "options": [],
+    "answers": [
+      "B\nC"
+    ],
+    "explanation": "else läuft ohne Ausnahme aus dem try-Block; finally läuft danach."
+  },
+  {
+    "id": "2-25",
+    "topic": "JSON",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Ergänze die Funktion, die einen JSON-String liest.",
+    "code": "import json\ndaten = json.___('{\"x\": 1}')",
+    "options": [],
+    "answers": [
+      "loads"
+    ],
+    "explanation": "loads verarbeitet einen String; load ein Dateiobjekt."
+  },
+  {
+    "id": "2-26",
+    "topic": "JSON",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "import json\nprint(json.loads('null'))",
+    "options": [],
+    "answers": [
+      "None"
+    ],
+    "explanation": "JSON-null wird zu Python-None."
+  },
+  {
+    "id": "2-27",
+    "topic": "SQLite",
+    "level": "Anwendung",
+    "kind": "single",
+    "prompt": "Welche Variante bindet den Wert als SQL-Parameter?",
+    "code": "",
+    "options": [
+      "cur.execute('SELECT * FROM t WHERE id = ?', (7,))",
+      "cur.execute('SELECT * FROM t WHERE id = ?')",
+      "cur.execute(f'SELECT * FROM t WHERE id = {7}')",
+      "cur.execute('SELECT * FROM t WHERE id = ?', 7)"
+    ],
+    "answers": [
+      0
+    ],
+    "explanation": "Der Platzhalter erhält eine Parameterfolge; SQL und Wert bleiben getrennt."
+  },
+  {
+    "id": "2-28",
+    "topic": "YAML",
+    "level": "Grundlagen",
+    "kind": "single",
+    "prompt": "Welches Modul wird nach Installation von PyYAML importiert?",
+    "code": "",
+    "options": [
+      "pyyaml",
+      "yaml",
+      "json",
+      "sqlite3"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Der Installationsname PyYAML unterscheidet sich vom Importnamen yaml."
+  },
+  {
+    "id": "2-29",
+    "topic": "Dateien",
+    "level": "Anwendung",
+    "kind": "single",
+    "prompt": "Was enthält eine gelesene Textzeile typischerweise zusätzlich, wenn sie nicht die letzte ohne Abschluss ist?",
+    "code": "",
+    "options": [
+      "Ein abschließendes \\n",
+      "Ein führendes Leerzeichen",
+      "Ein null-Byte",
+      "Immer einen Tabulator"
+    ],
+    "answers": [
+      0
+    ],
+    "explanation": "Bei Zeileniteration bleibt der Zeilenumbruch erhalten, sofern vorhanden."
+  },
+  {
+    "id": "2-30",
+    "topic": "Kontrollstrukturen",
+    "level": "Vertiefung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "for x in range(5):\n    if x == 2:\n        break\nelse:\n    print('fertig')\nprint(x)",
+    "options": [],
+    "answers": [
+      "2"
+    ],
+    "explanation": "break verhindert das Schleifen-else; x bleibt auf 2 gebunden."
+  }
+]

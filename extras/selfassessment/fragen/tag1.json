@@ -1,0 +1,439 @@
+[
+  {
+    "id": "1-01",
+    "topic": "Variablen",
+    "level": "Grundlagen",
+    "kind": "single",
+    "prompt": "Welcher Typ ist nach beiden Zuweisungen an x gebunden?",
+    "code": "x = 10\nx = '10'",
+    "options": [
+      "int",
+      "str",
+      "float",
+      "bool"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Die zweite Zuweisung bindet x an einen String. Der Typ gehört zum Objekt, nicht dauerhaft zum Namen."
+  },
+  {
+    "id": "1-02",
+    "topic": "Variablen",
+    "level": "Grundlagen",
+    "kind": "multiple",
+    "prompt": "Welche Namen sind gültige Python-Bezeichner?",
+    "code": "",
+    "options": [
+      "gesamt_preis",
+      "2preis",
+      "_wert",
+      "class"
+    ],
+    "answers": [
+      0,
+      2
+    ],
+    "explanation": "Ziffern dürfen nicht am Anfang stehen; class ist ein reserviertes Wort."
+  },
+  {
+    "id": "1-03",
+    "topic": "Datentypen",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print(type(7 / 2).__name__)",
+    "options": [],
+    "answers": [
+      "float"
+    ],
+    "explanation": "Der Operator / liefert bei diesen Ganzzahlen einen float."
+  },
+  {
+    "id": "1-04",
+    "topic": "Datentypen",
+    "level": "Anwendung",
+    "kind": "multiple",
+    "prompt": "Welche Ausdrücke ergeben False?",
+    "code": "",
+    "options": [
+      "bool('False')",
+      "bool('')",
+      "bool(0)",
+      "bool(-1)"
+    ],
+    "answers": [
+      1,
+      2
+    ],
+    "explanation": "Ein nicht leerer String und eine von null verschiedene Zahl sind wahr."
+  },
+  {
+    "id": "1-05",
+    "topic": "Operatoren",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print(17 // 5, 17 % 5)",
+    "options": [],
+    "answers": [
+      "3 2"
+    ],
+    "explanation": "17 = 3 * 5 + 2. // liefert den abgerundeten Quotienten, % den Rest."
+  },
+  {
+    "id": "1-06",
+    "topic": "Operatoren",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print(-7 // 3, -7 % 3)",
+    "options": [],
+    "answers": [
+      "-3 2"
+    ],
+    "explanation": "// rundet gegen minus unendlich; -7 = -3 * 3 + 2."
+  },
+  {
+    "id": "1-07",
+    "topic": "Operatoren",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Ergänze den Vergleichsoperator für Gleichheit.",
+    "code": "print(5 ___ 5)",
+    "options": [],
+    "answers": [
+      "=="
+    ],
+    "explanation": "== vergleicht; = weist einen Wert zu."
+  },
+  {
+    "id": "1-08",
+    "topic": "Operatoren",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print(2 + 3 * 4 ** 2)",
+    "options": [],
+    "answers": [
+      "50"
+    ],
+    "explanation": "Zuerst Potenz, dann Multiplikation, dann Addition."
+  },
+  {
+    "id": "1-09",
+    "topic": "Typkonvertierung",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print(int(-7.9))",
+    "options": [],
+    "answers": [
+      "-7"
+    ],
+    "explanation": "int schneidet bei float gegen null ab."
+  },
+  {
+    "id": "1-10",
+    "topic": "Typkonvertierung",
+    "level": "Anwendung",
+    "kind": "single",
+    "prompt": "Welche Ausnahme entsteht?",
+    "code": "int('3.14')",
+    "options": [
+      "TypeError",
+      "ValueError",
+      "IndexError",
+      "Keine"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Der Typ str ist zulässig, aber der Text beschreibt keine Ganzzahl."
+  },
+  {
+    "id": "1-11",
+    "topic": "Eingabe",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Ergänze die Funktion, damit eine Ganzzahl eingelesen wird.",
+    "code": "alter = ___(input('Alter: '))",
+    "options": [],
+    "answers": [
+      "int"
+    ],
+    "explanation": "input liefert einen String; int wandelt ihn um."
+  },
+  {
+    "id": "1-12",
+    "topic": "Eingabe",
+    "level": "Anwendung",
+    "kind": "single",
+    "prompt": "Der Nutzer tippt 12. Was wird ausgegeben?",
+    "code": "x = input('Zahl: ')\nprint(x * 2)",
+    "options": [
+      "24",
+      "1212",
+      "12 12",
+      "TypeError"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "x ist ein String. Multiplikation mit 2 wiederholt ihn."
+  },
+  {
+    "id": "1-13",
+    "topic": "Ausgabe",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print('A', 'B', sep='-')",
+    "options": [],
+    "answers": [
+      "A-B"
+    ],
+    "explanation": "sep legt den Trenner zwischen den Argumenten fest."
+  },
+  {
+    "id": "1-14",
+    "topic": "Ausgabe",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print('A', end='')\nprint('B')",
+    "options": [],
+    "answers": [
+      "AB"
+    ],
+    "explanation": "Der erste Aufruf erzeugt keinen Zeilenumbruch."
+  },
+  {
+    "id": "1-15",
+    "topic": "Strings",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print('Python'[1:4])",
+    "options": [],
+    "answers": [
+      "yth"
+    ],
+    "explanation": "Der Startindex gehört dazu, der Stoppindex nicht."
+  },
+  {
+    "id": "1-16",
+    "topic": "Strings",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "s = 'Hallo'\ns.upper()\nprint(s)",
+    "options": [],
+    "answers": [
+      "Hallo"
+    ],
+    "explanation": "upper liefert einen neuen String; s wird nicht neu gebunden."
+  },
+  {
+    "id": "1-17",
+    "topic": "Strings",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Ergänze die Methode, die äußeren Leerraum entfernt.",
+    "code": "name = ' Anna '.___()",
+    "options": [],
+    "answers": [
+      "strip"
+    ],
+    "explanation": "strip entfernt Leerraum am Anfang und Ende."
+  },
+  {
+    "id": "1-18",
+    "topic": "Strings",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print('Python'[::-1])",
+    "options": [],
+    "answers": [
+      "nohtyP"
+    ],
+    "explanation": "Die negative Schrittweite durchläuft die Zeichen rückwärts."
+  },
+  {
+    "id": "1-19",
+    "topic": "Strings",
+    "level": "Anwendung",
+    "kind": "single",
+    "prompt": "Was passiert?",
+    "code": "s = 'abc'\ns[0] = 'A'",
+    "options": [
+      "s wird 'Abc'",
+      "TypeError",
+      "IndexError",
+      "SyntaxError"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Strings sind unveränderlich; ein einzelnes Zeichen kann nicht ersetzt werden."
+  },
+  {
+    "id": "1-20",
+    "topic": "F-Strings",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "preis = 2.5\nprint(f'{preis:.2f}')",
+    "options": [],
+    "answers": [
+      "2.50"
+    ],
+    "explanation": "Das Format .2f stellt zwei Nachkommastellen dar."
+  },
+  {
+    "id": "1-21",
+    "topic": "F-Strings",
+    "level": "Anwendung",
+    "kind": "fill",
+    "prompt": "Ergänze das Format für genau zwei Nachkommastellen.",
+    "code": "print(f'{3.14159:___}')",
+    "options": [],
+    "answers": [
+      ".2f"
+    ],
+    "explanation": "Das Format .2f rundet die Darstellung auf zwei Nachkommastellen."
+  },
+  {
+    "id": "1-22",
+    "topic": "Datentypen",
+    "level": "Anwendung",
+    "kind": "single",
+    "prompt": "Was ist die zuverlässige Prüfung auf None?",
+    "code": "",
+    "options": [
+      "x == 'None'",
+      "x is None",
+      "bool(x) is False",
+      "x = None"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "is None prüft die Identität mit dem einzigen None-Objekt; andere falsy Werte sind nicht None."
+  },
+  {
+    "id": "1-23",
+    "topic": "Operatoren",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "x = 3\nprint(0 < x < 5)",
+    "options": [],
+    "answers": [
+      "True"
+    ],
+    "explanation": "Beide Teilvergleiche sind wahr."
+  },
+  {
+    "id": "1-24",
+    "topic": "Strings",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print('abc'.find('z'))",
+    "options": [],
+    "answers": [
+      "-1"
+    ],
+    "explanation": "find liefert bei fehlendem Teilstring -1."
+  },
+  {
+    "id": "1-25",
+    "topic": "Strings",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print('a;b;c'.split(';')[1])",
+    "options": [],
+    "answers": [
+      "b"
+    ],
+    "explanation": "split erzeugt eine Liste; Index 1 ist das zweite Element."
+  },
+  {
+    "id": "1-26",
+    "topic": "Variablen",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "a, b = 1, 2\na, b = b, a\nprint(a, b)",
+    "options": [],
+    "answers": [
+      "2 1"
+    ],
+    "explanation": "Die rechte Seite wird ausgewertet, bevor die Namen neu gebunden werden."
+  },
+  {
+    "id": "1-27",
+    "topic": "Datentypen",
+    "level": "Vertiefung",
+    "kind": "single",
+    "prompt": "Warum ist 0.1 + 0.2 nicht exakt 0.3?",
+    "code": "",
+    "options": [
+      "Python addiert Strings",
+      "Binäre Fließkommadarstellung",
+      "Der Operator + rundet auf ganze Zahlen",
+      "0.3 ist ein int"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Viele Dezimalbrüche sind binär nicht exakt darstellbar."
+  },
+  {
+    "id": "1-28",
+    "topic": "Ausgabe",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print('A\\nB')",
+    "options": [],
+    "answers": [
+      "A\nB"
+    ],
+    "explanation": "Der Escape \\n erzeugt einen Zeilenumbruch."
+  },
+  {
+    "id": "1-29",
+    "topic": "Operatoren",
+    "level": "Vertiefung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print('' or 'Standard')",
+    "options": [],
+    "answers": [
+      "Standard"
+    ],
+    "explanation": "or liefert den ersten truthy Operanden oder den letzten Operanden."
+  },
+  {
+    "id": "1-30",
+    "topic": "Variablen",
+    "level": "Grundlagen",
+    "kind": "single",
+    "prompt": "Welche Aussage zu Type Hints stimmt?",
+    "code": "zahl: int = 'Text'",
+    "options": [
+      "Python verhindert die Zuweisung",
+      "Die Annotation ist ein Hinweis; zur Laufzeit ist zahl ein str",
+      "zahl wird automatisch zu int",
+      "SyntaxError"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "Type Hints werden bei gewöhnlichen Zuweisungen nicht automatisch erzwungen."
+  }
+]

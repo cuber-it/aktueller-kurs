@@ -1,0 +1,409 @@
+[
+  {
+    "id": "3-01",
+    "topic": "Listen",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "a = [10, 20, 30]\nprint(a[-1])",
+    "options": [],
+    "answers": [
+      "30"
+    ],
+    "explanation": "Index -1 bezeichnet das letzte Element."
+  },
+  {
+    "id": "3-02",
+    "topic": "Listen",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "a = [1, 2]\nb = a\nb.append(3)\nprint(a)",
+    "options": [],
+    "answers": [
+      "[1, 2, 3]"
+    ],
+    "explanation": "a und b bezeichnen dieselbe Liste."
+  },
+  {
+    "id": "3-03",
+    "topic": "Listen",
+    "level": "Anwendung",
+    "kind": "fill",
+    "prompt": "Ergänze die Methode für eine flache Kopie.",
+    "code": "b = a.___()",
+    "options": [],
+    "answers": [
+      "copy"
+    ],
+    "explanation": "copy erzeugt eine neue äußere Liste."
+  },
+  {
+    "id": "3-04",
+    "topic": "Listenmethoden",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "a = [1]\na.append([2, 3])\nprint(a)",
+    "options": [],
+    "answers": [
+      "[1, [2, 3]]"
+    ],
+    "explanation": "append fügt sein Argument als ein Element ein."
+  },
+  {
+    "id": "3-05",
+    "topic": "Listenmethoden",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "a = [1]\na.extend([2, 3])\nprint(a)",
+    "options": [],
+    "answers": [
+      "[1, 2, 3]"
+    ],
+    "explanation": "extend fügt die einzelnen Elemente des Iterables hinzu."
+  },
+  {
+    "id": "3-06",
+    "topic": "Listenmethoden",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "a = [3, 1, 2]\nprint(a.sort())\nprint(a)",
+    "options": [],
+    "answers": [
+      "None\n[1, 2, 3]"
+    ],
+    "explanation": "sort verändert die Liste und liefert None."
+  },
+  {
+    "id": "3-07",
+    "topic": "Listenmethoden",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Entferne das letzte Element und speichere seinen Wert.",
+    "code": "wert = liste.___()",
+    "options": [],
+    "answers": [
+      "pop"
+    ],
+    "explanation": "pop ohne Index entfernt und liefert das letzte Element."
+  },
+  {
+    "id": "3-08",
+    "topic": "Tupel",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Ergänze das Zeichen für ein Tupel mit einem Element.",
+    "code": "wert = (42___)",
+    "options": [],
+    "answers": [
+      ","
+    ],
+    "explanation": "Das Komma unterscheidet das Tupel vom geklammerten Ausdruck."
+  },
+  {
+    "id": "3-09",
+    "topic": "Tupel",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "a, b = (3, 4)\nprint(a + b)",
+    "options": [],
+    "answers": [
+      "7"
+    ],
+    "explanation": "Beim Entpacken wird jedes Element einem Namen zugeordnet."
+  },
+  {
+    "id": "3-10",
+    "topic": "Tupel",
+    "level": "Vertiefung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "t = ('Anna', ['Python'])\nt[1].append('SQL')\nprint(t)",
+    "options": [],
+    "answers": [
+      "('Anna', ['Python', 'SQL'])"
+    ],
+    "explanation": "Die Tupelstruktur bleibt unverändert; die enthaltene Liste ist veränderbar."
+  },
+  {
+    "id": "3-11",
+    "topic": "Sets",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Erzeuge ein leeres Set.",
+    "code": "werte = ___",
+    "options": [],
+    "answers": [
+      "set()"
+    ],
+    "explanation": "{} erzeugt ein leeres Dictionary."
+  },
+  {
+    "id": "3-12",
+    "topic": "Sets",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print(sorted({1, 2, 3} & {2, 4}))",
+    "options": [],
+    "answers": [
+      "[2]"
+    ],
+    "explanation": "& liefert die Schnittmenge; sorted macht daraus eine Liste."
+  },
+  {
+    "id": "3-13",
+    "topic": "Sets",
+    "level": "Anwendung",
+    "kind": "multiple",
+    "prompt": "Welche Werte sind hashbar?",
+    "code": "",
+    "options": [
+      "42",
+      "'Anna'",
+      "[1, 2]",
+      "(1, 2)"
+    ],
+    "answers": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "Zahlen, Strings und Tupel aus hashbaren Elementen sind hashbar; Listen nicht."
+  },
+  {
+    "id": "3-14",
+    "topic": "Sets",
+    "level": "Vertiefung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print(sorted({1, 2, 3} ^ {2, 4}))",
+    "options": [],
+    "answers": [
+      "[1, 3, 4]"
+    ],
+    "explanation": "^ liefert Elemente, die in genau einer der beiden Mengen liegen."
+  },
+  {
+    "id": "3-15",
+    "topic": "Listen auswerten",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print([x * 2 for x in range(4) if x % 2 == 0])",
+    "options": [],
+    "answers": [
+      "[0, 4]"
+    ],
+    "explanation": "Nur 0 und 2 passieren den Filter; danach werden sie verdoppelt."
+  },
+  {
+    "id": "3-16",
+    "topic": "Listen auswerten",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Ergänze die Funktion für Nummer und Wert.",
+    "code": "for nr, name in ___(namen, start=1):\n    print(nr, name)",
+    "options": [],
+    "answers": [
+      "enumerate"
+    ],
+    "explanation": "enumerate liefert Paare aus Zähler und Element."
+  },
+  {
+    "id": "3-17",
+    "topic": "Listen auswerten",
+    "level": "Vertiefung",
+    "kind": "single",
+    "prompt": "Was geschieht beim vollständigen Durchlaufen?",
+    "code": "list(zip([1, 2], ['a'], strict=True))",
+    "options": [
+      "[(1, 'a')]",
+      "ValueError",
+      "IndexError",
+      "None"
+    ],
+    "answers": [
+      1
+    ],
+    "explanation": "strict=True verlangt gleich lange Folgen."
+  },
+  {
+    "id": "3-18",
+    "topic": "Listen auswerten",
+    "level": "Anwendung",
+    "kind": "fill",
+    "prompt": "Sortiere Wörter nach ihrer Länge.",
+    "code": "neu = sorted(woerter, key=___)",
+    "options": [],
+    "answers": [
+      "len"
+    ],
+    "explanation": "key erwartet eine Funktion, die den Vergleichswert je Element liefert."
+  },
+  {
+    "id": "3-19",
+    "topic": "Dictionaries",
+    "level": "Grundlagen",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "d = {'name': 'Anna'}\nprint(d.get('alter', 0))\nprint(len(d))",
+    "options": [],
+    "answers": [
+      "0\n1"
+    ],
+    "explanation": "get liefert den Standardwert, fügt aber keinen Eintrag hinzu."
+  },
+  {
+    "id": "3-20",
+    "topic": "Dictionaries",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "d = {'name': 'Anna'}\nprint('Anna' in d, 'name' in d)",
+    "options": [],
+    "answers": [
+      "False True"
+    ],
+    "explanation": "in prüft bei Dictionaries die Schlüssel."
+  },
+  {
+    "id": "3-21",
+    "topic": "Dictionaries",
+    "level": "Grundlagen",
+    "kind": "fill",
+    "prompt": "Entferne den Schlüssel und speichere seinen Wert.",
+    "code": "alter = person.___('alter')",
+    "options": [],
+    "answers": [
+      "pop"
+    ],
+    "explanation": "pop entfernt das Schlüssel-Wert-Paar und liefert dessen Wert."
+  },
+  {
+    "id": "3-22",
+    "topic": "Dictionary-Methoden",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "d = {'a': 3}\nprint(d.setdefault('a', 0))\nprint(d.setdefault('b', 0))",
+    "options": [],
+    "answers": [
+      "3\n0"
+    ],
+    "explanation": "setdefault erhält vorhandene Werte und ergänzt fehlende."
+  },
+  {
+    "id": "3-23",
+    "topic": "Dictionary-Methoden",
+    "level": "Anwendung",
+    "kind": "fill",
+    "prompt": "Ergänze die Methode für Schlüssel-Wert-Paare.",
+    "code": "for name, wert in daten.___():\n    print(name, wert)",
+    "options": [],
+    "answers": [
+      "items"
+    ],
+    "explanation": "items liefert Paare, die beim Schleifendurchlauf entpackt werden."
+  },
+  {
+    "id": "3-24",
+    "topic": "Dictionary-Methoden",
+    "level": "Vertiefung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "d = {'a': 2, 'b': 5}\nprint(max(d, key=d.get))",
+    "options": [],
+    "answers": [
+      "b"
+    ],
+    "explanation": "max liefert den Schlüssel, dessen zugehöriger Wert am größten ist."
+  },
+  {
+    "id": "3-25",
+    "topic": "Zählen und Gruppieren",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "from collections import Counter\nprint(Counter('aba')['a'])",
+    "options": [],
+    "answers": [
+      "2"
+    ],
+    "explanation": "Counter zählt jedes Element des Iterables."
+  },
+  {
+    "id": "3-26",
+    "topic": "Zählen und Gruppieren",
+    "level": "Vertiefung",
+    "kind": "fill",
+    "prompt": "Ergänze die aufrufbare Funktion für neue Gruppenlisten.",
+    "code": "from collections import defaultdict\ngruppen = defaultdict(___)",
+    "options": [],
+    "answers": [
+      "list"
+    ],
+    "explanation": "defaultdict ruft list() für fehlende Schlüssel beim Zugriff mit [] auf."
+  },
+  {
+    "id": "3-27",
+    "topic": "Zählen und Gruppieren",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "print({x: len(x) for x in ['ab', 'ab', 'c']})",
+    "options": [],
+    "answers": [
+      "{'ab': 2, 'c': 1}"
+    ],
+    "explanation": "Wiederholte Schlüssel ersetzen vorherige Werte."
+  },
+  {
+    "id": "3-28",
+    "topic": "Verschachtelte Daten",
+    "level": "Anwendung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "d = {'adresse': {'stadt': 'Berlin'}}\nprint(d['adresse']['stadt'])",
+    "options": [],
+    "answers": [
+      "Berlin"
+    ],
+    "explanation": "Der erste Zugriff liefert das innere Dictionary; der zweite den Stadtwert."
+  },
+  {
+    "id": "3-29",
+    "topic": "Verschachtelte Daten",
+    "level": "Vertiefung",
+    "kind": "output",
+    "prompt": "Was wird ausgegeben?",
+    "code": "a = {'werte': [1]}\nb = a.copy()\nb['werte'].append(2)\nprint(a)",
+    "options": [],
+    "answers": [
+      "{'werte': [1, 2]}"
+    ],
+    "explanation": "Die flache Kopie teilt die innere Liste mit dem Original."
+  },
+  {
+    "id": "3-30",
+    "topic": "Strukturwahl",
+    "level": "Anwendung",
+    "kind": "single",
+    "prompt": "Welche Struktur eignet sich für eindeutige Teilnehmer und Mengenvergleiche?",
+    "code": "",
+    "options": [
+      "list",
+      "tuple",
+      "set",
+      "str"
+    ],
+    "answers": [
+      2
+    ],
+    "explanation": "Sets halten eindeutige hashbare Elemente und unterstützen Mengenoperationen."
+  }
+]
