@@ -70,3 +70,6 @@ Desktop.ini
 
 # Private Kursgrafiken
 *.[pP][nN][gG]
+
+# Kursfolien versionieren
+!/folien/**/*.[pP][nN][gG]
