@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Watz",
+        "vorname": "",
+        "telefon": "12345",
+        "plz": "12345",
+        "ort": "",
+        "strasse": ""
+    },
+    {
+        "name": "Meier",
+        "vorname": "",
+        "telefon": "12345",
+        "plz": "12345",
+        "ort": "",
+        "strasse": ""
+    },
+    {
+        "name": "Schulze",
+        "vorname": "",
+        "telefon": "123456",
+        "plz": "12346",
+        "ort": "",
+        "strasse": ""
+    }
+]

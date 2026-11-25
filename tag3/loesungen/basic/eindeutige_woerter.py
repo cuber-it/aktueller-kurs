@@ -21,3 +21,11 @@ for wort in woerter:
 print("Gesamtzahl:", len(woerter))
 print("Unterschiedliche Wörter:", len(haeufigkeiten))
 print("Wörter:", ", ".join(sorted(haeufigkeiten)))
+
+# oder aber ...
+for wort in set(woerter):
+   print(wort, woerter.count(wort))
+
+# oder aber ...
+import collections
+print(dict(collections.Counter(woerter)))
