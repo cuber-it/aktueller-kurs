@@ -2,9 +2,7 @@ tippschein = []
 
 while len(tippschein) < 6:
     eingabe = input("Zahl zwischen 1 und 49: ")
-    if not eingabe.isdigit():
-        print("Keine Zahl:", eingabe)
-    else:
+    try:
         zahl = int(eingabe)
 
         if zahl in tippschein:
@@ -13,5 +11,7 @@ while len(tippschein) < 6:
             print("Wertebereich!:", zahl)
         else:
             tippschein.append(zahl)
+    except ValueError:
+        print("Keine Zahl:", eingabe)
 
 print("Fein gemacht:", tippschein)

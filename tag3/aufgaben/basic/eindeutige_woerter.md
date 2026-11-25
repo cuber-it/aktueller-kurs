@@ -1,6 +1,6 @@
 # Wörter und unterschiedliche Wörter zählen
 
-**Schwerpunkt:** Strings, Listen und Mengen.
+**Schwerpunkt:** Strings, Listen und Mengen oder Dictionaries.
 
 ## Aufgabe
 
